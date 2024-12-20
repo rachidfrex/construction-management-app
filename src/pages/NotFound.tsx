@@ -7,7 +7,7 @@ const PlugCable = () => (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute left-1/2 transform -translate-x-1/2 "
+      className="absolute left-1/2 transform -translate-x-1/2 z-50 "
       style={{ top: '5%' }} // Moved higher up
     >
       <motion.div
@@ -23,7 +23,7 @@ const PlugCable = () => (
         className="relative"
       >
         {/* Cable SVG */}
-        <svg width="200" height="200" viewBox="0 0 200 250">
+        <svg width="200" height="210" viewBox="0 0 200 300 " >
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#22c55e" />
@@ -60,106 +60,225 @@ const PlugCable = () => (
           <rect x="85" y="0" width="30" height="20" fill="#374151" rx="2"/>
           
           {/* Plug */}
-          {/* <motion.g
+       
+            <motion.g
             animate={{
-              rotate: [-5, 5, -5]
+                rotate: [-5, 5, -5]
             }}
             transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
             }}
             style={{ transformOrigin: '100px 200px' }}
-          >
-            <rect x="80" y="200" width="40" height="60" rx="5" fill="url(#gradient)" filter="url(#shadow)"/>
-            <rect x="90" y="260" width="20" height="20" fill="url(#gradient)" filter="url(#shadow)"/>
-            <circle cx="95" cy="220" r="5" fill="white" opacity="0.5"/>
-            <circle cx="105" cy="220" r="5" fill="white" opacity="0.5"/>
-          </motion.g> */}
-          <motion.g
-  animate={{
-    rotate: [-5, 5, -5]
-  }}
-  transition={{
-    duration: 6,
-    repeat: Infinity,
-    ease: "easeInOut"
-  }}
-  style={{ transformOrigin: '100px 200px' }}
->
-  {/* Main plug body */}
-  <rect x="80" y="200" width="40" height="60" rx="5" fill="url(#gradient)" filter="url(#shadow)"/>
-  <rect x="90" y="260" width="20" height="20" fill="url(#gradient)" filter="url(#shadow)"/>
-  
-  {/* Indicator lights */}
-  <circle cx="95" cy="220" r="5" fill="white" opacity="0.5"/>
-  <circle cx="105" cy="220" r="5" fill="white" opacity="0.5"/>
+            >
+            {/* Main plug body */}
+            {/* Main plug body - flipped upside down */}
+            <rect 
+            id='head' 
+            x="80" 
+            y="200" 
+            width="40" 
+            height="60" 
+            rx="5" 
+            fill="url(#gradient)" 
+            filter="url(#shadow)"
+            transform="rotate(180 100 230)" 
+            />
+            <rect 
+            id='body' 
+            x="90" 
+            y="180" 
+            width="20" 
+            height="20" 
+            fill="url(#gradient)" 
+            filter="url(#shadow)"
+            transform="rotate(180 100 190)" 
+            />
 
-  {/* Metal prongs - moved to bottom */}
-  <motion.g
-    animate={{
-      y: [-2, 2, -2]
-    }}
-    transition={{
-      duration: 3,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay: 0.5
-    }}
-  >
-    {/* Left prong */}
-    <rect 
-      x="87" 
-      y="275" /* Adjusted y position to be at the bottom */
-      width="8" 
-      height="25" 
-      rx="2"
-      fill="#D1D5DB"
-      filter="url(#shadow)"
-    />
-    {/* Right prong */}
-    <rect 
-      x="105" 
-      y="275" /* Adjusted y position to be at the bottom */
-      width="8" 
-      height="25" 
-      rx="2"
-      fill="#D1D5DB"
-      filter="url(#shadow)"
-    />
-    
-    {/* Metallic shine effects */}
-    <rect 
-      x="89" 
-      y="277" /* Adjusted y position */
-      width="4" 
-      height="21" 
-      rx="1"
-      fill="white"
-      opacity="0.3"
-    />
-    <rect 
-      x="107" 
-      y="277" /* Adjusted y position */
-      width="4" 
-      height="21" 
-      rx="1"
-      fill="white"
-      opacity="0.3"
-    />
-  </motion.g>
-</motion.g>
+
+
+        
+        {/* Indicator lights */}
+        <circle cx="95" cy="220" r="5" fill="white" opacity="0.5"/>
+        <circle cx="105" cy="220" r="5" fill="white" opacity="0.5"/>
+
+        {/* Metal prongs - moved to bottom */}
+        <motion.g
+            animate={{
+            y: [-2, 2, -2]
+            }}
+            transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5
+            }}
+        >
+            {/* Left prong */}
+            <rect 
+            x="87" 
+            y="259" /* Adjusted y position to be at the bottom */
+            width="8" 
+            height="25" 
+            rx="2"
+            fill="#D1D5DB"
+            filter="url(#shadow)"
+            />
+            {/* Right prong */}
+            <rect 
+            x="105" 
+            y="259" /* Adjusted y position to be at the bottom */
+            width="8" 
+            height="25" 
+            rx="2"
+            fill="#D1D5DB"
+            filter="url(#shadow)"
+            />
+            
+            {/* Metallic shine effects */}
+            <rect 
+            x="89" 
+            y="259" /* Adjusted y position */
+            width="4" 
+            height="21" 
+            rx="1"
+            fill="white"
+            opacity="0.3"
+            />
+            <rect 
+            x="107" 
+            y="259" /* Adjusted y position */
+            width="4" 
+            height="21" 
+            rx="1"
+            fill="white"
+            opacity="0.3"
+            />
+    </motion.g>
+            </motion.g>
         </svg>
       </motion.div>
     </motion.div>
   );
 
 
+  const SocketReceptacle = () => (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="absolute left-1/2 transform -translate-x-1/2"
+      style={{ bottom: '5%' }}
+    >
+      <svg width="200" height="210" viewBox="0 0 200 300">
+        <defs>
+          <linearGradient id="socketGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#374151" />
+            <stop offset="100%" stopColor="#1F2937" />
+          </linearGradient>
+          <filter id="socketShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#00000033"/>
+          </filter>
+        </defs>
+  
+        {/* Animated Cable from Socket */}
+        <motion.path
+          d="M100,140 Q100,80 100,40"
+          stroke="url(#socketGradient)"
+          strokeWidth="6"
+          fill="none"
+          filter="url(#socketShadow)"
+          animate={{
+            d: [
+              "M100,140 Q70,80 100,40",
+              "M100,140 Q130,80 100,40",
+              "M100,140 Q70,80 100,40"
+            ]
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+  
+        {/* Animated Socket End */}
+        <motion.g
+          animate={{
+            rotate: [-5, 5, -5],
+            y: [-5, 5, -5]
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{ transformOrigin: '100px 40px' }}
+        >
+          <rect 
+            x="85" 
+            y="20" 
+            width="30" 
+            height="40" 
+            fill="#4B5563"
+            rx="4"
+          />
+          {/* Socket holes */}
+          <rect 
+            x="92" 
+            y="25" 
+            width="6" 
+            height="20" 
+            fill="#1F2937"
+            rx="2"
+          />
+          <rect 
+            x="102" 
+            y="25" 
+            width="6" 
+            height="20" 
+            fill="#1F2937"
+            rx="2"
+          />
+        </motion.g>
+  
+        {/* Wall mount background */}
+        <rect 
+          x="70" 
+          y="120" 
+          width="60" 
+          height="80" 
+          rx="5"
+          fill="url(#socketGradient)"
+          filter="url(#socketShadow)"
+        />
+  
+        {/* Socket holes - original */}
+        <motion.g
+          animate={{
+            y: [-1, 1, -1],
+            x: [-0.5, 0.5, -0.5]
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          {/* Rest of your existing socket code... */}
+        </motion.g>
+  
+        {/* Rest of your existing code... */}
+      </svg>
+    </motion.div>
+  );
+
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
       <div className="max-w-3xl mx-auto text-center">
       <PlugCable />
+        <SocketReceptacle />
 
         {/* Animated 404 */}
         <motion.div
