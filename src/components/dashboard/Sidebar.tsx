@@ -71,15 +71,15 @@ const Sidebar = () => {
       <>
         {/* Mobile Menu Button */}
         <button
-                onClick={toggleSidebar}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow-lg"
-            >
-                {isSidebarOpen ? (
-                    <HiX className="w-6 h-6 text-gray-600" />
-                ) : (
-                    <HiMenu className="w-6 h-6 text-gray-600" />
-                )}
-            </button>
+          onClick={toggleSidebar}
+          className="lg:hidden fixed top-4 left-4 z-40 p-2 rounded-lg bg-white shadow-lg" // Changed z-index to 40
+        >
+          {isSidebarOpen ? (
+            <HiX className="w-6 h-6 text-gray-600" />
+          ) : (
+            <HiMenu className="w-6 h-6 text-gray-600" />
+          )}
+        </button>
 
       {/* Overlay - only visible on mobile when sidebar is open */}
       <AnimatePresence>
