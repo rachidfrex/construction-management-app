@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import { 
     HiHome, 
   HiClipboardList, 
@@ -39,28 +39,47 @@ const menuItems = [
     ]
   }
 ];
-
 const Sidebar = () => {
-    const location = useLocation();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
+  const location = useLocation();
+  // Set initial state to false so sidebar starts closed
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Add check for screen size
+   useEffect(() => {
+      const handleResize = () => {
+          if (window.innerWidth < 1024) { // lg breakpoint
+              setIsSidebarOpen(false);
+          } else {
+              setIsSidebarOpen(true);
+          }
+      };
+
+      // Set initial state
+      handleResize();
+
+      // Add event listener
+      window.addEventListener('resize', handleResize);
+
+      // Cleanup
+      return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
-    const toggleSidebar = () => {
+  const toggleSidebar = () => {
       setIsSidebarOpen(!isSidebarOpen);
-    };
-  
+  };
     return (
       <>
         {/* Mobile Menu Button */}
         <button
-        onClick={toggleSidebar}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow-lg"
-      >
-        {isSidebarOpen ? (
-          <HiX className="w-6 h-6 text-gray-600" />
-        ) : (
-          <HiMenu className="w-6 h-6 text-gray-600" />
-        )}
-      </button>
+                onClick={toggleSidebar}
+                className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-white shadow-lg"
+            >
+                {isSidebarOpen ? (
+                    <HiX className="w-6 h-6 text-gray-600" />
+                ) : (
+                    <HiMenu className="w-6 h-6 text-gray-600" />
+                )}
+            </button>
 
       {/* Overlay - only visible on mobile when sidebar is open */}
       <AnimatePresence>
