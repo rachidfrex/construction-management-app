@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IoArrowBack } from 'react-icons/io5';
 import { useToast } from '../../context/ToastContext';
 
 const ForgotPassword = () => {
   const { showToast } = useToast();
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -22,6 +23,10 @@ const ForgotPassword = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       showToast('success', 'Password reset link sent! Please check your email.');
       setEmail(''); // Clear the form after success
+
+      setTimeout(() => {
+        navigate('/reset-password');
+      }, 1500); 
     } catch (error) {
       showToast('error', 'Something went wrong. Please try again.');
     } finally {
