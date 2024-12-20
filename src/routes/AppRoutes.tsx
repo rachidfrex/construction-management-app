@@ -5,6 +5,7 @@ import ForgotPassword from '../pages/auth/ForgotPassword';
 import ResetPassword from '../pages/auth/ResetPassword';
 import NewPassword from '../pages/auth/NewPassword';
 import Dashboard from '../pages/dashboard/Dashboard';
+import NotFound from '../pages/NotFound';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -16,8 +17,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/new-password" element={<NewPassword />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      {/* <Route path="/profile" element={<Profile />} />
-      <Route path="/support" element={<Support />} /> */}
+      <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
   );
 };
