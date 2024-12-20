@@ -29,14 +29,14 @@ const Header = () => {
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
   return (
-  <header className={`h-16 bg-white shadow-sm fixed top-0 z-50 transition-all duration-300 ease-in-out
-  right-0 left-0 lg:left-64`}>
-  <div className="h-full px-6 flex items-center justify-between">
-    {/* Left Section - Add padding for burger menu on mobile */}
-    <div className="flex items-center">
-      <h2 className="text-xl font-semibold text-gray-800 lg:ml-0 ml-8">Dashboard</h2>
-    </div>
-    
+    <header className={`h-16 bg-white shadow-sm fixed top-0 z-30 transition-all duration-300 ease-in-out
+      right-0 left-0 lg:left-64`}>
+      <div className="h-full px-6 flex items-center justify-between">
+        {/* Left Section */}
+        <div className="flex items-center">
+          <h2 className="text-xl font-semibold text-gray-800 lg:ml-0 ml-12">Dashboard</h2>
+        </div>
+        
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">
