@@ -38,10 +38,11 @@ const Header = () => {
   ];
 
   return (
-    <header className="h-16 bg-white shadow-sm fixed top-0 right-0 left-64 z-10">
+    <header className={`h-16 bg-white shadow-sm fixed top-0 z-10 transition-all duration-300 ease-in-out
+      right-0 left-0 lg:left-64`}> {/* Modified this line */}
       <div className="h-full px-6 flex items-center justify-between">
         {/* Search Bar */}
-        <div className="flex-1 max-w-xl">
+        <div className="  ml-10 md:ml-0 flex-1 max-w-xl">
           <div className="relative">
             <input
               type="text"

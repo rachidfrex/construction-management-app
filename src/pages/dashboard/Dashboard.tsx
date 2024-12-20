@@ -5,7 +5,7 @@ import StatCard from '../../components/dashboard/StatCard';
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen w-full bg-gray-50">
       <Sidebar />
       <Header />
  
