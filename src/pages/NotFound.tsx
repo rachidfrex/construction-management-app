@@ -163,122 +163,122 @@ const PlugCable = () => (
   );
 
 
-  const SocketReceptacle = () => (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="absolute left-1/2 transform -translate-x-1/2"
-      style={{ bottom: '5%' }}
-    >
-      <svg width="200" height="210" viewBox="0 0 200 300">
-        <defs>
-          <linearGradient id="socketGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#374151" />
-            <stop offset="100%" stopColor="#1F2937" />
-          </linearGradient>
-          <filter id="socketShadow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#00000033"/>
-          </filter>
-        </defs>
+  // const SocketReceptacle = () => (
+  //   <motion.div
+  //     initial={{ opacity: 0 }}
+  //     animate={{ opacity: 1 }}
+  //     className="absolute left-1/2 transform -translate-x-1/2"
+  //     style={{ bottom: '5%' }}
+  //   >
+  //     <svg width="200" height="210" viewBox="0 0 200 300">
+  //       <defs>
+  //         <linearGradient id="socketGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+  //           <stop offset="0%" stopColor="#374151" />
+  //           <stop offset="100%" stopColor="#1F2937" />
+  //         </linearGradient>
+  //         <filter id="socketShadow" x="-20%" y="-20%" width="140%" height="140%">
+  //           <feDropShadow dx="2" dy="2" stdDeviation="3" floodColor="#00000033"/>
+  //         </filter>
+  //       </defs>
   
-        {/* Animated Cable from Socket */}
-        <motion.path
-          d="M100,140 Q100,80 100,40"
-          stroke="url(#socketGradient)"
-          strokeWidth="6"
-          fill="none"
-          filter="url(#socketShadow)"
-          animate={{
-            d: [
-              "M100,140 Q70,80 100,40",
-              "M100,140 Q130,80 100,40",
-              "M100,140 Q70,80 100,40"
-            ]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+  //       {/* Animated Cable from Socket */}
+  //       <motion.path
+  //         d="M100,140 Q100,80 100,40"
+  //         stroke="url(#socketGradient)"
+  //         strokeWidth="6"
+  //         fill="none"
+  //         filter="url(#socketShadow)"
+  //         animate={{
+  //           d: [
+  //             "M100,140 Q70,80 100,40",
+  //             "M100,140 Q130,80 100,40",
+  //             "M100,140 Q70,80 100,40"
+  //           ]
+  //         }}
+  //         transition={{
+  //           duration: 6,
+  //           repeat: Infinity,
+  //           ease: "easeInOut"
+  //         }}
+  //       />
   
-        {/* Animated Socket End */}
-        <motion.g
-          animate={{
-            rotate: [-5, 5, -5],
-            y: [-5, 5, -5]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ transformOrigin: '100px 40px' }}
-        >
-          <rect 
-            x="85" 
-            y="20" 
-            width="30" 
-            height="40" 
-            fill="#4B5563"
-            rx="4"
-          />
-          {/* Socket holes */}
-          <rect 
-            x="92" 
-            y="25" 
-            width="6" 
-            height="20" 
-            fill="#1F2937"
-            rx="2"
-          />
-          <rect 
-            x="102" 
-            y="25" 
-            width="6" 
-            height="20" 
-            fill="#1F2937"
-            rx="2"
-          />
-        </motion.g>
+  //       {/* Animated Socket End */}
+  //       <motion.g
+  //         animate={{
+  //           rotate: [-5, 5, -5],
+  //           y: [-5, 5, -5]
+  //         }}
+  //         transition={{
+  //           duration: 6,
+  //           repeat: Infinity,
+  //           ease: "easeInOut"
+  //         }}
+  //         style={{ transformOrigin: '100px 40px' }}
+  //       >
+  //         <rect 
+  //           x="85" 
+  //           y="20" 
+  //           width="30" 
+  //           height="40" 
+  //           fill="#4B5563"
+  //           rx="4"
+  //         />
+  //         {/* Socket holes */}
+  //         <rect 
+  //           x="92" 
+  //           y="25" 
+  //           width="6" 
+  //           height="20" 
+  //           fill="#1F2937"
+  //           rx="2"
+  //         />
+  //         <rect 
+  //           x="102" 
+  //           y="25" 
+  //           width="6" 
+  //           height="20" 
+  //           fill="#1F2937"
+  //           rx="2"
+  //         />
+  //       </motion.g>
   
-        {/* Wall mount background */}
-        <rect 
-          x="70" 
-          y="120" 
-          width="60" 
-          height="80" 
-          rx="5"
-          fill="url(#socketGradient)"
-          filter="url(#socketShadow)"
-        />
+  //       {/* Wall mount background */}
+  //       <rect 
+  //         x="70" 
+  //         y="120" 
+  //         width="60" 
+  //         height="80" 
+  //         rx="5"
+  //         fill="url(#socketGradient)"
+  //         filter="url(#socketShadow)"
+  //       />
   
-        {/* Socket holes - original */}
-        <motion.g
-          animate={{
-            y: [-1, 1, -1],
-            x: [-0.5, 0.5, -0.5]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          {/* Rest of your existing socket code... */}
-        </motion.g>
+  //       {/* Socket holes - original */}
+  //       <motion.g
+  //         animate={{
+  //           y: [-1, 1, -1],
+  //           x: [-0.5, 0.5, -0.5]
+  //         }}
+  //         transition={{
+  //           duration: 3,
+  //           repeat: Infinity,
+  //           ease: "easeInOut"
+  //         }}
+  //       >
+  //         {/* Rest of your existing socket code... */}
+  //       </motion.g>
   
-        {/* Rest of your existing code... */}
-      </svg>
-    </motion.div>
-  );
+  //       {/* Rest of your existing code... */}
+  //     </svg>
+  //   </motion.div>
+  // );
 
 const NotFound = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
       <div className="max-w-3xl mx-auto text-center">
       <PlugCable />
-        <SocketReceptacle />
+        {/* <SocketReceptacle /> */}
 
         {/* Animated 404 */}
         <motion.div

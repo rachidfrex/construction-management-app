@@ -11,7 +11,7 @@ const Dashboard = () => {
  
       <main className="lg:ml-64 mt-5 pt-16 p-6 transition-all duration-300 ease-in-out " >
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+          <h1 className=" text-2xl font-bold text-gray-900">Dashboard</h1>
           <p className="text-gray-600 font-semibold text-sm">Welcome back, here's what's happening today.</p>
         </div>
 

@@ -34,7 +34,7 @@ const Header = () => {
       <div className="h-full px-6 flex items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center">
-          <h2 className="text-xl font-semibold text-gray-800 lg:ml-0 ml-12">Dashboard</h2>
+          <h2 className="  flex text-xl font-semibold text-gray-800 lg:ml-0 ml-12">Dashboard</h2>
         </div>
         
 
