@@ -15,6 +15,9 @@ export default {
           700: '#0369a1',
         },
       },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],

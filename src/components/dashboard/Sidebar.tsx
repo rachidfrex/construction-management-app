@@ -27,7 +27,7 @@ const Sidebar = () => {
     <div className="w-64 bg-white h-screen shadow-lg fixed left-0 top-0">
       {/* Logo */}
       <div className="h-16 flex items-center justify-center border-b">
-        <h1 className="text-xl font-bold text-green-600"> Bouhaja Sarl</h1>
+        <h1 className="text-xl font-semibold text-green-600"> Bouhaja Sarl</h1>
       </div>
 
       {/* Menu Items */}

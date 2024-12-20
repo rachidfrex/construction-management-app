@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Add useNavigate import
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useToast } from '../../context/ToastContext';
 import authConfig from '../../config/auth.config.json';
 
-
 const Login = () => {
   const { showToast } = useToast();
+  const navigate = useNavigate(); // Add navigate hook
   const [showPassword, setShowPassword] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [formData, setFormData] = React.useState({
@@ -33,7 +33,10 @@ const Login = () => {
       if (formData.email === authConfig.defaultCredentials.email && 
           formData.password === authConfig.defaultCredentials.password) {
         showToast('success', 'Login successful! Welcome back.');
-        // Handle successful login here
+        // Navigate to dashboard after successful login
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1000); // Wait 1 second to show the success message
       } else {
         showToast('error', 'Invalid email or password');
       }
@@ -43,8 +46,6 @@ const Login = () => {
       setIsLoading(false);
     }
   };
-
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
       <motion.div
