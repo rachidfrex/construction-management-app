@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom';
 import { 
   HiOutlineSearch, 
   HiOutlineBell, 
-  // HiOutlineCog,
-  // HiOutlineUser,
-  // HiOutlineLogout,
-  // HiOutlineQuestionMarkCircle
+  HiOutlineCog,
+  HiOutlineUser,
+  HiOutlineLogout,
+  HiOutlineQuestionMarkCircle
 } from 'react-icons/hi';
 import { motion, AnimatePresence } from 'framer-motion';
+
+interface MenuItem {
+  path: string;
+  icon: JSX.Element;
+  label: string;
+}
+
+const profileMenuItems: MenuItem[] = [
+  { path: '/profile', icon: <HiOutlineUser />, label: 'Profile' },
+  { path: '/settings', icon: <HiOutlineCog />, label: 'Settings' },
+  { path: '/help', icon: <HiOutlineQuestionMarkCircle />, label: 'Help' },
+  { path: '/logout', icon: <HiOutlineLogout />, label: 'Logout' },
+];
 
 const Header = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
