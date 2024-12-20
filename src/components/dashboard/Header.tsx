@@ -3,55 +3,81 @@ import { Link } from 'react-router-dom';
 import { 
   HiOutlineSearch, 
   HiOutlineBell, 
-  HiOutlineCog,
-  HiOutlineUser,
-  HiOutlineLogout,
-  HiOutlineQuestionMarkCircle
+  // HiOutlineCog,
+  // HiOutlineUser,
+  // HiOutlineLogout,
+  // HiOutlineQuestionMarkCircle
 } from 'react-icons/hi';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [notifications] = useState(3); // Example notification count
-
-  const profileMenuItems = [
-    {
-      icon: <HiOutlineUser className="w-5 h-5" />,
-      label: 'My Profile',
-      path: '/profile'
-    },
-    {
-      icon: <HiOutlineCog className="w-5 h-5" />,
-      label: 'Settings',
-      path: '/settings/system'
-    },
-    {
-      icon: <HiOutlineQuestionMarkCircle className="w-5 h-5" />,
-      label: 'Help & Support',
-      path: '/support'
-    },
-    {
-      icon: <HiOutlineLogout className="w-5 h-5" />,
-      label: 'Logout',
-      path: '/login'
-    }
-  ];
+  const [notifications] = useState(3);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
 
   return (
     <header className={`h-16 bg-white shadow-sm fixed top-0 z-10 transition-all duration-300 ease-in-out
-      right-0 left-0 lg:left-64`}> {/* Modified this line */}
+      right-0 left-0 lg:left-64`}>
       <div className="h-full px-6 flex items-center justify-between">
-        {/* Search Bar */}
-        <div className="  ml-10 md:ml-0 flex-1 max-w-xl">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-            />
-            <HiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-          </div>
+        {/* Left Section - Can be used for breadcrumbs or page title */}
+        <div className="flex items-center">
+          <h2 className="text-xl font-semibold text-gray-800">Dashboard</h2>
         </div>
+
+        {/* Right Section */}
+        <div className="flex items-center space-x-4">
+          {/* Search Bar - Desktop */}
+          <div className="hidden md:block relative">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+              />
+              <HiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            </div>
+          </div>
+
+          {/* Mobile Search */}
+          <div className="md:hidden relative">
+            <AnimatePresence>
+              {isSearchExpanded ? (
+                <motion.div
+                  initial={{ width: 0, opacity: 0 }}
+                  animate={{ width: "200px", opacity: 1 }}
+                  exit={{ width: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute right-0 top-1/2 -translate-y-1/2"
+                  style={{ zIndex: 1000 }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full pl-10 pr-12 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    autoFocus
+                  />
+                  <button
+                    onClick={() => setIsSearchExpanded(false)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    <HiOutlineSearch className="w-5 h-5" />
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsSearchExpanded(true)}
+                  className="p-2 rounded-full hover:bg-gray-100"
+                >
+                  <HiOutlineSearch className="w-6 h-6 text-gray-600" />
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </div>
+          </div>
+          
 
         {/* Right Section */}
         <div className="flex items-center space-x-4">
