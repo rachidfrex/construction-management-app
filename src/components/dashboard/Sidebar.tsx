@@ -101,7 +101,7 @@ const Sidebar = () => {
           </div>
   
           {/* Menu Items */}
-          <div className="flex-1 overflow-y-auto py-6 px-4">
+          <div className=" overflow-y-auto py-6 px-4">
             {menuItems.map((group, idx) => (
               <div key={idx} className="mb-6">
                 <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-4">
