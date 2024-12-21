@@ -9,6 +9,7 @@ import FormStepIndicator from '../../components/project/form/FormStepIndicator';
 import GeneralInformation from '../../components/project/form/GeneralInformation';
 import ResourceAllocation from '../../components/project/form/ResourceAllocation';
 import ProjectScheduling from '../../components/project/form/ProjectScheduling';
+import AdditionalDetails from '../../components/project/form/AdditionalDetails';
 
 type Milestone = {
   id: number;
@@ -40,6 +41,10 @@ const NewProject = () => {
     startDate: '',
     endDate: '',
     milestones: [] as Milestone[],
+    budget: '',
+    description: '',
+    team: [] as string[],
+    files: [] as File[],
   });
 
   const handleNext = () => {
@@ -56,13 +61,22 @@ const NewProject = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.projectName || !formData.projectType) {
+    
+    // Validate required fields
+    if (!formData.projectName || 
+        !formData.projectType || 
+        !formData.startDate || 
+        !formData.endDate || 
+        !formData.budget || 
+        formData.team.length === 0) {
       showToast('warning', 'Please fill in all required fields');
       return;
     }
+  
 
     setIsLoading(true);
     try {
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       showToast('success', 'Project created successfully!');
       navigate('/projects');
@@ -107,6 +121,12 @@ const NewProject = () => {
                 )}
                 {currentStep === 3 && (
                 <ProjectScheduling
+                    formData={formData}
+                    onChange={setFormData}
+                />
+                )}
+                {currentStep === 4 && (
+                <AdditionalDetails
                     formData={formData}
                     onChange={setFormData}
                 />
