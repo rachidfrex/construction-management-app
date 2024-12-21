@@ -74,7 +74,7 @@ const ProjectDetails = () => {
       <Header />
 
       <main className="lg:ml-64 mt-5 pt-16 p-6">
-        <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto">
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
             <span>Projects</span>

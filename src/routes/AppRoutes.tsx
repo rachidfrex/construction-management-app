@@ -9,6 +9,8 @@ import NotFound from '../pages/NotFound';
 import Projects from  '../pages/dashboard/Projects'
 import NewProject from '../pages/dashboard/NewProject';
 import ProjectDetails from '../pages/dashboard/ProjectDetails';
+import EditProject from '../pages/dashboard/EditProject';
+import ProjectTimeline from '../pages/dashboard/ProjectTimeline';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -18,11 +20,14 @@ const AppRoutes: React.FC = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
+      
       <Route path="/new-password" element={<NewPassword />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/projects/new" element={<NewProject />} />
       <Route path="/projects/:id" element={<ProjectDetails />} />
+      <Route path="/projects/:id/edit" element={<EditProject />} />
+      <Route path="/projects/:id/timeline" element={<ProjectTimeline />} />
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
   );
