@@ -10,7 +10,9 @@ import {
   HiBell,
   HiLogout,
   HiMenu,
-  HiX
+  HiX,
+  HiOutlineCube
+
 } from 'react-icons/hi';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,6 +28,7 @@ const menuItems = [
   {
     title: 'Management',
     items: [
+      { path: '/inventory',  icon: <HiOutlineCube className="w-5 h-5" />,  title: 'Inventory' },
       { path: '/inventory/products', icon: <HiClipboardList className="w-5 h-5" />, title: 'Inventory' },
       { path: '/sales/invoices', icon: <HiShoppingCart className="w-5 h-5" />, title: 'Sales' }
     ]
