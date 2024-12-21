@@ -12,6 +12,7 @@ import ProjectDetails from '../pages/dashboard/ProjectDetails';
 import EditProject from '../pages/dashboard/EditProject';
 import ProjectTimeline from '../pages/dashboard/ProjectTimeline';
 import Inventory from '../pages/inventory/Inventory';
+import Construction from '../pages/inventory/construction/Construction';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/projects/:id/edit" element={<EditProject />} />
       <Route path="/projects/:id/timeline" element={<ProjectTimeline />} />
       <Route path="/inventory" element={<Inventory />} />
+      <Route path="/inventory/construction" element={<Construction />} />
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
   );
