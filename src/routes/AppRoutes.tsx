@@ -8,6 +8,7 @@ import Dashboard from '../pages/dashboard/Dashboard';
 import NotFound from '../pages/NotFound';
 import Projects from  '../pages/dashboard/Projects'
 import NewProject from '../pages/dashboard/NewProject';
+import ProjectDetails from '../pages/dashboard/ProjectDetails';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/projects/new" element={<NewProject />} />
+      <Route path="/projects/:id" element={<ProjectDetails />} />
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
   );

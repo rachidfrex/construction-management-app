@@ -1,20 +1,28 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom'; // Add Link import
+import { motion, AnimatePresence } from 'framer-motion';
+import ConfirmationModal from '../../components/ui/ConfirmationModal';
 import { 
-  HiOutlinePlus,
+  HiOutlineEye,
+  HiOutlinePencil,
   HiOutlineCalendar,
   HiOutlineUsers,
+  HiOutlineCube,
+  HiOutlineDocument,
+  HiOutlineArchive,
+  HiOutlineTrash,
   HiOutlineClock,
-  HiOutlineDownload,
-  HiOutlineFilter,
+  HiOutlineCurrencyDollar,
   HiDotsVertical,
-  HiOutlineSearch,
-  HiOutlineCurrencyDollar
+  HiOutlinePlus, // Add this
+  HiOutlineDownload, // Add this
+  HiOutlineSearch, // Add this
+  HiOutlineFilter // Add this
 } from 'react-icons/hi';
+import { useToast } from '../../context/ToastContext';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
-
 // Project status types
 type ProjectStatus = 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
 type ProjectType = 'Construction' | 'Renovation' | 'Maintenance';
@@ -208,12 +216,97 @@ const ProjectFilters = ({ filters, onFilterChange }: ProjectFiltersProps) => {
 };
 
 // Project Card Component with Enhanced Features
+
 const ProjectCard = ({ project }: { project: Project }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+const [showArchiveModal, setShowArchiveModal] = useState(false);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const statusColors = {
     'In Progress': 'bg-yellow-100 text-yellow-800',
     'Completed': 'bg-green-100 text-green-800',
     'Delayed': 'bg-red-100 text-red-800',
     'Canceled': 'bg-gray-100 text-gray-800'
+  };
+
+  const menuItems = [
+    { 
+      label: 'View Details', 
+      icon: <HiOutlineEye className="w-4 h-4" />,
+      action: () => navigate(`/projects/${project.id}`),
+    },
+    { 
+      label: 'Edit Project', 
+      icon: <HiOutlinePencil className="w-4 h-4" />,
+      action: () => navigate(`/projects/${project.id}/edit`),
+    },
+    { 
+      label: 'Project Timeline', 
+      icon: <HiOutlineCalendar className="w-4 h-4" />,
+      action: () => navigate(`/projects/${project.id}/timeline`),
+    },
+    { 
+      label: 'Team Members', 
+      icon: <HiOutlineUsers className="w-4 h-4" />,
+      action: () => navigate(`/projects/${project.id}/team`),
+    },
+    { 
+      label: 'Materials', 
+      icon: <HiOutlineCube className="w-4 h-4" />,
+      action: () => navigate(`/projects/${project.id}/materials`),
+    },
+    { 
+      label: 'Documents', 
+      icon: <HiOutlineDocument className="w-4 h-4" />,
+      action: () => navigate(`/projects/${project.id}/documents`),
+    },
+    { 
+      label: 'Archive Project', 
+      icon: <HiOutlineArchive className="w-4 h-4" />,
+      action: () => {
+        setShowArchiveModal(true);
+        setShowMenu(false);
+      },
+      className: 'text-yellow-600 hover:text-yellow-700',
+    },
+    { 
+      label: 'Delete Project', 
+      icon: <HiOutlineTrash className="w-4 h-4" />,
+      action: () => {
+        setShowDeleteModal(true);
+        setShowMenu(false);
+      },
+      className: 'text-red-600 hover:text-red-700',
+    },
+  ];
+
+  const handleArchiveProject = (projectId: number) => {
+    
+      showToast('success', 'Project archived successfully');
+      setShowMenu(false);
+    
+  };
+
+  const handleDeleteProject = (projectId: number) => {
+  
+      showToast('success', 'Project deleted successfully');
+      setShowMenu(false);
+    
   };
 
   return (
@@ -232,9 +325,69 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[project.status]}`}>
             {project.status}
           </span>
-          <button className="text-gray-400 hover:text-gray-600">
-            <HiDotsVertical className="w-5 h-5" />
-          </button>
+          <div className="relative" ref={menuRef}>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowMenu(!showMenu)}
+              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <HiDotsVertical className="w-5 h-5 text-gray-400" />
+            </motion.button>
+
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {showMenu && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-gray-100"
+                >
+                  {menuItems.map((item, index) => (
+                    <React.Fragment key={index}>
+                      {index === menuItems.length - 2 && (
+                        <div className="h-px bg-gray-200 my-1" />
+                      )}
+                      <motion.button
+                        whileHover={{ x: 2 }}
+                        onClick={item.action}
+                        className={`w-full px-4 py-2 text-sm text-left flex items-center gap-2 hover:bg-gray-50 transition-colors ${item.className || 'text-gray-700'}`}
+                      >
+                        {item.icon}
+                        {item.label}
+                      </motion.button>
+                    </React.Fragment>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <ConfirmationModal
+              isOpen={showDeleteModal}
+              onClose={() => setShowDeleteModal(false)}
+              onConfirm={() => {
+                handleDeleteProject(project.id);
+                setShowDeleteModal(false);
+              }}
+              title="Delete Project"
+              message="Are you sure you want to delete this project? This action cannot be undone."
+              type="danger"
+              confirmText="Delete"
+            />
+
+            <ConfirmationModal
+              isOpen={showArchiveModal}
+              onClose={() => setShowArchiveModal(false)}
+              onConfirm={() => {
+                handleArchiveProject(project.id);
+                setShowArchiveModal(false);
+              }}
+              title="Archive Project"
+              message="Are you sure you want to archive this project? You can restore it later from the archives."
+              type="warning"
+              confirmText="Archive"
+            />
+          </div>
         </div>
       </div>
 
@@ -277,7 +430,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
     </motion.div>
   );
 };
-
 const Projects = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -288,6 +440,7 @@ const Projects = () => {
     endDate: ''
   });
   const itemsPerPage = 6;
+
 
   // Updated filtering logic
   const filteredProjects = projects.filter(project => {
