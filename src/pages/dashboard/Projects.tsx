@@ -130,14 +130,31 @@ const ProjectStatistics = () => {
 };
 
 // Filter Component
-const ProjectFilters = ({ 
-  onFilterChange 
-}: { 
-  onFilterChange: (filters: any) => void 
-}) => {
+interface ProjectFiltersProps {
+  filters: {
+    status: string;
+    type: string;
+    startDate: string;
+    endDate: string;
+  };
+  onFilterChange: (filters: ProjectFiltersProps['filters']) => void;
+}
+
+const ProjectFilters = ({ filters, onFilterChange }: ProjectFiltersProps) => {
+  const handleChange = (field: keyof typeof filters, value: string) => {
+    onFilterChange({
+      ...filters,
+      [field]: value
+    });
+  };
+
   return (
     <div className="flex flex-wrap gap-4 mb-6">
-      <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+      <select 
+        value={filters.status}
+        onChange={(e) => handleChange('status', e.target.value)}
+        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+      >
         <option value="">All Statuses</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
@@ -145,7 +162,11 @@ const ProjectFilters = ({
         <option value="Canceled">Canceled</option>
       </select>
 
-      <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+      <select 
+        value={filters.type}
+        onChange={(e) => handleChange('type', e.target.value)}
+        className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+      >
         <option value="">All Types</option>
         <option value="Construction">Construction</option>
         <option value="Renovation">Renovation</option>
@@ -154,15 +175,34 @@ const ProjectFilters = ({
 
       <input 
         type="date" 
+        value={filters.startDate}
+        onChange={(e) => handleChange('startDate', e.target.value)}
         className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
         placeholder="Start Date"
       />
       
       <input 
         type="date" 
+        value={filters.endDate}
+        onChange={(e) => handleChange('endDate', e.target.value)}
         className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
         placeholder="End Date"
       />
+
+      {/* Clear Filters Button */}
+      {(filters.status || filters.type || filters.startDate || filters.endDate) && (
+        <button
+          onClick={() => onFilterChange({
+            status: '',
+            type: '',
+            startDate: '',
+            endDate: ''
+          })}
+          className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
+        >
+          Clear Filters
+        </button>
+      )}
     </div>
   );
 };
@@ -241,19 +281,53 @@ const ProjectCard = ({ project }: { project: Project }) => {
 const Projects = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [filters, setFilters] = useState({
+    status: '',
+    type: '',
+    startDate: '',
+    endDate: ''
+  });
   const itemsPerPage = 6;
 
-  const filteredProjects = projects.filter(project =>
-    project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    project.clientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    project.team.some(member => member.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  // Updated filtering logic
+  const filteredProjects = projects.filter(project => {
+    // Search query filter
+    const matchesSearch = 
+      project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.clientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.team.some(member => member.toLowerCase().includes(searchQuery.toLowerCase()));
 
+    // Status filter
+    const matchesStatus = !filters.status || project.status === filters.status;
+
+    // Type filter
+    const matchesType = !filters.type || project.type === filters.type;
+
+    // Date range filter
+    const projectStart = new Date(project.startDate);
+    const projectEnd = new Date(project.endDate);
+    const filterStart = filters.startDate ? new Date(filters.startDate) : null;
+    const filterEnd = filters.endDate ? new Date(filters.endDate) : null;
+
+    const matchesDateRange = 
+      (!filterStart || projectStart >= filterStart) &&
+      (!filterEnd || projectEnd <= filterEnd);
+
+    return matchesSearch && matchesStatus && matchesType && matchesDateRange;
+  });
+
+  // Calculate current page projects
   const pageCount = Math.ceil(filteredProjects.length / itemsPerPage);
   const currentProjects = filteredProjects.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  // Update the ProjectFilters component call:
+  const handleFilterChange = (newFilters: typeof filters) => {
+    setFilters(newFilters);
+    setCurrentPage(1); // Reset to first page when filters change
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -299,7 +373,7 @@ const Projects = () => {
           <div className="flex gap-4">
             <div className="relative flex-1">
               <input
-                                type="text"
+                type="text"
                 placeholder="Search projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -307,20 +381,13 @@ const Projects = () => {
               />
               <HiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             </div>
-
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50"
-            >
-              <HiOutlineFilter className="w-5 h-5" />
-              Filters
-            </motion.button>
           </div>
 
-          <ProjectFilters onFilterChange={() => {}} />
+          <ProjectFilters 
+            filters={filters}
+            onFilterChange={handleFilterChange} 
+          />
         </div>
-
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {currentProjects.map(project => (
