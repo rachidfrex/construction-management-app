@@ -1,12 +1,11 @@
 // src/pages/dashboard/ProjectTimeline.tsx
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Breadcrumb from '../../components/ui/Breadcrumb';
 import { 
-  HiOutlineArrowLeft, 
   HiOutlinePlusCircle,
   HiOutlineCalendar,
-  HiOutlineCheck,
   HiOutlineClock,
   HiOutlineFlag
 } from 'react-icons/hi';
@@ -26,9 +25,8 @@ interface TimelineEvent {
 
 const ProjectTimeline = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
+
   const [timelineEvents, setTimelineEvents] = useState<TimelineEvent[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTimeline = async () => {
@@ -52,7 +50,7 @@ const ProjectTimeline = () => {
         ];
         
         setTimelineEvents(mockEvents);
-        setLoading(false);
+      
       } catch (error) {
         console.error('Error fetching timeline:', error);
       }
@@ -74,25 +72,19 @@ const ProjectTimeline = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+        
+                 
       <Sidebar />
       <Header />
-
       <main className="lg:ml-64 mt-5 pt-16 p-6">
-        <div className="max-w-6xl mx-auto">
-          {/* Header with Back Button */}
-          <div className="flex items-center gap-4 mb-8">
-            <motion.button
-              whileHover={{ x: -4 }}
-              onClick={() => navigate(`/projects/${id}`)}
-              className="p-2 hover:bg-white rounded-lg transition-colors"
-            >
-              <HiOutlineArrowLeft className="w-6 h-6 text-gray-600" />
-            </motion.button>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Project Timeline</h1>
-              <p className="text-gray-600 text-sm mt-1">Track project milestones and progress</p>
-            </div>
-          </div>
+        <div className=" mx-auto">
+          <Breadcrumb 
+            items={[
+              { label: 'Projects', path: '/projects' },
+              { label: 'Project Timeline' }
+
+            ]} 
+          />
 
           {/* Timeline Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

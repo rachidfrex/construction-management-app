@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Breadcrumb from '../../components/ui/Breadcrumb';
 import {
   HiOutlineClock,
   HiOutlineCurrencyDollar,
   HiOutlineUsers,
   HiOutlineCube,
-  HiChevronRight,
   HiDotsVertical,
   HiOutlinePlusCircle
 } from 'react-icons/hi';
@@ -72,15 +72,14 @@ const ProjectDetails = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-
       <main className="lg:ml-64 mt-5 pt-16 p-6">
         <div className=" mx-auto">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
-            <span>Projects</span>
-            <HiChevronRight className="w-4 h-4" />
-            <span className="text-gray-900 font-medium">{project.name}</span>
-          </div>
+          <Breadcrumb 
+            items={[
+              { label: 'Projects', path: '/projects' },
+              { label: project.name }
+            ]} 
+          />
 
           {/* Project Header */}
           <div className="bg-white rounded-xl shadow-sm p-6 mb-6">

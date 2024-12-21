@@ -9,6 +9,7 @@ import GeneralInformation from '../../components/project/form/GeneralInformation
 import ResourceAllocation from '../../components/project/form/ResourceAllocation';
 import ProjectScheduling from '../../components/project/form/ProjectScheduling';
 import AdditionalDetails from '../../components/project/form/AdditionalDetails';
+import Breadcrumb from '../../components/ui/Breadcrumb';
 
 interface Phase {
   id: number;
@@ -190,13 +191,14 @@ const NewProject = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-
       <main className="lg:ml-64 mt-5 pt-16 p-6">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">Create New Project</h1>
-            <p className="text-gray-600 text-sm mt-1">Add a new construction project to your portfolio</p>
-          </div>
+          <Breadcrumb 
+            items={[
+              { label: 'Projects', path: '/projects' },
+              { label: 'Create New Project' }
+            ]} 
+          />
 
           <FormStepIndicator currentStep={currentStep} steps={steps} />
 
