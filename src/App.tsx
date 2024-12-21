@@ -18,7 +18,7 @@ const theme = createTheme({
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename={import.meta.env.BASE_URL || '/'}>
       <ThemeProvider theme={theme}>
         <ToastProvider>
           <Layout>
