@@ -401,7 +401,7 @@ const EditProject = () => {
       <main className="lg:ml-64 mt-5 pt-16 p-6 ">
         <div className=" mx-auto">
           {/* Header with Navigation */}
-          <div className="flex flex-col md:flex-row items-start md:items-center   md:justify-between  ">
+          <div className="flex  items-start md:items-center   md:justify-between  ">
             <div className="flex justify-center   items-center ">
        
               
@@ -422,7 +422,7 @@ const EditProject = () => {
                     whileTap={{ scale: 0.98 }}
                     onClick={handleUpdateProject}
                     disabled={isLoading}
-                    className="hidden md:flex items-center gap-2 px-6 py-2 mb-2 w-full bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
+                    className="hidden md:flex items-center gap-2 px-6 py-2 mb-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 transition-colors"
                 >
                     {isLoading ? (
                     <div className="flex items-center gap-2">
