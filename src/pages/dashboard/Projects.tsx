@@ -295,14 +295,14 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
     },
   ];
 
-  const handleArchiveProject = (projectId: number) => {
+  const handleArchiveProject = () => {
     
       showToast('success', 'Project archived successfully');
       setShowMenu(false);
     
   };
 
-  const handleDeleteProject = (projectId: number) => {
+  const handleDeleteProject = () => {
   
       showToast('success', 'Project deleted successfully');
       setShowMenu(false);
