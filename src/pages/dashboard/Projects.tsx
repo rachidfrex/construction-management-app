@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ConfirmationModal from '../../components/ui/ConfirmationModal';
 import { 
   HiOutlineEye,
-  HiOutlinePencil,
+  HiOutlinePencil,   
   HiOutlineCalendar,
   HiOutlineUsers,
   HiOutlineCube,
