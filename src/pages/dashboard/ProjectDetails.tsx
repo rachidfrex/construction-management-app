@@ -6,8 +6,6 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineUsers,
   HiOutlineCube,
-  HiOutlineClipboardCheck,
-  HiOutlineCalendar,
   HiChevronRight,
   HiDotsVertical,
   HiOutlinePlusCircle
