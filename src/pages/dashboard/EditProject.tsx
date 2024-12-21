@@ -1,269 +1,3 @@
-// // src/pages/dashboard/EditProject.tsx
-// import { useState, useEffect } from 'react';
-// import { useNavigate, useParams } from 'react-router-dom';
-// import { motion } from 'framer-motion';
-// import { useToast } from '../../context/ToastContext';
-// import Sidebar from '../../components/dashboard/Sidebar';
-// import Header from '../../components/dashboard/Header';
-// import FormStepIndicator from '../../components/project/form/FormStepIndicator';
-// import GeneralInformation from '../../components/project/form/GeneralInformation';
-// import ResourceAllocation from '../../components/project/form/ResourceAllocation';
-// import ProjectScheduling from '../../components/project/form/ProjectScheduling';
-// import AdditionalDetails from '../../components/project/form/AdditionalDetails';
-// import Breadcrumb from '../../components/ui/Breadcrumb';
-
-// const steps = [
-//   { id: 1, title: 'General Info' },
-//   { id: 2, title: 'Resources' },
-//   { id: 3, title: 'Schedule' },
-//   { id: 4, title: 'Details' }
-// ];
-
-// const EditProject = () => {
-//   const { id } = useParams();
-//   const navigate = useNavigate();
-//   const { showToast } = useToast();
-//   const [currentStep, setCurrentStep] = useState(1);
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [isFetching, setIsFetching] = useState(true);
-//   interface Material {
-//     id: number;
-//     quantity: number;
-//     source: "internal" | "purchase";
-//     phaseId?: number;
-//     consumptionRate?: number;
-//   }
-  
-//   interface Milestone {
-//     title: string;
-//     date: string;
-//   }
-  
-//   interface ProjectData {
-//     projectName: string;
-//     clientName: string;
-//     projectType: string;
-//     materials: Material[];
-//     materialSource: string;
-//     startDate: string;
-//     endDate: string;
-//     milestones: Milestone[];
-//     budget: string;
-//     description: string;
-//     team: string[];
-//     files: any[];
-//     phases: any[];
-//     materialLinks: any[];
-//   }
-  
-//   const [formData, setFormData] = useState<ProjectData>({
-//       projectName: '',
-//       clientName: '',
-//       projectType: '',
-//       materials: [],
-//       materialSource: 'internal',
-//       startDate: '',
-//       endDate: '',
-//       milestones: [],
-//       budget: '',
-//       description: '',
-//       team: [],
-//       files: [],
-//       phases: [],
-//       materialLinks: []
-//     });
-
-//   useEffect(() => {
-//     const fetchProject = async () => {
-//       try {
-//         // Simulate API call to fetch project details
-//         await new Promise(resolve => setTimeout(resolve, 1000));
-        
-//         // Mock project data
-//         const projectData: ProjectData = {
-//           projectName: 'Construction Site A',
-//           clientName: 'ABC Corporation',
-//           projectType: 'Construction',
-//           materials: [
-//             { id: 1, quantity: 1000, source: "internal" as "internal" | "purchase" }
-//           ],
-//           materialSource: 'internal',
-//           startDate: '2024-01-15',
-//           endDate: '2024-06-30',
-//           milestones: [
-//             { title: 'Foundation Work', date: '2024-02-01' }
-//           ],
-//           budget: '1500000',
-//           description: 'Main building construction project in downtown area',
-//           team: ['John Doe', 'Jane Smith'],
-//           files: [],
-//           phases: [],
-//           materialLinks: []
-//         };
-
-//         setFormData(projectData);
-//         setIsFetching(false);
-//       } catch (error) {
-//         showToast('error', 'Failed to fetch project details');
-//         navigate('/projects');
-//       }
-//     };
-
-//     fetchProject();
-//   }, [id, navigate, showToast]);
-
-//   const handleUpdateProject = async (e: React.FormEvent) => {
-//     e.preventDefault();
-    
-//     setIsLoading(true);
-//     try {
-//       // Simulate API call
-//       await new Promise(resolve => setTimeout(resolve, 1500));
-      
-//       showToast('success', 'Project updated successfully!');
-//       navigate('/projects');
-//     } catch (error) {
-//       showToast('error', 'Failed to update project');
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-
-//   const handleNext = () => {
-//     if (currentStep < steps.length) {
-//       setCurrentStep(currentStep + 1);
-//     }
-//   };
-
-//   const handlePrevious = () => {
-//     if (currentStep > 1) {
-//       setCurrentStep(currentStep - 1);
-//     }
-//   };
-
-//   if (isFetching) {
-//     return (
-//       <div className="min-h-screen bg-gray-50">
-//         <Sidebar />
-//         <Header />
-//         <main className="lg:ml-64 mt-5 pt-16 p-6">
-//           <div className="flex items-center justify-center h-[60vh]">
-//             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
-//           </div>
-//         </main>
-//       </div>
-//     );
-//   }
-
-//   return (
-
-//     <div className="min-h-screen bg-gray-50">
-//       <Sidebar />
-//       <Header />
-//       <main className="lg:ml-64 mt-5 pt-16 p-6">
-//         <div className="max-w-4xl mx-auto">
-//           <Breadcrumb 
-//             items={[
-//               { label: 'Projects', path: '/projects' },
-//               { label: formData.projectName || '', path: `/projects/${id}` },
-//               { label: 'Edit' }
-//             ]} 
-//           />
-
-//           <FormStepIndicator currentStep={currentStep} steps={steps} />
-
-//           <motion.div
-//             initial={{ opacity: 0, y: 20 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             className="bg-white rounded-lg shadow-sm p-6"
-//           >
-//             <form onSubmit={handleUpdateProject} className="space-y-6">
-//               {currentStep === 1 && (
-//                 <GeneralInformation
-//                   formData={formData}
-//                   onChange={setFormData}
-//                 />
-//               )}
-//               {currentStep === 2 && (
-//                 <ResourceAllocation
-//                   formData={formData}
-//                   onChange={setFormData}
-//                   onMaterialPhaseLink={(_materialId, _phaseId, _quantity) => {
-//                     // Handle material phase linking
-//                     console.log('Linking material:', _materialId, 'to phase:', _phaseId, 'with quantity:', _quantity);
-//                   }}
-//                 />
-//               )}
-//               {currentStep === 3 && (
-//                 <ProjectScheduling
-//                   formData={formData}
-//                   onChange={setFormData}
-//                 />
-//               )}
-//               {currentStep === 4 && (
-//                 <AdditionalDetails
-//                   formData={formData}
-//                   onChange={setFormData}
-//                 />
-//               )}
-
-//               <div className="flex justify-between pt-6">
-//                 <button
-//                   type="button"
-//                   onClick={currentStep === 1 ? () => navigate('/projects') : handlePrevious}
-//                   className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-//                 >
-//                   {currentStep === 1 ? 'Cancel' : 'Previous'}
-//                 </button>
-
-//                 <button
-//                   type="button"
-//                   onClick={currentStep === steps.length ? handleUpdateProject : handleNext}
-//                   className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
-//                 >
-//                   {currentStep === steps.length ? (
-//                     isLoading ? (
-//                       <>
-//                         <svg 
-//                           className="animate-spin h-5 w-5 text-white" 
-//                           xmlns="http://www.w3.org/2000/svg" 
-//                           fill="none" 
-//                           viewBox="0 0 24 24"
-//                         >
-//                           <circle 
-//                             className="opacity-25" 
-//                             cx="12" 
-//                             cy="12" 
-//                             r="10" 
-//                             stroke="currentColor" 
-//                             strokeWidth="4"
-//                           />
-//                           <path 
-//                             className="opacity-75" 
-//                             fill="currentColor" 
-//                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-//                           />
-//                         </svg>
-//                         <span>Updating Project...</span>
-//                       </>
-//                     ) : (
-//                       'Update Project'
-//                     )
-//                   ) : (
-//                     'Next'
-//                   )}
-//                 </button>
-//               </div>
-//             </form>
-//           </motion.div>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default EditProject;
-// src/pages/dashboard/EditProject.tsx
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -272,64 +6,101 @@ import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import { 
-  HiOutlineSave,
-  HiOutlineOfficeBuilding,
-  HiOutlineUser,
-  HiOutlineCalendar,
-  HiOutlineCurrencyDollar,
-
-  HiOutlineTrash,
-  HiOutlinePlusCircle
+    HiOutlineSave,
+    HiOutlineOfficeBuilding,
+    HiOutlineUser,
+    HiOutlineCalendar,
+    HiOutlineCurrencyDollar,
+    HiOutlineTrash,
+    HiOutlinePlusCircle,
+    HiOutlineDocumentText,
+    HiOutlineCloudUpload,
+    HiOutlineX,
+    HiOutlineCube,
+    HiOutlineUserGroup
 } from 'react-icons/hi';
 
+// Move interfaces outside component
+interface TeamMember {
+    id: string;
+    name: string;
+    role: string;
+    avatar: string;
+}
+
 interface Material {
-  id: number;
-  quantity: number;
-  source: "internal" | "purchase";
-  phaseId?: number;
-  consumptionRate?: number;
+    id: number;
+    name: string;
+    quantity: number;
+    unit: string;
+    status: 'In Stock' | 'Low Stock' | 'Out of Stock';
 }
 
 interface Milestone {
-  title: string;
-  date: string;
+    title: string;
+    date: string;
 }
 
 interface ProjectData {
-  projectName: string;
-  clientName: string;
-  projectType: string;
-  materials: Material[];
-  materialSource: 'internal' | 'purchase';
-  startDate: string;
-  endDate: string;
-  milestones: Milestone[];
-  budget: string;
-  description: string;
-  team: string[];
-  files: File[];
+    projectName: string;
+    clientName: string;
+    projectType: string;
+    materials: Material[];
+    materialSource: 'internal' | 'purchase';
+    startDate: string;
+    endDate: string;
+    milestones: Milestone[];
+    budget: string;
+    description: string;
+    team: string[];
+    files: File[];
+}
+
+interface InputProps {
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    icon?: React.ReactNode;
+    type?: string;
+    prefix?: string;
 }
 
 const EditProject = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const { showToast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isFetching, setIsFetching] = useState(true);
-  const [formData, setFormData] = useState<ProjectData>({
-    projectName: '',
-    clientName: '',
-    projectType: '',
-    materials: [],
-    materialSource: 'internal',
-    startDate: '',
-    endDate: '',
-    milestones: [],
-    budget: '',
-    description: '',
-    team: [],
-    files: []
-  });
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const { showToast } = useToast();
+    const [isLoading, setIsLoading] = useState(false);
+    const [isFetching, setIsFetching] = useState(true);
+    
+    // Move useState hooks inside component
+    const [teamMembers] = useState<TeamMember[]>([
+        { id: '1', name: 'John Doe', role: 'Project Manager', avatar: 'JD' },
+        { id: '2', name: 'Sarah Smith', role: 'Site Engineer', avatar: 'SS' },
+        { id: '3', name: 'Mike Johnson', role: 'Architect', avatar: 'MJ' },
+        { id: '4', name: 'Emma Wilson', role: 'Construction Manager', avatar: 'EW' },
+    ]);
+    
+    const [materials] = useState<Material[]>([
+        { id: 1, name: 'Cement', quantity: 500, unit: 'bags', status: 'In Stock' },
+        { id: 2, name: 'Steel', quantity: 200, unit: 'tons', status: 'Low Stock' },
+        { id: 3, name: 'Bricks', quantity: 1000, unit: 'pieces', status: 'In Stock' },
+        { id: 4, name: 'Sand', quantity: 50, unit: 'cubic meters', status: 'Out of Stock' },
+    ]);
+
+    const [formData, setFormData] = useState<ProjectData>({
+        projectName: '',
+        clientName: '',
+        projectType: '',
+        materials: [],
+        materialSource: 'internal',
+        startDate: '',
+        endDate: '',
+        milestones: [],
+        budget: '',
+        description: '',
+        team: [],
+        files: []
+    });
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -507,7 +278,7 @@ const EditProject = () => {
                     label="Budget"
                     value={formData.budget}
                     onChange={(value) => setFormData({ ...formData, budget: value })}
-                    icon={<HiOutlineCurrencyDollar />}
+                    
                     prefix="$"
                   />
                 </div>
@@ -531,57 +302,144 @@ const EditProject = () => {
 
               {/* Materials */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-xl shadow-sm p-6"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold text-gray-900">Materials</h2>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center gap-2 text-sm text-green-600 hover:text-green-700"
-                  >
-                    <HiOutlinePlusCircle className="w-5 h-5" />
-                    Add Material
-                  </motion.button>
-                </div>
-                {/* Add materials list here */}
-              </motion.div>
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white rounded-xl shadow-sm p-6"
+                    >
+                    <div className="flex items-center justify-between mb-6">
+                        <h2 className="text-lg font-semibold text-gray-900">Materials</h2>
+                        <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-2 text-sm text-green-600 hover:text-green-700"
+                        >
+                        <HiOutlinePlusCircle className="w-5 h-5" />
+                        Add Material
+                        </motion.button>
+                    </div>
+                    <div className="space-y-4">
+                        {materials.map((material) => (
+                        <motion.div
+                            key={material.id}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                        >
+                            <div className="flex items-center gap-3">
+                            <div className="p-2 bg-green-100 rounded-lg">
+                                <HiOutlineCube className="w-5 h-5 text-green-600" />
+                            </div>
+                            <div>
+                                <h3 className="font-medium text-gray-900">{material.name}</h3>
+                                <p className="text-sm text-gray-500">
+                                {material.quantity} {material.unit}
+                                </p>
+                            </div>
+                            </div>
+                            <span className={`px-3 py-1 text-sm font-medium rounded-full ${
+                            material.status === 'In Stock' ? 'bg-green-100 text-green-800' :
+                            material.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' :
+                            'bg-red-100 text-red-800'
+                            }`}>
+                            {material.status}
+                            </span>
+                        </motion.div>
+                        ))}
+                    </div>
+                    </motion.div>
             </div>
 
             {/* Right Column - Sidebar */}
             <div className="space-y-6">
               {/* Team Members */}
-              <motion.div
+                <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="bg-white rounded-xl shadow-sm p-6"
-              >
+                >
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
-                  <motion.button
+                    <h2 className="text-lg font-semibold text-gray-900">Team Members</h2>
+                    <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center gap-2 text-sm text-green-600 hover:text-green-700"
-                  >
+                    >
                     <HiOutlinePlusCircle className="w-5 h-5" />
                     Add Member
-                  </motion.button>
+                    </motion.button>
                 </div>
-                {/* Add team members list here */}
-              </motion.div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {teamMembers.map((member) => (
+                    <motion.div
+                        key={member.id}
+                        whileHover={{ scale: 1.02 }}
+                        className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition-all"
+                    >
+                        <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                            <span className="text-green-600 font-medium">{member.avatar}</span>
+                        </div>
+                        <div>
+                            <h3 className=" text-sm font-medium text-gray-900">{member.name}</h3>
+                            <p className=" text-xs text-gray-500">{member.role}</p>
+                        </div>
+                        </div>
+                    </motion.div>
+                    ))}
+                </div>
+                </motion.div>
 
               {/* Files & Documents */}
-              <motion.div
+                <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="bg-white rounded-xl shadow-sm p-6"
-              >
+                >
                 <h2 className="text-lg font-semibold text-gray-900 mb-6">Files & Documents</h2>
-                {/* Add file upload and list here */}
-              </motion.div>
-
+                <div className="space-y-4">
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-8">
+                    <div className="text-center">
+                        <HiOutlineCloudUpload className="mx-auto h-12 w-12 text-gray-400" />
+                        <div className="mt-4">
+                        <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700"
+                        >
+                            Upload Files
+                        </motion.button>
+                        </div>
+                        <p className="mt-2 text-sm text-gray-500">
+                        or drag and drop files here
+                        </p>
+                    </div>
+                    </div>
+                    
+                    {/* Sample uploaded files */}
+                    <div className="space-y-3">
+                    {['Project_Plan.pdf', 'Budget_Sheet.xlsx', 'Site_Photos.zip'].map((file, index) => (
+                        <motion.div
+                        key={index}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                        >
+                        <div className="flex items-center gap-3">
+                            <HiOutlineDocumentText className="w-5 h-5 text-gray-400" />
+                            <span className="text-sm text-gray-700">{file}</span>
+                        </div>
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="text-gray-400 hover:text-red-500"
+                        >
+                            <HiOutlineX className="w-5 h-5" />
+                        </motion.button>
+                        </motion.div>
+                    ))}
+                    </div>
+                </div>
+                </motion.div>
               {/* Danger Zone */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
