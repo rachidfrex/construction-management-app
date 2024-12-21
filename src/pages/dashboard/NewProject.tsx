@@ -8,6 +8,16 @@ import Header from '../../components/dashboard/Header';
 import FormStepIndicator from '../../components/project/form/FormStepIndicator';
 import GeneralInformation from '../../components/project/form/GeneralInformation';
 import ResourceAllocation from '../../components/project/form/ResourceAllocation';
+import ProjectScheduling from '../../components/project/form/ProjectScheduling';
+
+type Milestone = {
+  id: number;
+  title: string;
+  date: string;
+  completed: boolean;
+  phase: string;
+  reminder: boolean;
+};
 
 const steps = [
   { id: 1, title: 'General Info' },
@@ -27,7 +37,9 @@ const NewProject = () => {
     projectType: '',
     materials: [] as { id: number; quantity: number; source: 'internal' | 'purchase' }[],
     materialSource: 'internal',
-    // Other form fields will be added as needed
+    startDate: '',
+    endDate: '',
+    milestones: [] as Milestone[],
   });
 
   const handleNext = () => {
@@ -89,6 +101,12 @@ const NewProject = () => {
               )}
               {currentStep === 2 && (
                 <ResourceAllocation
+                    formData={formData}
+                    onChange={setFormData}
+                />
+                )}
+                {currentStep === 3 && (
+                <ProjectScheduling
                     formData={formData}
                     onChange={setFormData}
                 />
