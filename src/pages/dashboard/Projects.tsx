@@ -310,10 +310,7 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
+    <div
       className="bg-white rounded-xl shadow-sm p-6"
     >
       <div className="flex justify-between items-start mb-4">
@@ -362,31 +359,8 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
                 </motion.div>
               )}
             </AnimatePresence>
-            <ConfirmationModal
-              isOpen={showDeleteModal}
-              onClose={() => setShowDeleteModal(false)}
-              onConfirm={() => {
-                handleDeleteProject(project.id);
-                setShowDeleteModal(false);
-              }}
-              title="Delete Project"
-              message="Are you sure you want to delete this project? This action cannot be undone."
-              type="danger"
-              confirmText="Delete"
-            />
-
-            <ConfirmationModal
-              isOpen={showArchiveModal}
-              onClose={() => setShowArchiveModal(false)}
-              onConfirm={() => {
-                handleArchiveProject(project.id);
-                setShowArchiveModal(false);
-              }}
-              title="Archive Project"
-              message="Are you sure you want to archive this project? You can restore it later from the archives."
-              type="warning"
-              confirmText="Archive"
-            />
+            
+           
           </div>
         </div>
       </div>
@@ -427,7 +401,34 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
           />
         </div>
       </div>
-    </motion.div>
+      <ConfirmationModal
+              isOpen={showDeleteModal}
+              onClose={() => setShowDeleteModal(false)}
+              onConfirm={() => {
+                handleDeleteProject(project.id);
+                setShowDeleteModal(false);
+              }}
+              title="Delete Project"
+              message="Are you sure you want to delete this project? This action cannot be undone."
+              type="danger"
+              confirmText="Delete"
+              
+            />
+
+            <ConfirmationModal
+              isOpen={showArchiveModal}
+              onClose={() => setShowArchiveModal(false)}
+              onConfirm={() => {
+                handleArchiveProject(project.id);
+                setShowArchiveModal(false);
+              }}
+              title="Archive Project"
+              message="Are you sure you want to archive this project? You can restore it later from the archives."
+              type="warning"
+              confirmText="Archive"
+            />
+
+    </div>
   );
 };
 const Projects = () => {
@@ -546,7 +547,7 @@ const Projects = () => {
             {currentProjects.map(project => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </div>
+        </div>
 
         {/* Pagination */}
         {pageCount > 1 && (
