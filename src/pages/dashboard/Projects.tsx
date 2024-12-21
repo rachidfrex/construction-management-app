@@ -18,7 +18,7 @@ import {
   HiOutlinePlus, // Add this
   HiOutlineDownload, // Add this
   HiOutlineSearch, // Add this
-  HiOutlineFilter // Add this
+
 } from 'react-icons/hi';
 import { useToast } from '../../context/ToastContext';
 import Sidebar from '../../components/dashboard/Sidebar';
@@ -294,7 +294,6 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
       className: 'text-red-600 hover:text-red-700',
     },
   ];
-
   const handleArchiveProject = () => {
     
       showToast('success', 'Project archived successfully');
@@ -405,7 +404,7 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
               isOpen={showDeleteModal}
               onClose={() => setShowDeleteModal(false)}
               onConfirm={() => {
-                handleDeleteProject(project.id);
+                handleDeleteProject();
                 setShowDeleteModal(false);
               }}
               title="Delete Project"
@@ -419,7 +418,7 @@ const [showArchiveModal, setShowArchiveModal] = useState(false);
               isOpen={showArchiveModal}
               onClose={() => setShowArchiveModal(false)}
               onConfirm={() => {
-                handleArchiveProject(project.id);
+                handleArchiveProject();
                 setShowArchiveModal(false);
               }}
               title="Archive Project"
