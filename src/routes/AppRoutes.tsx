@@ -6,6 +6,8 @@ import ResetPassword from '../pages/auth/ResetPassword';
 import NewPassword from '../pages/auth/NewPassword';
 import Dashboard from '../pages/dashboard/Dashboard';
 import NotFound from '../pages/NotFound';
+import Projects from  '../pages/dashboard/Projects'
+import NewProject from '../pages/dashboard/NewProject';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -17,6 +19,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/new-password" element={<NewPassword />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/projects/new" element={<NewProject />} />
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
   );
