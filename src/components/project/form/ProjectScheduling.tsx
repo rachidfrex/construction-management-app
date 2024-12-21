@@ -1,6 +1,18 @@
-// src/components/project/form/ProjectScheduling.tsx
 import { motion } from 'framer-motion';
 import { HiOutlineCalendar, HiOutlinePlusCircle, HiOutlineTrash } from 'react-icons/hi';
+
+interface Phase {
+  id: number;
+  name: string;
+  startDate: string;
+  endDate: string;
+  dependencies: string[];
+  progress: number;
+  materials: {
+    materialId: number;
+    quantity: number;
+  }[];
+}
 
 interface Milestone {
   id: number;
@@ -10,11 +22,23 @@ interface Milestone {
   reminder: boolean;
 }
 
+interface EnhancedMilestone extends Milestone {
+  dependencies: number[];
+  notificationDays: number;
+  priority: 'low' | 'medium' | 'high';
+  description: string;
+  attachments: string[];
+  status: 'pending' | 'in-progress' | 'completed';
+  assignees: string[];
+  completed: boolean;
+}
+
 interface ProjectSchedulingProps {
   formData: {
     startDate: string;
     endDate: string;
     milestones: Milestone[];
+    phases: Phase[];
   };
   onChange: (data: any) => void;
 }
@@ -22,20 +46,29 @@ interface ProjectSchedulingProps {
 const projectPhases = [
   'Foundation',
   'Structure',
+  'MEP',
   'Finishing',
-  'Electrical',
-  'Plumbing',
-  'Interior'
+  'Interior',
+  'Exterior'
 ];
 
-const ProjectScheduling = ({ formData, onChange }: ProjectSchedulingProps) => {
+const ProjectScheduling: React.FC<ProjectSchedulingProps> = ({ formData, onChange }) => {
   const addMilestone = () => {
-    const newMilestone = {
+    const newMilestone: EnhancedMilestone = {
       id: formData.milestones.length + 1,
       title: '',
       date: '',
       phase: 'Foundation',
-      reminder: false
+      reminder: false,
+      // Add enhanced properties
+      dependencies: [],
+      notificationDays: 7,
+      priority: 'medium',
+      description: '',
+      attachments: [],
+      status: 'pending',
+      assignees: [],
+      completed: false
     };
     onChange({
       ...formData,

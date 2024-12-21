@@ -1,12 +1,37 @@
 // src/components/project/form/ResourceAllocation.tsx
 import { motion } from 'framer-motion';
-import { HiOutlineCube, HiOutlineExclamationCircle } from 'react-icons/hi';
+import { HiOutlineCube } from 'react-icons/hi';
+import { useToast } from '../../../context/ToastContext';
+
+const projectPhases = [
+  'Foundation',
+  'Structure',
+  'MEP',
+  'Finishing',
+  'Interior',
+  'Exterior'
+];
 
 interface Material {
   id: number;
   name: string;
   availableStock: number;
   unit: string;
+  minimumStock: number;
+  reorderPoint: number;
+  supplier?: string;
+  lastRestockDate?: string;
+}
+
+interface MaterialLink {
+  id: number;
+  materialId: number;
+  phaseId: number;
+  quantity: number;
+  consumptionRate: number;
+  estimatedDeliveryDate?: string;
+  source: 'internal' | 'purchase';
+  status: 'pending' | 'allocated' | 'consumed';
 }
 
 interface ResourceAllocationProps {
@@ -15,31 +40,114 @@ interface ResourceAllocationProps {
       id: number;
       quantity: number;
       source: 'internal' | 'purchase';
+      phaseId?: number;
+      consumptionRate?: number;
     }[];
     materialSource: string;
+    materialLinks: MaterialLink[];
   };
   onChange: (data: any) => void;
+  onMaterialPhaseLink: (materialId: number, phaseId: number, quantity: number) => void;
 }
 
 const availableMaterials: Material[] = [
-  { id: 1, name: 'Cement', availableStock: 1000, unit: 'bags' },
-  { id: 2, name: 'Iron', availableStock: 500, unit: 'tons' },
-  { id: 3, name: 'Asphalt', availableStock: 2000, unit: 'tons' },
-  { id: 4, name: 'Sand', availableStock: 3000, unit: 'cubic meters' },
+  { 
+    id: 1, 
+    name: 'Cement', 
+    availableStock: 1000, 
+    unit: 'bags',
+    minimumStock: 100,
+    reorderPoint: 200
+  },
+  { 
+    id: 2, 
+    name: 'Iron', 
+    availableStock: 500, 
+    unit: 'tons',
+    minimumStock: 50,
+    reorderPoint: 100
+  },
+  { 
+    id: 3, 
+    name: 'Asphalt', 
+    availableStock: 2000, 
+    unit: 'tons',
+    minimumStock: 200,
+    reorderPoint: 400
+  },
+  { 
+    id: 4, 
+    name: 'Sand', 
+    availableStock: 3000, 
+    unit: 'cubic meters',
+    minimumStock: 300,
+    reorderPoint: 600
+  },
+  { 
+    id: 5, 
+    name: 'Gravel', 
+    availableStock: 2500, 
+    unit: 'cubic meters',
+    minimumStock: 250,
+    reorderPoint: 500
+  },
+    { 
+        id: 6, 
+        name: 'Bricks', 
+        availableStock: 10000, 
+        unit: 'pieces',
+        minimumStock: 1000,
+        reorderPoint: 2000
+    }
 ];
 
-const ResourceAllocation = ({ formData, onChange }: ResourceAllocationProps) => {
-  const handleMaterialChange = (materialId: number, quantity: number) => {
-    const material = availableMaterials.find(m => m.id === materialId);
-    if (material && quantity > material.availableStock) {
-      // Show warning about insufficient stock
-      alert(`Warning: Only ${material.availableStock} ${material.unit} available in stock`);
-    }
-    
-    const updatedMaterials = formData.materials.map(m => 
-      m.id === materialId ? { ...m, quantity } : m
-    );
-    onChange({ ...formData, materials: updatedMaterials });
+const ResourceAllocation: React.FC<ResourceAllocationProps> = ({ formData, onChange, onMaterialPhaseLink }) => {
+    const { showToast } = useToast();
+  
+    const handleMaterialChange = (materialId: number, quantity: number) => {
+      const material = availableMaterials.find(m => m.id === materialId);
+      
+      if (!material) {
+        showToast('error', 'Material not found');
+        return;
+      }
+  
+      if (quantity < 0) {
+        showToast('warning', 'Quantity cannot be negative');
+        return;
+      }
+  
+      if (quantity > material.availableStock) {
+        showToast('warning', `Only ${material.availableStock} ${material.unit} available in stock`);
+        quantity = material.availableStock; // Limit to max available
+      }
+  
+      const existingMaterial = formData.materials.find(m => m.id === materialId);
+      let updatedMaterials;
+  
+      if (existingMaterial) {
+        updatedMaterials = formData.materials.map(m => 
+          m.id === materialId ? { ...m, quantity } : m
+        );
+      } else {
+        updatedMaterials = [
+          ...formData.materials,
+          { 
+            id: materialId, 
+            quantity, 
+            source: formData.materialSource as 'internal' | 'purchase' 
+          }
+        ];
+      }
+  
+      onChange({ ...formData, materials: updatedMaterials });
+    };
+  
+  const handleMaterialLink = (materialId: number, phase: string) => {
+    const phaseId = projectPhases.indexOf(phase) + 1;
+    const material = formData.materials.find(m => m.id === materialId);
+    const quantity = material?.quantity || 0;
+    onMaterialPhaseLink(materialId, phaseId, quantity);
   };
 
   return (
@@ -91,22 +199,29 @@ const ResourceAllocation = ({ formData, onChange }: ResourceAllocationProps) => 
                 </div>
               </div>
 
-              <div className="flex items-center gap-3">
-                <input
-                  type="number"
-                  min="0"
-                  max={material.availableStock}
-                  value={formData.materials.find(m => m.id === material.id)?.quantity || 0}
-                  onChange={(e) => handleMaterialChange(material.id, Number(e.target.value))}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                  placeholder={`Quantity (${material.unit})`}
-                />
+              <div className="flex flex-col gap-3">
+              <input
+                    type="number"
+                    min="0"
+                    max={material.availableStock}
+                    value={formData.materials.find(m => m.id === material.id)?.quantity ?? 0}
+                    onChange={(e) => handleMaterialChange(material.id, Number(e.target.value))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder={`Quantity (${material.unit})`}
+                    />
                 
-                {(formData.materials.find(m => m.id === material.id)?.quantity ?? 0) > material.availableStock && (
-                  <div className="flex items-center text-red-500">
-                    <HiOutlineExclamationCircle className="w-5 h-5" />
-                  </div>
-                )}
+                <select
+                  value={formData.materialLinks.find(link => link.materialId === material.id)?.phaseId || ''}
+                  onChange={(e) => handleMaterialLink(material.id, e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                >
+                  <option value="">Select phase</option>
+                  {projectPhases.map((phase) => (
+                    <option key={phase} value={phase}>
+                      {phase}
+                    </option>
+                  ))}
+                </select>
               </div>
             </motion.div>
           ))}
@@ -117,21 +232,34 @@ const ResourceAllocation = ({ formData, onChange }: ResourceAllocationProps) => 
       <div className="mt-6 p-4 bg-gray-50 rounded-lg">
         <h3 className="text-sm font-medium text-gray-700 mb-3">Material Status Summary</h3>
         <div className="space-y-2">
-          {formData.materials.filter(m => m.quantity > 0).map((material) => {
-            const materialInfo = availableMaterials.find(m => m.id === material.id);
-            const isOverStock = material.quantity > (materialInfo?.availableStock || 0);
-            
-            return (
-              <div key={material.id} className="flex items-center justify-between text-sm">
-                <span>{materialInfo?.name}</span>
-                <span className={isOverStock ? 'text-red-500' : 'text-green-500'}>
-                  {material.quantity} / {materialInfo?.availableStock} {materialInfo?.unit}
-                </span>
-              </div>
-            );
-          })}
+            {formData.materials.length > 0 ? (
+            formData.materials.map((material) => {
+                const materialInfo = availableMaterials.find(m => m.id === material.id);
+                if (!materialInfo) return null;
+                
+                const isOverStock = material.quantity > materialInfo.availableStock;
+                
+                return (
+                <div key={material.id} className="flex items-center justify-between text-sm">
+                    <span className="font-medium">{materialInfo.name}</span>
+                    <div className="flex items-center gap-2">
+                    <span className={isOverStock ? 'text-red-500' : 'text-green-500'}>
+                        {material.quantity} / {materialInfo.availableStock} {materialInfo.unit}
+                    </span>
+                    {isOverStock && (
+                        <span className="text-red-500 text-xs">
+                        Insufficient stock
+                        </span>
+                    )}
+                    </div>
+                </div>
+                );
+            })
+            ) : (
+            <p className="text-gray-500 text-sm">No materials selected</p>
+            )}
         </div>
-      </div>
+        </div>
     </motion.div>
   );
 };
