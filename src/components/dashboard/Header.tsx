@@ -162,7 +162,7 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     className={`absolute mt-2 w-56  bg-white rounded-lg shadow-lg py-2 border border-gray-100 ${
-                      direction === 'rtl' ? 'md:left-0 right-4': 'md:right-0 right-4' 
+                      direction === 'rtl' ? 'left-0': 'right-0' 
                     }`}
 
                   >
