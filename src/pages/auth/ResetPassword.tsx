@@ -1,13 +1,16 @@
 import React, { useRef, useState } from 'react';
-import { Link , useNavigate } from 'react-router-dom';
-import { IoArrowBack } from 'react-icons/io5';
+import { Link, useNavigate } from 'react-router-dom';
+import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import { useToast } from '../../context/ToastContext';
-
+import { useTranslation } from 'react-i18next';
+import { useTranslationContext } from '../../context/TranslationContext';
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
+  const { direction } = useTranslationContext();
   const { showToast } = useToast();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const inputRefs = [
@@ -20,21 +23,18 @@ const ResetPassword = () => {
   ];
 
   const handleChange = (index: number, value: string) => {
-    // Allow only numbers
     if (!/^\d*$/.test(value)) return;
 
     const newCode = [...code];
     newCode[index] = value;
     setCode(newCode);
 
-    // Move to next input if value is entered
     if (value !== '' && index < 5) {
       inputRefs[index + 1].current?.focus();
     }
   };
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-    // Move to previous input on backspace if current input is empty
     if (e.key === 'Backspace' && index > 0 && code[index] === '') {
       inputRefs[index - 1].current?.focus();
     }
@@ -45,21 +45,20 @@ const ResetPassword = () => {
     const verificationCode = code.join('');
     
     if (verificationCode.length !== 6) {
-      showToast('warning', 'Please enter all 6 digits');
+      showToast('warning', t('auth.enterFullCode'));
       return;
     }
 
     setIsLoading(true);
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      showToast('success', 'Code verified successfully!');
-      // Handle successful verification here
+      showToast('success', t('auth.codeVerified'));
+      
       setTimeout(() => {
         navigate('/new-password');
       }, 1500);
     } catch (error) {
-      showToast('error', 'Invalid verification code');
+      showToast('error', t('auth.invalidCode'));
     } finally {
       setIsLoading(false);
     }
@@ -72,28 +71,32 @@ const ResetPassword = () => {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className={`bg-white rounded-2xl shadow-xl p-8 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
           {/* Back button */}
           <div className="mb-3">
             <Link
               to="/forgot-password"
-              className="inline-flex items-center text-green-600 hover:text-green-800 transition-all duration-300"
+              className="inline-flex items-center text-green-600 hover:text-green-800 transition-all duration-300 group"
             >
               <motion.div
-                whileHover={{ x: -4 }}
+                whileHover={{ x: direction === 'rtl' ? 4 : -4 }}
                 className="flex items-center gap-2"
               >
-                <IoArrowBack className="text-xl" />
-                <span className="text-sm font-medium">Back</span>
+                {direction === 'rtl' ? (
+                  <IoArrowForward className="text-xl" />
+                ) : (
+                  <IoArrowBack className="text-xl" />
+                )}
+                <span className="text-sm font-medium">{t('auth.back')}</span>
               </motion.div>
             </Link>
           </div>
 
           {/* Header */}
-          <div className="text-start mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Verify Code</h1>
-            <p className="text-gray-500 text-sm font-semibold mt-2">
-              Enter the 6-digit code sent to your email
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold text-gray-900">{t('auth.verifyCode')}</h1>
+            <p className="text-gray-500 text-xs font-semibold mt-2">
+              {t('auth.enterVerificationCode')}
             </p>
           </div>
 
@@ -117,7 +120,7 @@ const ResetPassword = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-green-600 text-white rounded-lg py-2 px-4 hover:bg-green-700 transition duration-200 disabled:opacity-50 flex items-center justify-center"
+              className="w-full text-sm bg-green-600 text-white rounded-lg py-2 px-4 hover:bg-green-700 transition duration-200 disabled:opacity-50 flex items-center justify-center"
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
@@ -141,21 +144,23 @@ const ResetPassword = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  <span>Verifying...</span>
+                  <span>{t('auth.verifying')}</span>
                 </div>
               ) : (
-                'Verify Code'
+                t('auth.verifyCode')
               )}
             </button>
 
-            <p className="text-center text-sm text-gray-600">
-              Didn't receive the code?{' '}
+            <p className="text-center text-xs text-gray-600">
+              {t('auth.noCodeReceived')}{' '}
               <button
                 type="button"
                 className="text-green-600 hover:text-green-500 font-medium"
-                onClick={() => showToast('success', 'New code sent!')}
+                onClick={() => {
+                  showToast('success', t('auth.newCodeSent'));
+                }}
               >
-                Resend
+                {t('auth.resendCode')}
               </button>
             </p>
           </form>

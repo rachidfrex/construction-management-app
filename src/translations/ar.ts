@@ -49,6 +49,28 @@
         invalidEmail: "يرجى إدخال عنوان بريد إلكتروني صالح",
         registerSuccess: "تم إنشاء الحساب بنجاح!",
         registerError: "فشل في إنشاء الحساب. حاول مرة اخرى.",
+        resetLinkSent: "تم إرسال رابط إعادة التعيين! يرجى التحقق من صندوق الوارد.",
+        emailRequired: "أدخل بريدك الإلكتروني",
+        setNewPassword: "تعيين كلمة مرور جديدة",
+        pleaseEnterNewPassword: "الرجاء إدخال كلمة المرور الجديدة",
+        enterNewPassword: "أدخل كلمة المرور الجديدة",
+        confirmNewPassword: "تأكيد كلمة المرور الجديدة",
+        updatePassword: "تحديث كلمة المرور",
+        updatingPassword: "جاري تحديث كلمة المرور...",
+        passwordsDoNotMatch: "كلمات المرور غير متطابقة",
+        passwordUpdated: "تم تحديث كلمة المرور بنجاح!",
+        updatePasswordError: "فشل تحديث كلمة المرور. حاول مرة أخرى.",
+        back: "رجوع",
+        verifyCode: "التحقق من الرمز",
+        enterVerificationCode: "أدخل الرمز المكون من 6 أرقام المرسل إلى بريدك الإلكتروني",
+        enterFullCode: "الرجاء إدخال جميع الأرقام الستة",
+        codeVerified: "تم التحقق من الرمز بنجاح!",
+        invalidCode: "رمز التحقق غير صالح",
+        verifying: "جاري التحقق...",
+        noCodeReceived: "لم تستلم الرمز؟",
+        resendCode: "إعادة الإرسال",
+        newCodeSent: "تم إرسال رمز جديد!"
+        
         
       },
 
