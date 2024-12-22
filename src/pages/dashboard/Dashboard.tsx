@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { HiCube, HiCurrencyDollar, HiDocumentText, HiUserGroup } from 'react-icons/hi';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
@@ -6,55 +7,84 @@ import ProjectsOverview from '../../components/dashboard/ProjectsOverview';
 import InventoryOverview from '../../components/dashboard/InventoryOverview';
 import ActivityFeed from '../../components/dashboard/ActivityFeed';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useTranslationContext } from '../../context/TranslationContext';
 
 const Dashboard = () => {
+  const { t } = useTranslation();
+  const { direction } = useTranslationContext();
+  const [stats, setStats] = useState({
+    products: { value: 2420, change: 12 },
+    sales: { value: 45280, change: 8 },
+    projects: { value: 12, change: 2 },
+    team: { value: 48, change: 5 }
+  });
+
+  // Simulate API call to fetch stats
+  useEffect(() => {
+    const fetchStats = async () => {
+      // In real app, this would be an API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setStats({
+        products: { value: 2420, change: 12 },
+        sales: { value: 45280, change: 8 },
+        projects: { value: 12, change: 2 },
+        team: { value: 48, change: 5 }
+      });
+    };
+
+    fetchStats();
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-gray-50">
       <Sidebar />
       <Header />
  
-      <main className="lg:ml-64 mt-5 pt-16 p-6 transition-all duration-300 ease-in-out">
+      <main className={`transition-all mt-2 duration-300 ease-in-out pt-16 p-6 ${
+        direction === 'rtl' ? 'mr-64' : 'lg:ml-64'
+      }`}>
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-6"
         >
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-600 font-semibold text-xs">
-            Welcome back, here's what's happening today.
+          <h1 className="text-2xl font-bold text-gray-900">{t('dashboard.title')}</h1>
+          <p className="text-gray-600 text-xs font-semibold mt-2">
+            {t('dashboard.welcome')}
           </p>
         </motion.div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           <StatCard
-            title="Total Products"
-            value="2,420"
+            title={t('dashboard.statistics.totalProducts')}
+            value={stats.products.value.toLocaleString()}
             icon={<HiCube className="w-8 h-8" />}
-            change="12%"
-            positive={true}
+            change={`${stats.products.change}%`}
+            positive={stats.products.change > 0}
           />
           <StatCard
-            title="Total Sales"
-            value="$45,280"
+            title={t('dashboard.statistics.totalSales')}
+            value={`$${stats.sales.value.toLocaleString()}`}
             icon={<HiCurrencyDollar className="w-8 h-8" />}
-            change="8%"
-            positive={true}
+            change={`${stats.sales.change}%`}
+            positive={stats.sales.change > 0}
           />
           <StatCard
-            title="Active Projects"
-            value="12"
+            title={t('dashboard.statistics.activeProjects')}
+            value={stats.projects.value.toString()}
             icon={<HiDocumentText className="w-8 h-8" />}
-            change="2"
-            positive={true}
+            change={`${stats.projects.change}`}
+            positive={stats.projects.change > 0}
           />
           <StatCard
-            title="Team Members"
-            value="48"
+            title={t('dashboard.statistics.teamMembers')}
+            value={stats.team.value.toString()}
             icon={<HiUserGroup className="w-8 h-8" />}
-            change="5"
-            positive={true}
+            change={`${stats.team.change}`}
+            positive={stats.team.change > 0}
           />
         </div>
 
@@ -75,16 +105,15 @@ const Dashboard = () => {
               className="bg-white rounded-xl shadow-sm p-6"
             >
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-gray-900">Monthly Revenue</h2>
-                <select className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 text-sm">
-                  <option>Last 7 days</option>
-                  <option>Last 30 days</option>
-                  <option>Last 90 days</option>
+                <h2 className="text-lg font-semibold text-gray-900">{t('dashboard.monthlyRevenue')}</h2>
+                <select className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                  <option>{t('dashboard.lastSevenDays')}</option>
+                  <option>{t('dashboard.lastThirtyDays')}</option>
+                  <option>{t('dashboard.lastNinetyDays')}</option>
                 </select>
               </div>
               <div className="h-64 flex items-center justify-center text-gray-500">
-                {/* Add your chart component here */}
-                <p>Chart placeholder</p>
+                <p className="text-sm">{t('dashboard.chartPlaceholder')}</p>
               </div>
             </motion.div>
           </div>
@@ -100,7 +129,7 @@ const Dashboard = () => {
               animate={{ opacity: 1, y: 0 }}
               className="bg-white rounded-xl shadow-sm p-6"
             >
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Quick Tasks</h2>
+              <h2 className="text-lg font-semibold text-gray-900 mb-6">{t('dashboard.quickTasks')}</h2>
               <div className="space-y-4">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
@@ -110,7 +139,7 @@ const Dashboard = () => {
                   <div className="p-2 bg-green-100 rounded-lg">
                     <HiDocumentText className="w-5 h-5 text-green-600" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">Create New Project</span>
+                  <span className="text-sm font-medium text-gray-700">{t('dashboard.createNewProject')}</span>
                 </motion.button>
 
                 <motion.button
@@ -121,57 +150,8 @@ const Dashboard = () => {
                   <div className="p-2 bg-blue-100 rounded-lg">
                     <HiCube className="w-5 h-5 text-blue-600" />
                   </div>
-                  <span className="text-sm font-medium text-gray-700">Update Inventory</span>
+                  <span className="text-sm font-medium text-gray-700">{t('dashboard.updateInventory')}</span>
                 </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <div className="p-2 bg-purple-100 rounded-lg">
-                    <HiUserGroup className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">Manage Team</span>
-                </motion.button>
-              </div>
-            </motion.div>
-
-            {/* System Status */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl shadow-sm p-6"
-            >
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">System Status</h2>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-gray-600">Storage Used</span>
-                    <span className="font-medium text-gray-900">75%</span>
-                  </div>
-                  <div className="h-2 bg-gray-100 rounded-full">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '75%' }}
-                      className="h-2 bg-green-500 rounded-full"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between text-sm mb-2">
-                    <span className="text-gray-600">Memory Usage</span>
-                    <span className="font-medium text-gray-900">45%</span>
-                  </div>
-                  <div className="h-2 bg-gray-100 rounded-full">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '45%' }}
-                      className="h-2 bg-blue-500 rounded-full"
-                    />
-                  </div>
-                </div>
               </div>
             </motion.div>
           </div>

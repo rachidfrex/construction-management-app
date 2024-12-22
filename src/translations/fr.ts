@@ -15,7 +15,9 @@ export const fr = {
         viewAll: "Voir tout",
         backToHome: "Retour à l'accueil",
         welcomeBack: "Bon retour",
-        errorOccurred: "Une erreur est survenue. Veuillez réessayer"
+        errorOccurred: "Une erreur est survenue. Veuillez réessayer",
+        appName: "Bouhaja Sarl",
+        logout: "Déconnexion"
       },
       auth: {
         welcomeBack: "Bienvenue",
@@ -75,14 +77,29 @@ export const fr = {
     dashboard: {
       title: "Tableau de bord",
       welcome: "Bon retour, voici ce qui se passe aujourd'hui.",
+      fromLastMonth: "par rapport au mois dernier",
       statistics: {
-        totalProducts: "Total des produits",
-        totalSales: "Ventes totales",
-        activeProjects: "Projets actifs",
-        teamMembers: "Membres de l'équipe",
-      },
-      recentActivity: "Activité récente",
-      quickActions: "Actions rapides",
+        totalProducts: "Produits Totaux",
+        totalValue: "Valeur Totale",
+        activeProjects: "Projets Actifs",
+        teamMembers: "Membres d'équipe",
+        totalSales: "Ventes Totales",
+        monthlyRevenue: "Revenu Mensuel",
+        inventory: "Inventaire",
+        orders: "Commandes"
+      }
+    },
+    sidebar: {
+      main: "Principal",
+      dashboard: "Tableau de bord",
+      projects: "Projets",
+      management: "Gestion",
+      inventory: "Inventaire",
+      sales: "Ventes",
+      system: "Système",
+      users: "Utilisateurs",
+      notifications: "Notifications",
+      settings: "Paramètres"
     },
   
     inventory: {

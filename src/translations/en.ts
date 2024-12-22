@@ -16,7 +16,10 @@ export const en = {
         viewAll: "View All",
         backToHome: "Back to Home",
         welcomeBack: "Welcome back",
-        errorOccurred: "Something went wrong. Please try again"
+        errorOccurred: "Something went wrong. Please try again",
+         appName: "Bouhaja Sarl",
+        logout: "Logout"
+
       },
       auth: {
         welcomeBack: "Welcome back",
@@ -71,20 +74,36 @@ export const en = {
         resendCode: "Resend",
         newCodeSent: "New code sent!"
         
+        
       },
 
   
     dashboard: {
       title: "Dashboard",
       welcome: "Welcome back, here's what's happening today.",
+       fromLastMonth: "from last month",
       statistics: {
         totalProducts: "Total Products",
-        totalSales: "Total Sales",
+        totalValue: "Total Value",
         activeProjects: "Active Projects",
         teamMembers: "Team Members",
-      },
-      recentActivity: "Recent Activity",
-      quickActions: "Quick Actions",
+        totalSales: "Total Sales",
+        monthlyRevenue: "Monthly Revenue",
+        inventory: "Inventory",
+        orders: "Orders"
+      }
+    },
+    sidebar: {
+      main: "Main",
+      dashboard: "Dashboard",
+      projects: "Projects",
+      management: "Management",
+      inventory: "Inventory",
+      sales: "Sales",
+      system: "System",
+      users: "Users",
+      notifications: "Notifications",
+      settings: "Settings"
     },
   
     inventory: {

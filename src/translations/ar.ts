@@ -16,7 +16,9 @@
         viewAll: "عرض الكل",
         backToHome: "العودة للرئيسية",
         welcomeBack: "مرحباً بعودتك",
-        errorOccurred: "حدث خطأ. الرجاء المحاولة مرة أخرى"
+        errorOccurred: "حدث خطأ. الرجاء المحاولة مرة أخرى",
+        appName: "بوحاجة",
+        logout: "تسجيل الخروج"
       },
       auth: {
         welcomeBack: "مرحباً بعودتك",
@@ -76,16 +78,31 @@
 
     dashboard: {
         title: "لوحة التحكم",
-        welcome: "مرحباً بعودتك، إليك ما يحدث اليوم.",
+        welcome: "مرحباً بعودتك، إليك ما يحدث اليوم",
+         fromLastMonth: "مقارنة بالشهر الماضي",
         statistics: {
             totalProducts: "إجمالي المنتجات",
-            totalSales: "إجمالي المبيعات",
+            totalValue: "القيمة الإجمالية",
             activeProjects: "المشاريع النشطة",
             teamMembers: "أعضاء الفريق",
-        },
-        recentActivity: "النشاط الأخير",
-        quickActions: "إجراءات سريعة",
+            totalSales: "إجمالي المبيعات",
+            monthlyRevenue: "الإيرادات الشهرية",
+            inventory: "المخزون",
+            orders: "الطلبات"
+          }
     },
+    sidebar: {
+        main: "الرئيسية",
+        dashboard: "لوحة التحكم",
+        projects: "المشاريع",
+        management: "الإدارة",
+        inventory: "المخزون",
+        sales: "المبيعات",
+        system: "النظام",
+        users: "المستخدمون",
+        notifications: "الإشعارات",
+        settings: "الإعدادات"
+      },
 
     inventory: {
         title: "إدارة المخزون",
