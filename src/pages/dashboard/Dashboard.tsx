@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { HiCube, HiCurrencyDollar, HiDocumentText, HiUserGroup } from 'react-icons/hi';
+import { HiCube, HiCurrencyDollar, HiDocumentText, HiUserGroup ,HiOutlineArrowSmRight } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
 import StatCard from '../../components/dashboard/StatCard';
@@ -9,6 +10,7 @@ import ActivityFeed from '../../components/dashboard/ActivityFeed';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTranslationContext } from '../../context/TranslationContext';
+
 
 const Dashboard = () => {
   const { t } = useTranslation();
@@ -130,35 +132,64 @@ const Dashboard = () => {
             {/* Activity Feed */}
             <ActivityFeed />
 
-            {/* Quick Tasks */}
+           
+           {/* Quick Tasks bax l3oduan yb9aw */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl shadow-sm p-6"
+              className="bg-white rounded-xl shadow-sm p-3 md:p-6 "
             >
               <h2 className="text-lg font-semibold text-gray-900 mb-6">{t('dashboard.quickTasks')}</h2>
-              <div className="space-y-4">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <HiDocumentText className="w-5 h-5 text-green-600" />
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">{t('dashboard.createNewProject')}</span>
-                </motion.button>
+              <div className=" flex flex-col gap-3  ">
+                <Link to="/projects/new">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="p-2 bg-green-100 rounded-lg">
+                      <HiDocumentText className="w-5 h-5 text-green-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">{t('dashboard.createNewProject')}</span>
+                  </motion.button>
+                </Link>
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                >
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <HiCube className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">{t('dashboard.updateInventory')}</span>
-                </motion.button>
+                <Link to="/inventory">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="p-2 bg-blue-100 rounded-lg">
+                      <HiCube className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">{t('dashboard.updateInventory')}</span>
+                  </motion.button>
+                </Link>
+
+                <Link to="/reports/generate">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <div className="p-2 bg-purple-100 rounded-lg">
+                      <HiDocumentText className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">{t('dashboard.generateReport')}</span>
+                  </motion.button>
+                </Link>
+
+                <Link to="/tasks">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <span className="text-sm font-medium text-green-600">{t('dashboard.viewAllTasks')}</span>
+                    <HiOutlineArrowSmRight className={`w-5 h-5 text-green-600 ${direction === 'rtl' ? 'rotate-180' : ''}`} />
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </div>

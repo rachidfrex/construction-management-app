@@ -86,6 +86,11 @@
         lastThirtyDays: "آخر 30 يوم",
         lastNinetyDays: "آخر 90 يوم",
         chartPlaceholder: "الرسم البياني قريباً",
+        quickTasks: "المهام السريعة",
+        createNewProject: "إنشاء مشروع جديد",
+        updateInventory: "تحديث المخزون",
+        generateReport: "إنشاء تقرير",
+        viewAllTasks: "عرض كل المهام",  
         statistics: {
             totalProducts: "إجمالي المنتجات",
             totalValue: "القيمة الإجمالية",

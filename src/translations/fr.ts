@@ -84,6 +84,11 @@ export const fr = {
       lastThirtyDays: "30 derniers jours",
       lastNinetyDays: "90 derniers jours",
       chartPlaceholder: "Graphique à venir",
+      quickTasks: "Tâches Rapides",
+      createNewProject: "Créer un Nouveau Projet",
+      updateInventory: "Mettre à jour l'Inventaire",
+      generateReport: "Générer un Rapport",
+      viewAllTasks: "Voir Toutes les Tâches",
       statistics: {
         totalProducts: "Produits Totaux",
         totalValue: "Valeur Totale",
