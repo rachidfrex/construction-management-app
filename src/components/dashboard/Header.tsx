@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { 
   HiOutlineSearch, 
   HiOutlineBell, 
@@ -92,9 +93,10 @@ const Header = () => {
           </div>
           </div>
           
-
+      
         {/* Right Section */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center  space-x-2">
+          <LanguageSwitcher />
           {/* Notifications */}
           <div className="relative">
             <motion.button

@@ -6,4 +6,13 @@
   html {
     font-family: 'Poppins', sans-serif;
   }
+
+  html[lang="ar"] {
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+/* Add specific styles for Arabic text */
+.arabic-text {
+  font-family: 'Cairo', sans-serif;
 }

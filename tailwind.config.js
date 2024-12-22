@@ -17,6 +17,7 @@ export default {
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
+        'arabic': ['Cairo', 'sans-serif'],
       },
     },
   },

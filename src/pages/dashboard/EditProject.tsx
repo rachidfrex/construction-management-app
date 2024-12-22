@@ -10,14 +10,12 @@ import {
     HiOutlineOfficeBuilding,
     HiOutlineUser,
     HiOutlineCalendar,
-    HiOutlineCurrencyDollar,
     HiOutlineTrash,
     HiOutlinePlusCircle,
     HiOutlineDocumentText,
     HiOutlineCloudUpload,
     HiOutlineX,
     HiOutlineCube,
-    HiOutlineUserGroup
 } from 'react-icons/hi';
 
 // Move interfaces outside component
@@ -114,7 +112,7 @@ const EditProject = () => {
           projectName: 'Construction Site A',
           clientName: 'ABC Corporation',
           projectType: 'Construction',
-          materials: [{ id: 1, quantity: 1000, source: "internal" as "internal" | "purchase" }],
+          materials: [{ id: 1, name: 'Cement', quantity: 1000, unit: 'bags', status: 'In Stock' }],
           materialSource: 'internal',
           startDate: '2024-01-15',
           endDate: '2024-06-30',

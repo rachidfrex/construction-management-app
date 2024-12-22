@@ -4,9 +4,6 @@ import { motion } from 'framer-motion';
 import { 
   HiOutlineCube, 
   HiOutlineBeaker,
-  HiOutlineShoppingCart,
-  HiOutlineExclamation,
-  HiOutlineTrendingUp,
   HiOutlineArrowSmRight,
   HiOutlineSearch,
   HiOutlineFilter,
