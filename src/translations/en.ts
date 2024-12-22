@@ -40,6 +40,15 @@ export const en = {
         alreadyHaveAccount: "Already have an account?",
         backToLogin: "Back to Login",
         resetInstructions: "Enter your email to receive reset instructions",
+        createAccount: "Create an account",
+        startJourney: "Start your journey with us today",
+        fullName: "Full Name",
+        enterFullName: "Enter your full name",
+        createPassword: "Create a password",
+        passwordLength: "Password must be at least 6 characters long",
+        invalidEmail: "Please enter a valid email address",
+        registerSuccess: "Account created successfully!",
+        registerError: "Failed to create account. Please try again.",
         
       },
 

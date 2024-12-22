@@ -115,8 +115,8 @@ const Login = () => {
         <div className={`bg-white rounded-2xl shadow-xl p-8 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">{t('auth.welcomeBack')}</h1>
-            <p className="text-gray-500 text-sm font-semibold mt-2">{t('auth.pleaseSignIn')}</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('auth.welcomeBack')}</h1>
+            <p className="text-gray-500 text-xs font-semibold mt-2">{t('auth.pleaseSignIn')}</p>
           </div>
 
           {/* Form */}
@@ -129,7 +129,7 @@ const Login = () => {
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 placeholder={t('auth.enterEmail')}
               />
             </div>
@@ -143,7 +143,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-4 text-sm py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   placeholder={t('auth.enterPassword')}
                 />
                 <button
@@ -163,7 +163,7 @@ const Login = () => {
                 <input
                   type="checkbox"
                   id="remember"
-                  className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                  className="h-4 text-sm w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
                 />
                <label 
                 htmlFor="remember" 
@@ -180,7 +180,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
+              className="w-full text-sm bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
@@ -221,9 +221,9 @@ const Login = () => {
           </div>
 
           {/* Sign up link */}
-          <p className="mt-8 text-center text-sm text-gray-600">
+          <p className="mt-8 text-center text-xs  text-gray-600">
             {t('auth.dontHaveAccount')}{' '}
-            <Link to="/register" className="font-medium text-green-600 hover:text-green-500">
+            <Link to="/register" className="font-medium  text-green-600 hover:text-green-500">
               {t('auth.register')}
             </Link>
           </p>

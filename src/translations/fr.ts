@@ -39,6 +39,15 @@ export const fr = {
         alreadyHaveAccount: "Vous avez déjà un compte ?",
         backToLogin: "Retour à la connexion",
         resetInstructions: "Entrez votre email pour recevoir les instructions",
+        startJourney: "Commencez votre voyage avec nous aujourd'hui",
+        createAccount: "Créer un compte",
+        fullName: "Nom complet",
+        enterFullName: "Entrez votre nom complet",
+        createPassword: "Créer un mot de passe",
+        passwordLength: "Le mot de passe doit contenir au moins 6 caractères",
+        invalidEmail: "Veuillez entrer une adresse email valide",
+        registerSuccess: "Compte créé avec succès !",
+        registerError: "Échec de la création du compte. Veuillez réessayer.",
 
       },
   

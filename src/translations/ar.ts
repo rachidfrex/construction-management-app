@@ -40,6 +40,16 @@
         alreadyHaveAccount: "لديك حساب بالفعل؟",
         resetInstructions: "أدخل بريدك الإلكتروني لتلقي تعليمات إعادة التعيين",
         backToLogin: "العودة إلى تسجيل الدخول",
+        startJourney: "ابدأ رحلتك معنا اليوم",
+        createAccount: "إنشاء حساب",
+        fullName: "الاسم الكامل",
+        enterFullName: "أدخل اسمك الكامل",
+        createPassword: "إنشاء كلمة المرور",
+        passwordLength: "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
+        invalidEmail: "يرجى إدخال عنوان بريد إلكتروني صالح",
+        registerSuccess: "تم إنشاء الحساب بنجاح!",
+        registerError: "فشل في إنشاء الحساب. حاول مرة اخرى.",
+        
       },
 
     dashboard: {
