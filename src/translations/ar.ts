@@ -120,40 +120,61 @@
         userEmail: "rachid@gmail.com"
       },
 
-    inventory: {
+      inventory: {
         title: "إدارة المخزون",
+        overview: "نظرة عامة على المخزون",
+        viewCritical: "عرض المواد الحرجة",
+        criticalItems: "المواد الحرجة",
         subtitle: "إدارة مخزون مواد البناء والأسمدة",
+        table: {
+          item: "المادة",
+          currentStock: "المخزون الحالي",
+          monthlyUsage: "الاستهلاك الشهري",
+          supplier: "المورد",
+          status: "الحالة",
+          lastRestock: "آخر تجديد"
+        },
         construction: {
-            title: "مواد البناء",
-            subtitle: "إدارة مخزون مواد البناء",
-            addMaterial: "إضافة مادة",
-            categories: {
-                all: "جميع الفئات",
-                basicMaterials: "المواد الأساسية",
-                metals: "المعادن",
-                wood: "الخشب",
-                concrete: "الخرسانة",
-                tools: "الأدوات",
-            },
+          title: "مواد البناء",
+          subtitle: "إدارة مخزون مواد البناء الخاص بك",
+          addMaterial: "إضافة مادة",
+          categories: {
+            all: "جميع الفئات",
+            basicMaterials: "المواد الأساسية",
+            metals: "المعادن",
+            wood: "الخشب",
+            concrete: "الخرسانة",
+            tools: "الأدوات",
+          },
         },
         fertilizers: {
-            title: "الأسمدة",
-            subtitle: "إدارة مخزون الأسمدة",
+          title: "الأسمدة",
+          subtitle: "إدارة مخزون الأسمدة الخاص بك",
         },
         status: {
-            inStock: "متوفر",
-            lowStock: "مخزون منخفض",
-            outOfStock: "نفذ من المخزون",
-            expiringSoon: "ينتهي قريباً",
+          instock: "متوفر",
+          outofstock: "نفذ من المخزون",
+          expiringsoon: "قريب من انتهاء الصلاحية",
+          lowstock: "مخزون منخفض"
         },
         metrics: {
-            totalValue: "القيمة الإجمالية",
-            currentStock: "المخزون الحالي",
-            minimumRequired: "الحد الأدنى المطلوب",
-            lastOrder: "آخر طلب",
-            recentMovements: "التحركات الأخيرة",
+          totalValue: "القيمة الإجمالية",
+          currentStock: "المخزون الحالي",
+          minimumRequired: "الحد الأدنى المطلوب",
+          lastOrder: "آخر طلب",
+          recentMovements: "التحركات الأخيرة",
         },
-    },
+        items: {
+          cement: "إسمنت",
+          steel: "حديد",
+          paint: "دهان"
+        },
+        units: {
+          bags: "كيس",
+          tons: "طن",
+          gallons: "جالون"
+        }
+      },
 
     projects: {
         title: "نظرة عامة على المشاريع",

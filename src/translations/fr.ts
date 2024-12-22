@@ -121,10 +121,21 @@ export const fr = {
   
     inventory: {
       title: "Gestion des stocks",
+      overview: "Aperçu des stocks",
+      viewCritical: "Voir les articles critiques",
+      criticalItems: "Articles critiques",
       subtitle: "Gérer les stocks de matériaux de construction et d'engrais",
+      table: {
+        item: "Article",
+        currentStock: "Stock actuel",
+        monthlyUsage: "Utilisation mensuelle",
+        supplier: "Fournisseur",
+        status: "Statut",
+        lastRestock: "Dernier réapprovisionnement"
+      },
       construction: {
         title: "Matériaux de construction",
-        subtitle: "Gérer votre stock de matériaux de construction",
+        subtitle: "Gérer votre inventaire de matériaux de construction",
         addMaterial: "Ajouter un matériau",
         categories: {
           all: "Toutes les catégories",
@@ -137,13 +148,13 @@ export const fr = {
       },
       fertilizers: {
         title: "Engrais",
-        subtitle: "Gérer votre stock d'engrais",
+        subtitle: "Gérer votre inventaire d'engrais",
       },
       status: {
-        inStock: "En stock",
-        lowStock: "Stock faible",
-        outOfStock: "Rupture de stock",
-        expiringSoon: "Expire bientôt",
+        instock: "En stock",
+        outofstock: "Rupture de stock",
+        expiringsoon: "Expiration proche",
+        lowstock: "Stock faible"
       },
       metrics: {
         totalValue: "Valeur totale",
@@ -152,6 +163,16 @@ export const fr = {
         lastOrder: "Dernière commande",
         recentMovements: "Mouvements récents",
       },
+      items: {
+        cement: "Ciment",
+        steel: "Acier",
+        paint: "Peinture"
+      },
+      units: {
+        bags: "sacs",
+        tons: "tonnes",
+        gallons: "litres"
+      }
     },
   
     projects: {

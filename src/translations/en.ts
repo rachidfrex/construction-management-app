@@ -124,7 +124,18 @@ export const en = {
   
     inventory: {
       title: "Inventory Management",
+      overview: "Inventory Overview",
+      viewCritical: "View Critical Items",
+      criticalItems: "Critical Items",
       subtitle: "Manage construction materials and fertilizers inventory",
+      table: {
+        item: "Item",
+        currentStock: "Current Stock",
+        monthlyUsage: "Monthly Usage",
+        supplier: "Supplier",
+        status: "Status",
+        lastRestock: "Last Restock"
+      },
       construction: {
         title: "Construction Materials",
         subtitle: "Manage your construction materials inventory",
@@ -143,10 +154,10 @@ export const en = {
         subtitle: "Manage your fertilizers inventory",
       },
       status: {
-        inStock: "In Stock",
-        lowStock: "Low Stock",
-        outOfStock: "Out of Stock",
-        expiringSoon: "Expiring Soon",
+        instock: "In Stock",
+        outofstock: "Out of Stock",
+        expiringsoon: "Expiring Soon",
+        lowstock : "Low Stock"
       },
       metrics: {
         totalValue: "Total Value",
@@ -155,6 +166,16 @@ export const en = {
         lastOrder: "Last Order",
         recentMovements: "Recent Movements",
       },
+      items: {
+        cement: "Cement",
+        steel: "Steel",
+        paint: "Paint"
+      },
+      units: {
+        bags: "bags",
+        tons: "tons",
+        gallons: "gallons"
+      }
     },
   
     projects: {
