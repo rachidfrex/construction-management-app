@@ -1,16 +1,28 @@
 // src/components/ui/LanguageSwitcher.tsx
 import { motion } from 'framer-motion';
 import { HiTranslate } from 'react-icons/hi';
+import { GB, FR, MA } from 'country-flag-icons/react/3x2';
 import { useTranslationContext } from '../../context/TranslationContext';
 
 const LanguageSwitcher = () => {
   const { language, changeLanguage } = useTranslationContext();
 
   const languages = [
-    { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'ar', label: 'العربية', flag: '🇲🇦' } 
-    
+    { 
+      code: 'en', 
+      label: 'English', 
+      flag: <GB className="w-5 h-5" title="English" /> 
+    },
+    { 
+      code: 'fr', 
+      label: 'Français', 
+      flag: <FR className="w-5 h-5" title="Français" /> 
+    },
+    { 
+      code: 'ar', 
+      label: 'العربية', 
+      flag: <MA className="w-5 h-5" title="العربية" /> 
+    }
   ];
 
   return (
@@ -37,7 +49,7 @@ const LanguageSwitcher = () => {
               language === lang.code ? 'text-green-600 font-medium' : 'text-gray-700'
             }`}
           >
-            <span>{lang.flag}</span>
+            {lang.flag}
             <span>{lang.label}</span>
             {language === lang.code && (
               <motion.div
