@@ -7,6 +7,7 @@ import { HiTranslate } from 'react-icons/hi';
 import { useToast } from '../../context/ToastContext';
 import { useTranslationContext } from '../../context/TranslationContext';
 import { useTranslation } from 'react-i18next';
+import { GB, FR, MA } from 'country-flag-icons/react/3x2';
 import authConfig from '../../config/auth.config.json';
 
 const Login = () => {
@@ -19,9 +20,9 @@ const Login = () => {
   const [showLanguageMenu, setShowLanguageMenu] = React.useState(false);
 
   const languages = [
-    { code: 'en', label: 'English', flag: '🇺🇸' },
-    { code: 'fr', label: 'Français', flag: '🇫🇷' },
-    { code: 'ar', label: 'العربية', flag: '🇸🇦' }
+    { code: 'en', label: 'English', flag: <GB className="w-4 h-full rounded-sm " title="English" /> },
+    { code: 'fr', label: 'Français', flag: <FR className="w-4 h-full  rounded-sm " title="Français" /> },
+    { code: 'ar', label: 'العربية', flag: <MA className="w-4 h-full  rounded-sm" title="العربية" /> },
   ];
 
   const [formData, setFormData] = React.useState({

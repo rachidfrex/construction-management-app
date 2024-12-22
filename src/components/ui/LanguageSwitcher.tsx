@@ -11,17 +11,17 @@ const LanguageSwitcher = () => {
     { 
       code: 'en', 
       label: 'English', 
-      flag: <GB className="w-5 h-5" title="English" /> 
+      flag: <GB className="w-4 h-full rounded-sm " title="English" /> 
     },
     { 
       code: 'fr', 
       label: 'Français', 
-      flag: <FR className="w-5 h-5" title="Français" /> 
+      flag: <FR className="w-4 h-full  rounded-sm " title="Français" /> 
     },
     { 
       code: 'ar', 
       label: 'العربية', 
-      flag: <MA className="w-5 h-5" title="العربية" /> 
+      flag: <MA className="w-4 h-full  rounded-sm" title="العربية" /> 
     }
   ];
 
@@ -32,8 +32,8 @@ const LanguageSwitcher = () => {
         whileTap={{ scale: 0.95 }}
         className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100"
       >
-        <HiTranslate className="w-5 h-5 text-gray-600" />
-        <span className="text-sm text-gray-700">
+        <HiTranslate className="w-5 h-full text-gray-600" />
+        <span className="text-sm h-full text-gray-700">
           {languages.find(lang => lang.code === language)?.flag}
         </span>
       </motion.button>
@@ -54,7 +54,7 @@ const LanguageSwitcher = () => {
             {language === lang.code && (
               <motion.div
                 layoutId="activeLang"
-                className="w-1.5 h-1.5 rounded-full bg-green-600 ml-auto"
+                className="w-1.5 h-full rounded-full bg-green-600 ml-auto"
               />
             )}
           </motion.button>
