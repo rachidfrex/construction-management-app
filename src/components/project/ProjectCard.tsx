@@ -186,19 +186,19 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="flex items-center text-gray-500 text-xs">
-          <HiOutlineCalendar className="w-4 h-4 mr-2" />
+          <HiOutlineCalendar className={`w-4 h-4  ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
           <span>{new Date(project.startDate).toLocaleDateString()}</span>
         </div>
         <div className="flex items-center text-gray-500 text-xs">
-          <HiOutlineClock className="w-4 h-4 mr-2" />
+          <HiOutlineClock className={`w-4 h-4  ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
           <span>{new Date(project.endDate).toLocaleDateString()}</span>
         </div>
         <div className="flex items-center text-gray-500 text-xs">
-          <HiOutlineCurrencyDollar className="w-4 h-4 mr-2" />
+          <HiOutlineCurrencyDollar className={`w-4 h-4  ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
           <span>${project.budget.toLocaleString()}</span>
         </div>
         <div className="flex items-center text-gray-500 text-xs">
-          <HiOutlineUsers className="w-4 h-4 mr-2" />
+          <HiOutlineUsers className={`w-4 h-4  ${direction === 'rtl' ? 'ml-2' : 'mr-2'}`} />
           <span>{project.team.length} {t('projects.members')}</span>
         </div>
       </div>
