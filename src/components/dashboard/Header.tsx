@@ -58,8 +58,11 @@ const Header = () => {
       left-0 right-0`}>
       <div className="h-full px-6 flex items-center justify-between">
         {/* Left Section */}
-        <div className="flex items-center">
-          <h2 className="text-xl md:block hidden font-semibold text-gray-800">{t('header.dashboard')}</h2>
+        <div className="flex items-center ">
+          <h2 className={`text-xl md:block  hidden font-semibold text-gray-800
+       
+           ${direction === 'rtl' ? 'mr-10 lg:mr-0' : 'ml-10 lg:ml-0'}
+            `} >{t('header.dashboard')}</h2>
         </div>
   
         {/* Right Section */}

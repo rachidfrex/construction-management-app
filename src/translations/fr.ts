@@ -79,6 +79,11 @@ export const fr = {
       title: "Tableau de bord",
       welcome: "Bon retour, voici ce qui se passe aujourd'hui.",
       fromLastMonth: "par rapport au mois dernier",
+      monthlyRevenue: "Revenus mensuels",
+      lastSevenDays: "7 derniers jours",
+      lastThirtyDays: "30 derniers jours",
+      lastNinetyDays: "90 derniers jours",
+      chartPlaceholder: "Graphique à venir",
       statistics: {
         totalProducts: "Produits Totaux",
         totalValue: "Valeur Totale",

@@ -81,6 +81,11 @@
         title: "لوحة التحكم",
         welcome: "مرحباً بعودتك، إليك ما يحدث اليوم",
          fromLastMonth: "مقارنة بالشهر الماضي",
+         monthlyRevenue: "الإيرادات الشهرية",
+        lastSevenDays: "آخر 7 أيام",
+        lastThirtyDays: "آخر 30 يوم",
+        lastNinetyDays: "آخر 90 يوم",
+        chartPlaceholder: "الرسم البياني قريباً",
         statistics: {
             totalProducts: "إجمالي المنتجات",
             totalValue: "القيمة الإجمالية",

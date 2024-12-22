@@ -41,11 +41,12 @@ const Dashboard = () => {
       <Sidebar />
       <Header />
  
-      <main className={`transition-all duration-300 mt-5 ease-in-out pt-16 p-6 ${
+      <main className={`transition-all duration-300 mt-5 ease-in-out pt-16 p-3 sm:p-6 ${
       direction === 'rtl' 
         ? 'mr-0 lg:mr-64 ' 
-        : 'ml-0 lg:ml-64'
-    }`}>
+        : 'ml-0 lg:ml-64 '
+    }
+    `}>
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -102,22 +103,26 @@ const Dashboard = () => {
 
             {/* Monthly Revenue Chart */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl shadow-sm p-6"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-gray-900">{t('dashboard.monthlyRevenue')}</h2>
-                <select className="px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
-                  <option>{t('dashboard.lastSevenDays')}</option>
-                  <option>{t('dashboard.lastThirtyDays')}</option>
-                  <option>{t('dashboard.lastNinetyDays')}</option>
-                </select>
-              </div>
-              <div className="h-64 flex items-center justify-center text-gray-500">
-                <p className="text-sm">{t('dashboard.chartPlaceholder')}</p>
-              </div>
-            </motion.div>
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-xl shadow-sm p-6"
+              >
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                  <h2 className="text-lg font-semibold text-gray-900">{t('dashboard.monthlyRevenue')}</h2>
+                  <select 
+                    className={`px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 w-full sm:w-auto ${
+                      direction === 'rtl' ? 'text-right' : 'text-left'
+                    }`}
+                  >
+                    <option value="7">{t('dashboard.lastSevenDays')}</option>
+                    <option value="30">{t('dashboard.lastThirtyDays')}</option>
+                    <option value="90">{t('dashboard.lastNinetyDays')}</option>
+                  </select>
+                </div>
+                <div className="h-64 flex items-center justify-center text-gray-500">
+                  <p className="text-sm">{t('dashboard.chartPlaceholder')}</p>
+                </div>
+              </motion.div>
           </div>
 
           {/* Right Sidebar */}

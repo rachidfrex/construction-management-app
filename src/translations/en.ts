@@ -83,6 +83,11 @@ export const en = {
       title: "Dashboard",
       welcome: "Welcome back, here's what's happening today.",
        fromLastMonth: "from last month",
+       monthlyRevenue: "Monthly Revenue",
+      lastSevenDays: "Last 7 days",
+      lastThirtyDays: "Last 30 days",
+      lastNinetyDays: "Last 90 days",
+      chartPlaceholder: "Chart coming soon",
       statistics: {
         totalProducts: "Total Products",
         totalValue: "Total Value",
