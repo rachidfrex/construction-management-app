@@ -192,7 +192,7 @@ export const en = {
       tasks: "Tasks",
       progress: "Progress",
       status: {
-        inProgress: "In Progress",
+        inprogress: "In Progress",
         completed: "Completed",
         delayed: "Delayed",
         canceled: "Canceled"

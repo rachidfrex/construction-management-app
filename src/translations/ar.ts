@@ -190,7 +190,7 @@
         tasks: "المهام",
         progress: "التقدم",
         status: {
-          inProgress: "قيد التنفيذ",
+          inprogress: "قيد التنفيذ",
           completed: "مكتمل",
           delayed: "متأخر",
           canceled: "ملغي"
@@ -226,7 +226,7 @@
         users: {
           johnDoe: "جون دو",
           janeSmith: "جين سميث"
-          
+
         },
         actions: {
           createdProject: "أنشأ مشروع جديد",

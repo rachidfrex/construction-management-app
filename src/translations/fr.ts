@@ -185,7 +185,7 @@ export const fr = {
       projectDetails: "Détails du projet",
       recentProjects: "Projets Récents",
       status: {
-        inProgress: "En cours",
+        inprogress: "En cours",
         completed: "Terminé",
         delayed: "En retard",
         canceled: "Annulé",
