@@ -190,7 +190,7 @@ export const fr = {
       projectDetails: "Détails du Projet",
       recentProjects: "Projets Récents",
       viewDetails: "Voir les Détails",
-      members: "membres",
+      members: "Membres",
       tasks: "Tâches",
       progress: "Progression",
       noResults: "Aucun projet ne correspond à vos critères",
@@ -208,33 +208,19 @@ export const fr = {
         allTypes: "Tous les Types",
         dateRange: "Période",
         activeFilters: "Filtres Actifs",
-        from: "Du",
-        to: "Au",
-        priority: "Priorité",
-        location: "Emplacement",
-        budget: "Fourchette Budgétaire"
+        from: "De",
+        to: "À"
       },
       status: {
         inprogress: "En Cours",
         completed: "Terminé",
         delayed: "En Retard",
-        canceled: "Annulé",
-        onHold: "En Pause",
-        planned: "Planifié"
-      },
-      priority: {
-        low: "Faible",
-        medium: "Moyenne",
-        high: "Élevée",
-        urgent: "Urgente"
+        canceled: "Annulé"
       },
       types: {
         construction: "Construction",
         renovation: "Rénovation",
-        maintenance: "Maintenance",
-        infrastructure: "Infrastructure",
-        residential: "Résidentiel",
-        commercial: "Commercial"
+        maintenance: "Maintenance"
       },
       statistics: {
         total: "Total des Projets",
@@ -243,13 +229,8 @@ export const fr = {
         delayed: "En Retard",
         canceled: "Annulés",
         totalBudget: "Budget Total",
-        averageProgress: "Progression Moyenne",
-        activeTeamMembers: "Membres Actifs",
-        totalTasks: "Total des Tâches",
-        completedTasks: "Tâches Terminées",
-        upcomingDeadlines: "Échéances à Venir"
+        averageProgress: "Progression Moyenne"
       },
-      
       sampleData: {
         projectA: "Chantier A",
         projectB: "Projet de Rénovation B",
@@ -263,10 +244,7 @@ export const fr = {
         documents: "Documents",
         tasks: "Tâches",
         budget: "Budget",
-        gallery: "Galerie",
-        risks: "Risques",
-        quality: "Qualité",
-        reports: "Rapports"
+        gallery: "Galerie"
       },
       form: {
         projectName: "Nom du Projet",
@@ -280,10 +258,45 @@ export const fr = {
         materials: "Matériaux",
         location: "Emplacement",
         priority: "Priorité",
-        attachments: "Pièces Jointes",
-        notes: "Notes",
-        specifications: "Spécifications",
-        milestones: "Jalons"
+        attachments: "Pièces Jointes"
+      },
+      actions: {
+        edit: "Modifier le Projet",
+        delete: "Supprimer le Projet",
+        archive: "Archiver le Projet",
+        export: "Exporter",
+        import: "Importer",
+        viewDetails: "Voir les Détails",
+        addMember: "Ajouter un Membre",
+        removeMember: "Retirer un Membre",
+        uploadFiles: "Télécharger des Fichiers",
+        generateReport: "Générer un Rapport",
+        editProject: "Modifier le Projet",
+        timeline: "Chronologie",
+        team: "Équipe",
+        materials: "Matériaux",
+        documents: "Documents"
+      },
+      messages: {
+        deleteConfirm: "Êtes-vous sûr de vouloir supprimer ce projet ?",
+        archiveConfirm: "Êtes-vous sûr de vouloir archiver ce projet ?",
+        archived: "Projet archivé avec succès",
+        deleted: "Projet supprimé avec succès",
+        success: {
+          created: "Projet créé avec succès",
+          updated: "Projet mis à jour avec succès",
+          deleted: "Projet supprimé avec succès", 
+          archived: "Projet archivé avec succès",
+          memberAdded: "Membre ajouté avec succès",
+          memberRemoved: "Membre retiré avec succès",
+          filesUploaded: "Fichiers téléchargés avec succès"
+        },
+        error: {
+          create: "Échec de la création du projet",
+          update: "Échec de la mise à jour du projet",
+          delete: "Échec de la suppression du projet",
+          archive: "Échec de l'archivage du projet"
+        }
       }
     },
     activity: {

@@ -21,8 +21,9 @@ interface FilterProps {
 }
 
 export const ProjectFilters = ({ filters, onFilterChange }: FilterProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isExpanded, setIsExpanded] = useState(false);
+  const direction = i18n.dir();
 
   const hasActiveFilters = Object.values(filters).some(value => value !== '');
 
@@ -46,7 +47,9 @@ export const ProjectFilters = ({ filters, onFilterChange }: FilterProps) => {
           <span className="text-sm font-medium">
             {t('projects.filters.title')}
             {hasActiveFilters && (
-              <span className="ml-2 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+              <span className={`px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full
+                ${direction === 'rtl' ? 'mr-2' : 'ml-2'}
+              `}>
                 {Object.values(filters).filter(Boolean).length}
               </span>
             )}

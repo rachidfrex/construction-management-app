@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useTranslationContext } from '../../context/TranslationContext';
 import { 
   HiOutlinePlus,
   HiOutlineDownload,
@@ -12,10 +11,9 @@ import {
 
 export const ProjectHeader = () => {
   const { t } = useTranslation();
-  const { direction } = useTranslationContext();
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 mt-5">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         {/* Left Section - Title and Subtitle */}
         <motion.div 

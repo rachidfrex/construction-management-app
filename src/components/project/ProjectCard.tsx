@@ -139,7 +139,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           <p className="text-sm text-gray-500">{t('projects.client')}: {project.clientName}</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${statusColors[project.status]}`}>
+          <span className={`px-2.5 py-1 rounded-full text-xxs font-medium ${statusColors[project.status]}`}>
             {t(`projects.status.${project.status.toLowerCase().replace(' ', '')}`)}
           </span>
           <div className="relative" ref={menuRef}>

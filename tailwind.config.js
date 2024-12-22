@@ -19,6 +19,9 @@ export default {
         'poppins': ['Poppins', 'sans-serif'],
         'arabic': ['Cairo', 'sans-serif'],
       },
+      fontSize: {
+        'xxs': '10px',
+      },
     },
   },
   plugins: [],

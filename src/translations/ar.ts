@@ -186,12 +186,12 @@
 
       projects: {
         title: "نظرة عامة على المشاريع",
-        subtitle: "إدارة ومراقبة مشاريع البناء",
+        subtitle: "إدارة ومراقبة مشاريع البناء الخاصة بك",
         newProject: "مشروع جديد",
-        projectDetails: "تفاصيل المشروع", 
+        projectDetails: "تفاصيل المشروع",
         recentProjects: "المشاريع الحديثة",
         viewDetails: "عرض التفاصيل",
-        members: "أعضاء",
+        members: "الأعضاء",
         tasks: "المهام",
         progress: "التقدم",
         noResults: "لم يتم العثور على مشاريع تطابق معايير البحث",
@@ -210,32 +210,18 @@
           dateRange: "النطاق الزمني",
           activeFilters: "التصفيات النشطة",
           from: "من",
-          to: "إلى",
-          priority: "الأولوية",
-          location: "الموقع",
-          budget: "نطاق الميزانية"
+          to: "إلى"
         },
         status: {
           inprogress: "قيد التنفيذ",
           completed: "مكتمل",
           delayed: "متأخر",
-          canceled: "ملغي",
-          onHold: "متوقف مؤقتاً",
-          planned: "مخطط"
-        },
-        priority: {
-          low: "منخفضة",
-          medium: "متوسطة",
-          high: "عالية",
-          urgent: "عاجلة"
+          canceled: "ملغي"
         },
         types: {
           construction: "بناء",
           renovation: "تجديد",
-          maintenance: "صيانة",
-          infrastructure: "بنية تحتية",
-          residential: "سكني",
-          commercial: "تجاري"
+          maintenance: "صيانة"
         },
         statistics: {
           total: "إجمالي المشاريع",
@@ -244,11 +230,7 @@
           delayed: "متأخرة",
           canceled: "ملغاة",
           totalBudget: "إجمالي الميزانية",
-          averageProgress: "متوسط التقدم",
-          activeTeamMembers: "أعضاء الفريق النشطين",
-          totalTasks: "إجمالي المهام",
-          completedTasks: "المهام المكتملة",
-          upcomingDeadlines: "المواعيد النهائية القادمة"
+          averageProgress: "متوسط التقدم"
         },
         sampleData: {
           projectA: "موقع البناء أ",
@@ -263,27 +245,59 @@
           documents: "المستندات",
           tasks: "المهام",
           budget: "الميزانية",
-          gallery: "معرض الصور",
-          risks: "المخاطر",
-          quality: "الجودة",
-          reports: "التقارير"
+          gallery: "معرض الصور"
         },
         form: {
           projectName: "اسم المشروع",
           clientName: "اسم العميل",
           projectType: "نوع المشروع",
           startDate: "تاريخ البدء",
-          endDate: "تاريخ الانتهاء", 
+          endDate: "تاريخ الانتهاء",
           budget: "الميزانية",
           description: "الوصف",
           teamMembers: "أعضاء الفريق",
           materials: "المواد",
           location: "الموقع",
           priority: "الأولوية",
-          attachments: "المرفقات",
-          notes: "الملاحظات",
-          specifications: "المواصفات",
-          milestones: "المراحل الرئيسية"
+          attachments: "المرفقات"
+        },
+        actions: {
+          edit: "تعديل المشروع",
+          delete: "حذف المشروع",
+          archive: "أرشفة المشروع",
+          export: "تصدير",
+          import: "استيراد",
+          viewDetails: "عرض التفاصيل",
+          addMember: "إضافة عضو",
+          removeMember: "إزالة عضو",
+          uploadFiles: "رفع الملفات",
+          generateReport: "إنشاء تقرير",
+          editProject: "تعديل المشروع",
+          timeline: "الجدول الزمني",
+          team: "الفريق",
+          materials: "المواد",
+          documents: "المستندات"
+        },
+        messages: {
+          deleteConfirm: "هل أنت متأكد من حذف هذا المشروع؟",
+          archiveConfirm: "هل أنت متأكد من أرشفة هذا المشروع؟",
+          archived: "تم أرشفة المشروع بنجاح",
+          deleted: "تم حذف المشروع بنجاح",
+          success: {
+            created: "تم إنشاء المشروع بنجاح",
+            updated: "تم تحديث المشروع بنجاح",
+            deleted: "تم حذف المشروع بنجاح",
+            archived: "تم أرشفة المشروع بنجاح",
+            memberAdded: "تمت إضافة عضو الفريق بنجاح",
+            memberRemoved: "تمت إزالة عضو الفريق بنجاح",
+            filesUploaded: "تم رفع الملفات بنجاح"
+          },
+          error: {
+            create: "فشل في إنشاء المشروع",
+            update: "فشل في تحديث المشروع",
+            delete: "فشل في حذف المشروع",
+            archive: "فشل في أرشفة المشروع"
+          }
         }
       },
       activity: {
@@ -308,7 +322,7 @@
           documents: "المستندات",
         },
         targets: {
-          constructionA: "موقع البناء أ",
+          constructionA:"  إعادة ترميم مسجد قرية الحرشية",
           steelBars: "قضبان الحديد",
           monthlySales: "المبيعات الشهرية",
           foundationWork: "أعمال الأساسات",

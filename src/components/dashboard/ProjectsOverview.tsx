@@ -3,7 +3,6 @@ import {
   HiOutlinePlusCircle, 
   HiOutlineCalendar, 
   HiOutlineUsers,
-  HiOutlineClock,
   HiOutlineArrowSmRight
 } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
@@ -98,8 +97,8 @@ const ProjectsOverview = () => {
            
             className="p-4  rounded-lg border-2 border-gray-100  transition-all"
           >
-            <div className="flex flex-col sm:flex-row justify-between gap-4">
-              <div className="space-y-3">
+            <div className="flex flex-col   sm:flex-row  justify-between gap-4">
+              <div className="space-y-3 flex flex-col sm:w-[75%] ">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-medium text-gray-900">{project.name}</h3>

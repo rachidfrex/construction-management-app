@@ -59,7 +59,63 @@ const mockProjects: Project[] = [
     budget: 750000,
     materialsUsed: 10
   },
-  // Add more mock projects as needed
+   {
+    id: 3,
+    name: "Maintenance Project C",
+    description: "Routine maintenance and repairs for residential complex",
+    clientName: "123 Properties",
+    startDate: "2024-03-01",
+    endDate: "2024-03-30",
+    status: "Delayed",
+    type: "Maintenance",
+    team: ["Eve Adams", "David Lee"],
+    progress: 80,
+    budget: 50000,
+    materialsUsed: 5
+   },
+   {
+    id: 4,
+    name: "Construction Site D",
+    description: "New building construction project in suburban area",
+    clientName: "LMN Developers",
+    startDate: "2024-02-15",
+    endDate: "2024-07-31",
+    status: "In Progress",
+    type: "Construction",
+    team: ["Sam Wilson", "Grace Taylor"],
+    progress: 30,
+    budget: 2000000,
+    materialsUsed: 15
+   },
+   {
+    id: 5,
+    name: "Renovation Project E",
+    description: "Historic building restoration and preservation",
+    clientName: "Heritage Trust",
+    startDate: "2024-01-01",
+    endDate: "2024-05-15",
+    status: "In Progress",
+    type: "Renovation",
+    team: ["Mark Roberts", "Sarah Clark"],
+    progress: 60,
+    budget: 1000000,
+    materialsUsed: 20
+   },
+   {
+    id: 6,
+    name: "Maintenance Project F",
+    description: "Emergency repairs and maintenance for commercial property",
+    clientName: "456 Realty",
+    startDate: "2024-03-15",
+    endDate: "2024-04-30",
+    status: "Canceled",
+    type: "Maintenance",
+    team: ["Olivia Brown", "Tom Davis"],
+    progress: 10,
+    budget: 75000,
+    materialsUsed: 5
+   }
+     
 ];
 
 const Projects = () => {
