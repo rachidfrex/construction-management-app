@@ -188,17 +188,67 @@
         title: "نظرة عامة على المشاريع",
         subtitle: "إدارة ومراقبة مشاريع البناء",
         newProject: "مشروع جديد",
-        projectDetails: "تفاصيل المشروع",
+        projectDetails: "تفاصيل المشروع", 
         recentProjects: "المشاريع الحديثة",
         viewDetails: "عرض التفاصيل",
         members: "أعضاء",
         tasks: "المهام",
         progress: "التقدم",
+        noResults: "لم يتم العثور على مشاريع تطابق معايير البحث",
+        quickAccess: "الوصول السريع",
+        quickAccessDescription: "عرض المشاريع حسب حالتها الحالية أو إدارة مشاريعك النشطة",
+        filters: {
+          title: "تصفية المشاريع",
+          clear: "مسح التصفية",
+          status: "الحالة",
+          type: "نوع المشروع",
+          startDate: "تاريخ البدء",
+          endDate: "تاريخ الانتهاء",
+          searchPlaceholder: "البحث عن المشاريع...",
+          allStatuses: "جميع الحالات",
+          allTypes: "جميع الأنواع",
+          dateRange: "النطاق الزمني",
+          activeFilters: "التصفيات النشطة",
+          from: "من",
+          to: "إلى",
+          priority: "الأولوية",
+          location: "الموقع",
+          budget: "نطاق الميزانية"
+        },
         status: {
           inprogress: "قيد التنفيذ",
           completed: "مكتمل",
           delayed: "متأخر",
-          canceled: "ملغي"
+          canceled: "ملغي",
+          onHold: "متوقف مؤقتاً",
+          planned: "مخطط"
+        },
+        priority: {
+          low: "منخفضة",
+          medium: "متوسطة",
+          high: "عالية",
+          urgent: "عاجلة"
+        },
+        types: {
+          construction: "بناء",
+          renovation: "تجديد",
+          maintenance: "صيانة",
+          infrastructure: "بنية تحتية",
+          residential: "سكني",
+          commercial: "تجاري"
+        },
+        statistics: {
+          total: "إجمالي المشاريع",
+          inProgress: "قيد التنفيذ",
+          completed: "مكتملة",
+          delayed: "متأخرة",
+          canceled: "ملغاة",
+          totalBudget: "إجمالي الميزانية",
+          averageProgress: "متوسط التقدم",
+          activeTeamMembers: "أعضاء الفريق النشطين",
+          totalTasks: "إجمالي المهام",
+          completedTasks: "المهام المكتملة",
+          upcomingDeadlines: "المواعيد النهائية القادمة"
         },
         sampleData: {
           projectA: "موقع البناء أ",
@@ -210,18 +260,30 @@
           timeline: "الجدول الزمني",
           team: "الفريق",
           materials: "المواد",
-          documents: "المستندات"
+          documents: "المستندات",
+          tasks: "المهام",
+          budget: "الميزانية",
+          gallery: "معرض الصور",
+          risks: "المخاطر",
+          quality: "الجودة",
+          reports: "التقارير"
         },
         form: {
           projectName: "اسم المشروع",
           clientName: "اسم العميل",
           projectType: "نوع المشروع",
           startDate: "تاريخ البدء",
-          endDate: "تاريخ الانتهاء",
+          endDate: "تاريخ الانتهاء", 
           budget: "الميزانية",
           description: "الوصف",
           teamMembers: "أعضاء الفريق",
-          materials: "المواد"
+          materials: "المواد",
+          location: "الموقع",
+          priority: "الأولوية",
+          attachments: "المرفقات",
+          notes: "الملاحظات",
+          specifications: "المواصفات",
+          milestones: "المراحل الرئيسية"
         }
       },
       activity: {
@@ -238,7 +300,12 @@
           updatedInventory: "حدث المخزون",
           generatedReport: "أنشأ تقرير",
           completedMilestone: "أكمل مرحلة",
-          addedTeamMember: "أضاف عضو جديد"
+          addedTeamMember: "أضاف عضو جديد",
+          editProject: "تعديل المشروع",
+          timeline: "الجدول الزمني",
+          team: "الفريق",
+          materials: "المواد",
+          documents: "المستندات",
         },
         targets: {
           constructionA: "موقع البناء أ",
@@ -249,3 +316,11 @@
         }
       }
 };
+
+// src/
+//   components/
+//     project/
+//       ProjectCard.tsx
+//       ProjectFilters.tsx
+//       ProjectStatistics.tsx
+//       ProjectHeader.tsx

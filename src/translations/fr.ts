@@ -184,40 +184,107 @@ export const fr = {
     },
   
     projects: {
-      title: "Aperçu des projets",
+      title: "Aperçu des Projets",
       subtitle: "Gérer et suivre vos projets de construction",
-      newProject: "Nouveau projet",
-      projectDetails: "Détails du projet",
+      newProject: "Nouveau Projet",
+      projectDetails: "Détails du Projet",
       recentProjects: "Projets Récents",
-      status: {
-        inprogress: "En cours",
-        completed: "Terminé",
-        delayed: "En retard",
-        canceled: "Annulé",
+      viewDetails: "Voir les Détails",
+      members: "membres",
+      tasks: "Tâches",
+      progress: "Progression",
+      noResults: "Aucun projet ne correspond à vos critères",
+      quickAccess: "Accès Rapide",
+      quickAccessDescription: "Voir les projets par leur statut actuel ou gérer vos projets actifs",
+      filters: {
+        title: "Filtrer les Projets",
+        clear: "Effacer les Filtres",
+        status: "Statut",
+        type: "Type de Projet",
+        startDate: "Date de Début",
+        endDate: "Date de Fin",
+        searchPlaceholder: "Rechercher des projets...",
+        allStatuses: "Tous les Statuts",
+        allTypes: "Tous les Types",
+        dateRange: "Période",
+        activeFilters: "Filtres Actifs",
+        from: "Du",
+        to: "Au",
+        priority: "Priorité",
+        location: "Emplacement",
+        budget: "Fourchette Budgétaire"
       },
-    sampleData: {
-      projectA: "Chantier A",
-      projectB: "Projet de Rénovation B",
-      projectC: "Travaux de Maintenance C"
-    },
+      status: {
+        inprogress: "En Cours",
+        completed: "Terminé",
+        delayed: "En Retard",
+        canceled: "Annulé",
+        onHold: "En Pause",
+        planned: "Planifié"
+      },
+      priority: {
+        low: "Faible",
+        medium: "Moyenne",
+        high: "Élevée",
+        urgent: "Urgente"
+      },
+      types: {
+        construction: "Construction",
+        renovation: "Rénovation",
+        maintenance: "Maintenance",
+        infrastructure: "Infrastructure",
+        residential: "Résidentiel",
+        commercial: "Commercial"
+      },
+      statistics: {
+        total: "Total des Projets",
+        inProgress: "En Cours",
+        completed: "Terminés",
+        delayed: "En Retard",
+        canceled: "Annulés",
+        totalBudget: "Budget Total",
+        averageProgress: "Progression Moyenne",
+        activeTeamMembers: "Membres Actifs",
+        totalTasks: "Total des Tâches",
+        completedTasks: "Tâches Terminées",
+        upcomingDeadlines: "Échéances à Venir"
+      },
+      
+      sampleData: {
+        projectA: "Chantier A",
+        projectB: "Projet de Rénovation B",
+        projectC: "Travaux de Maintenance C"
+      },
       tabs: {
         overview: "Aperçu",
         timeline: "Chronologie",
         team: "Équipe",
         materials: "Matériaux",
         documents: "Documents",
+        tasks: "Tâches",
+        budget: "Budget",
+        gallery: "Galerie",
+        risks: "Risques",
+        quality: "Qualité",
+        reports: "Rapports"
       },
       form: {
-        projectName: "Nom du projet",
-        clientName: "Nom du client",
-        projectType: "Type de projet",
-        startDate: "Date de début",
-        endDate: "Date de fin",
+        projectName: "Nom du Projet",
+        clientName: "Nom du Client",
+        projectType: "Type de Projet",
+        startDate: "Date de Début",
+        endDate: "Date de Fin",
         budget: "Budget",
         description: "Description",
-        teamMembers: "Membres de l'équipe",
+        teamMembers: "Membres de l'Équipe",
         materials: "Matériaux",
-      },
+        location: "Emplacement",
+        priority: "Priorité",
+        attachments: "Pièces Jointes",
+        notes: "Notes",
+        specifications: "Spécifications",
+        milestones: "Jalons"
+      }
     },
     activity: {
       recentActivity: "Activité Récente",

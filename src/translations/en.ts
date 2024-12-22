@@ -186,6 +186,7 @@ export const en = {
       }
     },
   
+    
     projects: {
       title: "Projects Overview",
       subtitle: "Manage and monitor your construction projects",
@@ -196,11 +197,43 @@ export const en = {
       members: "members",
       tasks: "Tasks",
       progress: "Progress",
+      noResults: "No projects found matching your criteria",
+      quickAccess: "Quick Access",
+      quickAccessDescription: "View projects by their current status or manage your active projects",
+      filters: {
+        title: "Filter Projects",
+        clear: "Clear Filters",
+        status: "Status",
+        type: "Project Type",
+        startDate: "Start Date",
+        endDate: "End Date",
+        searchPlaceholder: "Search projects...",
+        allStatuses: "All Statuses",
+        allTypes: "All Types",
+        dateRange: "Date Range",
+        activeFilters: "Active Filters",
+        from: "From",
+        to: "To"
+      },
       status: {
         inprogress: "In Progress",
         completed: "Completed",
         delayed: "Delayed",
         canceled: "Canceled"
+      },
+      types: {
+        construction: "Construction",
+        renovation: "Renovation",
+        maintenance: "Maintenance"
+      },
+      statistics: {
+        total: "Total Projects",
+        inProgress: "In Progress",
+        completed: "Completed",
+        delayed: "Delayed",
+        canceled: "Canceled",
+        totalBudget: "Total Budget",
+        averageProgress: "Average Progress"
       },
       sampleData: {
         projectA: "Construction Site A",
@@ -212,7 +245,10 @@ export const en = {
         timeline: "Timeline",
         team: "Team",
         materials: "Materials",
-        documents: "Documents"
+        documents: "Documents",
+        tasks: "Tasks",
+        budget: "Budget",
+        gallery: "Gallery"
       },
       form: {
         projectName: "Project Name",
@@ -223,7 +259,48 @@ export const en = {
         budget: "Budget",
         description: "Description",
         teamMembers: "Team Members",
-        materials: "Materials"
+        materials: "Materials",
+        location: "Location",
+        priority: "Priority",
+        attachments: "Attachments"
+      },
+      actions: {
+        edit: "Edit Project",
+        delete: "Delete Project",
+        archive: "Archive Project",
+        export: "Export",
+        import: "Import",
+        viewDetails: "View Details",
+        addMember: "Add Member",
+        removeMember: "Remove Member",
+        uploadFiles: "Upload Files",
+        generateReport: "Generate Report",
+        editProject: "Edit Project",
+        timeline: "Timeline",
+        team: "Team",
+        materials: "Materials",
+        documents: "Documents",
+      },
+      messages: {
+        deleteConfirm: "Are you sure you want to delete this project?",
+        archiveConfirm: "Are you sure you want to archive this project?",
+        archived: "Project archived successfully",
+        deleted: "Project deleted successfully",
+        success: {
+          created: "Project created successfully",
+          updated: "Project updated successfully",
+          deleted: "Project deleted successfully",
+          archived: "Project archived successfully",
+          memberAdded: "Team member added successfully",
+          memberRemoved: "Team member removed successfully",
+          filesUploaded: "Files uploaded successfully"
+        },
+        error: {
+          create: "Failed to create project",
+          update: "Failed to update project",
+          delete: "Failed to delete project",
+          archive: "Failed to archive project"
+        }
       }
     },
     activity: {
