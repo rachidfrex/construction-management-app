@@ -102,6 +102,17 @@ export const fr = {
       notifications: "Notifications",
       settings: "Paramètres"
     },
+    header: {
+      dashboard: "Tableau de bord",
+      search: "Rechercher...",
+      profile: "Profil",
+      settings: "Paramètres",
+      help: "Aide",
+      logout: "Déconnexion",
+      userName: "Rachid Bouhaya",
+      userEmail: "rachid@gmail.com"
+    }
+    ,
   
     inventory: {
       title: "Gestion des stocks",

@@ -104,6 +104,16 @@
         notifications: "الإشعارات",
         settings: "الإعدادات"
       },
+      header: {
+        dashboard: "لوحة التحكم",
+        search: "بحث...",
+        profile: "الملف الشخصي",
+        settings: "الإعدادات",
+        help: "المساعدة",
+        logout: "تسجيل الخروج",
+        userName: "رشيد بوحاية",
+        userEmail: "rachid@gmail.com"
+      },
 
     inventory: {
         title: "إدارة المخزون",

@@ -106,6 +106,16 @@ export const en = {
       notifications: "Notifications",
       settings: "Settings"
     },
+    header: {
+      dashboard: "Dashboard",
+      search: "Search...",
+      profile: "Profile",
+      settings: "Settings",
+      help: "Help",
+      logout: "Logout",
+      userName: "Rachid Bouhaya",
+      userEmail: "rachid@gmail.com"
+    },
   
     inventory: {
       title: "Inventory Management",

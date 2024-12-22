@@ -94,10 +94,14 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <motion.div 
-        className={`fixed top-0 h-screen w-64 bg-white shadow-xl z-40 transition-transform duration-300 ease-in-out
+        className={`fixed top-0 h-screen w-64 bg-white shadow-xl z-40 transition-all duration-300 ease-in-out
           ${direction === 'rtl' ? 'right-0' : 'left-0'}
-          ${isSidebarOpen ? 'translate-x-0' : 
-            direction === 'rtl' ? 'translate-x-full' : '-translate-x-full'} 
+          ${isSidebarOpen 
+            ? 'translate-x-0' 
+            : direction === 'rtl' 
+              ? 'translate-x-full' 
+              : '-translate-x-full'
+          } 
           lg:translate-x-0`}
       >
         {/* Logo */}
