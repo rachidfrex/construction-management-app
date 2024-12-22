@@ -41,7 +41,7 @@ const Dashboard = () => {
       <Sidebar />
       <Header />
  
-      <main className={`transition-all duration-300 mt-5 ease-in-out pt-16 p-3 sm:p-6 ${
+      <main className={`transition-all duration-300 mt-12 ease-in-out pt-16 p-3 sm:p-6 ${
       direction === 'rtl' 
         ? 'mr-0 lg:mr-64 ' 
         : 'ml-0 lg:ml-64 '

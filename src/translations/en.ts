@@ -187,11 +187,15 @@ export const en = {
       newProject: "New Project",
       projectDetails: "Project Details",
       recentProjects: "Recent Projects",
+      viewDetails: "View Details",
+      members: "members",
+      tasks: "Tasks",
+      progress: "Progress",
       status: {
         inProgress: "In Progress",
         completed: "Completed",
         delayed: "Delayed",
-        canceled: "Canceled",
+        canceled: "Canceled"
       },
       sampleData: {
         projectA: "Construction Site A",
@@ -203,7 +207,7 @@ export const en = {
         timeline: "Timeline",
         team: "Team",
         materials: "Materials",
-        documents: "Documents",
+        documents: "Documents"
       },
       form: {
         projectName: "Project Name",
@@ -214,9 +218,32 @@ export const en = {
         budget: "Budget",
         description: "Description",
         teamMembers: "Team Members",
-        materials: "Materials",
-      },
+        materials: "Materials"
+      }
     },
+    activity: {
+      recentActivity: "Recent Activity",
+      refresh: "Refresh",
+      viewAll: "View All Activities",
+      users: {
+        johnDoe: "John Doe",
+        janeSmith: "Jane Smith"
+      },
+      actions: {
+        createdProject: "created new project",
+        updatedInventory: "updated inventory",
+        generatedReport: "generated report",
+        completedMilestone: "completed milestone",
+        addedTeamMember: "added team member"
+      },
+      targets: {
+        constructionA: "Construction Site A",
+        steelBars: "Steel Bars",
+        monthlySales: "Monthly Sales",
+        foundationWork: "Foundation Work",
+        projectAlpha: "Project Alpha"
+      }
+    }
   };
   
 

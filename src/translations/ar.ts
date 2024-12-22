@@ -179,41 +179,68 @@
         }
       },
 
-    projects: {
+      projects: {
         title: "نظرة عامة على المشاريع",
         subtitle: "إدارة ومراقبة مشاريع البناء",
         newProject: "مشروع جديد",
         projectDetails: "تفاصيل المشروع",
         recentProjects: "المشاريع الحديثة",
+        viewDetails: "عرض التفاصيل",
+        members: "أعضاء",
+        tasks: "المهام",
+        progress: "التقدم",
         status: {
-            inProgress: "قيد التنفيذ",
-            completed: "مكتمل",
-            delayed: "متأخر",
-            canceled: "ملغي",
+          inProgress: "قيد التنفيذ",
+          completed: "مكتمل",
+          delayed: "متأخر",
+          canceled: "ملغي"
         },
         sampleData: {
-            projectA: "موقع البناء أ",
-            projectB: "مشروع التجديد ب",
-            projectC: "أعمال الصيانة ج"
-          },
-          
+          projectA: "موقع البناء أ",
+          projectB: "مشروع التجديد ب",
+          projectC: "أعمال الصيانة ج"
+        },
         tabs: {
-            overview: "نظرة عامة",
-            timeline: "الجدول الزمني",
-            team: "الفريق",
-            materials: "المواد",
-            documents: "المستندات",
+          overview: "نظرة عامة",
+          timeline: "الجدول الزمني",
+          team: "الفريق",
+          materials: "المواد",
+          documents: "المستندات"
         },
         form: {
-            projectName: "اسم المشروع",
-            clientName: "اسم العميل",
-            projectType: "نوع المشروع",
-            startDate: "تاريخ البدء",
-            endDate: "تاريخ الانتهاء",
-            budget: "الميزانية",
-            description: "الوصف",
-            teamMembers: "أعضاء الفريق",
-            materials: "المواد",
+          projectName: "اسم المشروع",
+          clientName: "اسم العميل",
+          projectType: "نوع المشروع",
+          startDate: "تاريخ البدء",
+          endDate: "تاريخ الانتهاء",
+          budget: "الميزانية",
+          description: "الوصف",
+          teamMembers: "أعضاء الفريق",
+          materials: "المواد"
+        }
+      },
+      activity: {
+        recentActivity: "النشاط الحديث",
+        refresh: "تحديث",
+        viewAll: "عرض كل الأنشطة",
+        users: {
+          johnDoe: "جون دو",
+          janeSmith: "جين سميث"
+          
         },
-    },
+        actions: {
+          createdProject: "أنشأ مشروع جديد",
+          updatedInventory: "حدث المخزون",
+          generatedReport: "أنشأ تقرير",
+          completedMilestone: "أكمل مرحلة",
+          addedTeamMember: "أضاف عضو جديد"
+        },
+        targets: {
+          constructionA: "موقع البناء أ",
+          steelBars: "قضبان الحديد",
+          monthlySales: "المبيعات الشهرية",
+          foundationWork: "أعمال الأساسات",
+          projectAlpha: "مشروع ألفا"
+        }
+      }
 };

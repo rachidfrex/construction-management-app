@@ -214,4 +214,27 @@ export const fr = {
         materials: "Matériaux",
       },
     },
+    activity: {
+      recentActivity: "Activité Récente",
+      refresh: "Actualiser",
+      viewAll: "Voir Toutes les Activités",
+      users: {
+        johnDoe: "John Doe",
+        janeSmith: "Jane Smith"
+      },
+      actions: {
+        createdProject: "a créé un nouveau projet",
+        updatedInventory: "a mis à jour l'inventaire",
+        generatedReport: "a généré un rapport",
+        completedMilestone: "a terminé une étape",
+        addedTeamMember: "a ajouté un membre"
+      },
+      targets: {
+        constructionA: "Chantier A",
+        steelBars: "Barres d'Acier",
+        monthlySales: "Ventes Mensuelles",
+        foundationWork: "Travaux de Fondation",
+        projectAlpha: "Projet Alpha"
+      }
+    }
   };
