@@ -37,7 +37,9 @@
         resetPassword: "إعادة تعيين كلمة المرور",
         newPassword: "كلمة مرور جديدة",
         confirmPassword: "تأكيد كلمة المرور",
-        alreadyHaveAccount: "لديك حساب بالفعل؟"
+        alreadyHaveAccount: "لديك حساب بالفعل؟",
+        resetInstructions: "أدخل بريدك الإلكتروني لتلقي تعليمات إعادة التعيين",
+        backToLogin: "العودة إلى تسجيل الدخول",
       },
 
     dashboard: {

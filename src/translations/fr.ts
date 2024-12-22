@@ -18,7 +18,7 @@ export const fr = {
         errorOccurred: "Une erreur est survenue. Veuillez réessayer"
       },
       auth: {
-        welcomeBack: "Bon retour",
+        welcomeBack: "Bienvenue",
         pleaseSignIn: "Veuillez vous connecter à votre compte",
         email: "Email",
         password: "Mot de passe",
@@ -36,7 +36,10 @@ export const fr = {
         resetPassword: "Réinitialiser le mot de passe",
         newPassword: "Nouveau mot de passe",
         confirmPassword: "Confirmer le mot de passe",
-        alreadyHaveAccount: "Vous avez déjà un compte ?"
+        alreadyHaveAccount: "Vous avez déjà un compte ?",
+        backToLogin: "Retour à la connexion",
+        resetInstructions: "Entrez votre email pour recevoir les instructions",
+
       },
   
     dashboard: {

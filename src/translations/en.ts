@@ -37,7 +37,10 @@ export const en = {
         resetPassword: "Reset Password",
         newPassword: "New Password",
         confirmPassword: "Confirm Password",
-        alreadyHaveAccount: "Already have an account?"
+        alreadyHaveAccount: "Already have an account?",
+        backToLogin: "Back to Login",
+        resetInstructions: "Enter your email to receive reset instructions",
+        
       },
 
   

@@ -1,19 +1,23 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { IoArrowBack } from 'react-icons/io5';
+import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { useToast } from '../../context/ToastContext';
+import { useTranslationContext } from '../../context/TranslationContext';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
   const { showToast } = useToast();
   const navigate = useNavigate();
+  const { direction } = useTranslationContext();
   const [email, setEmail] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
-      showToast('warning', 'Please enter your email address');
+      showToast('warning', t('auth.emailRequired'));
       return;
     }
     
@@ -21,14 +25,14 @@ const ForgotPassword = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      showToast('success', 'Password reset link sent! Please check your email.');
-      setEmail(''); // Clear the form after success
+      showToast('success', t('auth.resetLinkSent'));
+      setEmail('');
 
       setTimeout(() => {
         navigate('/reset-password');
       }, 1500); 
     } catch (error) {
-      showToast('error', 'Something went wrong. Please try again.');
+      showToast('error', t('common.errorOccurred'));
     } finally {
       setIsLoading(false);
     }
@@ -41,7 +45,7 @@ const ForgotPassword = () => {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
       >
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className={`bg-white rounded-2xl shadow-xl p-8 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
           {/* Back button */}
           <div className="mb-3">
             <Link
@@ -49,20 +53,24 @@ const ForgotPassword = () => {
               className="inline-flex items-center text-green-600 hover:text-green-800 transition-all duration-300 group"
             >
               <motion.div
-                whileHover={{ x: -4 }}
+                whileHover={{ x: direction === 'rtl' ? 4 : -4 }}
                 className="flex items-center gap-2"
               >
-                <IoArrowBack className="text-xl" />
-                <span className="text-sm font-medium">Back to Login</span>
+                {direction === 'rtl' ? (
+                  <IoArrowForward className="text-xl" />
+                ) : (
+                  <IoArrowBack className="text-xl" />
+                )}
+                <span className="text-sm font-medium">{t('auth.backToLogin')}</span>
               </motion.div>
             </Link>
           </div>
 
           {/* Header */}
-          <div className="text-start mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Reset Password</h1>
-            <p className="text-gray-500 text-sm font-semibold mt-2">
-              Enter your email to receive reset instructions
+          <div className="mb-8">
+            <h1 className="text-2xl font-bold text-gray-900">{t('auth.resetPassword')}</h1>
+            <p className="text-gray-500 text-xs font-semibold mt-2">
+              {t('auth.resetInstructions')}
             </p>
           </div>
 
@@ -70,22 +78,21 @@ const ForgotPassword = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email
+                {t('auth.email')}
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
-                
+                placeholder={t('auth.enterEmail')}
+                className="w-full border text-xs border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
               />
             </div>
-            
+
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-green-600 text-white rounded-lg py-2 px-4 hover:bg-green-700 transition duration-200 disabled:opacity-50 flex items-center justify-center"
+              className="w-full text-sm bg-green-600  text-white rounded-lg py-2 px-4 hover:bg-green-700 transition duration-200 disabled:opacity-50 flex items-center justify-center"
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
@@ -109,10 +116,10 @@ const ForgotPassword = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     />
                   </svg>
-                  <span>Processing...</span>
+                  <span>{t('common.loading')}</span>
                 </div>
               ) : (
-                'Reset Password'
+                t('auth.resetPassword')
               )}
             </button>
           </form>
