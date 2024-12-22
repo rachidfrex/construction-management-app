@@ -95,8 +95,8 @@ const ProjectsOverview = () => {
         {recentProjects.map(project => (
           <motion.div 
             key={project.id}
-            whileHover={{ y: -2 }}
-            className="p-4 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-md transition-all"
+           
+            className="p-4  rounded-lg border-2 border-gray-100  transition-all"
           >
             <div className="flex flex-col sm:flex-row justify-between gap-4">
               <div className="space-y-3">
