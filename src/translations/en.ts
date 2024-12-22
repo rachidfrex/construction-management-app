@@ -18,7 +18,8 @@ export const en = {
         welcomeBack: "Welcome back",
         errorOccurred: "Something went wrong. Please try again",
          appName: "Bouhaja Sarl",
-        logout: "Logout"
+        logout: "Logout",
+        completed: "Completed",
 
       },
       auth: {
@@ -146,11 +147,17 @@ export const en = {
       subtitle: "Manage and monitor your construction projects",
       newProject: "New Project",
       projectDetails: "Project Details",
+      recentProjects: "Recent Projects",
       status: {
         inProgress: "In Progress",
         completed: "Completed",
         delayed: "Delayed",
         canceled: "Canceled",
+      },
+      sampleData: {
+        projectA: "Construction Site A",
+        projectB: "Renovation Project B",
+        projectC: "Maintenance Work C"
       },
       tabs: {
         overview: "Overview",

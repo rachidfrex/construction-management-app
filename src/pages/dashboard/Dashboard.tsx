@@ -41,9 +41,11 @@ const Dashboard = () => {
       <Sidebar />
       <Header />
  
-      <main className={`transition-all mt-2 duration-300 ease-in-out pt-16 p-6 ${
-        direction === 'rtl' ? 'mr-64' : 'lg:ml-64'
-      }`}>
+      <main className={`transition-all duration-300 ease-in-out pt-16 p-6 ${
+      direction === 'rtl' 
+        ? 'mr-0 lg:mr-64 ' 
+        : 'ml-0 lg:ml-64'
+    }`}>
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}

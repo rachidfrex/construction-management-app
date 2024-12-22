@@ -17,7 +17,8 @@ export const fr = {
         welcomeBack: "Bon retour",
         errorOccurred: "Une erreur est survenue. Veuillez réessayer",
         appName: "Bouhaja Sarl",
-        logout: "Déconnexion"
+        logout: "Déconnexion",
+        completed: "Terminé",
       },
       auth: {
         welcomeBack: "Bienvenue",
@@ -142,12 +143,18 @@ export const fr = {
       subtitle: "Gérer et suivre vos projets de construction",
       newProject: "Nouveau projet",
       projectDetails: "Détails du projet",
+      recentProjects: "Projets Récents",
       status: {
         inProgress: "En cours",
         completed: "Terminé",
         delayed: "En retard",
         canceled: "Annulé",
       },
+    sampleData: {
+      projectA: "Chantier A",
+      projectB: "Projet de Rénovation B",
+      projectC: "Travaux de Maintenance C"
+    },
       tabs: {
         overview: "Aperçu",
         timeline: "Chronologie",

@@ -18,7 +18,8 @@
         welcomeBack: "مرحباً بعودتك",
         errorOccurred: "حدث خطأ. الرجاء المحاولة مرة أخرى",
         appName: "بوحاجة",
-        logout: "تسجيل الخروج"
+        logout: "تسجيل الخروج",
+        completed: "مكتمل",
       },
       auth: {
         welcomeBack: "مرحباً بعودتك",
@@ -144,12 +145,19 @@
         subtitle: "إدارة ومراقبة مشاريع البناء",
         newProject: "مشروع جديد",
         projectDetails: "تفاصيل المشروع",
+        recentProjects: "المشاريع الحديثة",
         status: {
             inProgress: "قيد التنفيذ",
             completed: "مكتمل",
             delayed: "متأخر",
             canceled: "ملغي",
         },
+        sampleData: {
+            projectA: "موقع البناء أ",
+            projectB: "مشروع التجديد ب",
+            projectC: "أعمال الصيانة ج"
+          },
+          
         tabs: {
             overview: "نظرة عامة",
             timeline: "الجدول الزمني",
