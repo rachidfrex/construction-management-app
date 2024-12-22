@@ -157,11 +157,14 @@ export const fr = {
         lowstock: "Stock faible"
       },
       metrics: {
-        totalValue: "Valeur totale",
-        currentStock: "Stock actuel",
-        minimumRequired: "Minimum requis",
-        lastOrder: "Dernière commande",
-        recentMovements: "Mouvements récents",
+        totalValue: "Valeur Totale",
+        currentStock: "Articles en stock",
+        criticalItems: "Articles Critiques",
+        belowMinimum: "Articles sous le minimum",
+        reorderNeeded: "À Commander",
+        itemsToReorder: "Articles à réapprovisionner",
+        usageTrend: "Tendance d'Utilisation",
+        monthlyConsumption: "Taux de consommation mensuel"
       },
       items: {
         cement: "Ciment",

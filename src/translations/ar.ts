@@ -158,11 +158,14 @@
           lowstock: "مخزون منخفض"
         },
         metrics: {
-          totalValue: "القيمة الإجمالية",
-          currentStock: "المخزون الحالي",
-          minimumRequired: "الحد الأدنى المطلوب",
-          lastOrder: "آخر طلب",
-          recentMovements: "التحركات الأخيرة",
+            totalValue: "القيمة الإجمالية",
+            currentStock: "إجمالي المخزون",
+            criticalItems: "المواد الحرجة",
+            belowMinimum: "مواد تحت الحد الأدنى",
+            reorderNeeded: "يلزم إعادة الطلب",
+            itemsToReorder: "مواد تحتاج إعادة طلب",
+            usageTrend: "اتجاه الاستخدام",
+            monthlyConsumption: "معدل الاستهلاك الشهري"
         },
         items: {
           cement: "إسمنت",

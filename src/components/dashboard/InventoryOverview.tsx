@@ -102,62 +102,62 @@ const InventoryOverview = () => {
 
       {/* Inventory Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="bg-white p-6 rounded-xl shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <HiOutlineCash className="w-6 h-6 text-green-600" />
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="bg-white p-4 rounded-xl shadow-sm"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-2 bg-green-100 rounded-lg">
+                <HiOutlineCash className="w-5 h-5 text-green-600" />
+              </div>
+              <h3 className="text-sm font-medium text-gray-900">{t('inventory.metrics.totalValue')}</h3>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">{t('inventory.metrics.totalValue')}</h3>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">${totalInventoryValue.toLocaleString()}</p>
-          <p className="text-sm text-gray-500 mt-2">{t('inventory.metrics.currentStock')}</p>
-        </motion.div>
+            <p className="text-lg font-bold text-gray-900">${totalInventoryValue.toLocaleString()}</p>
+            <p className="text-xs text-gray-500 mt-1">{t('inventory.metrics.currentStock')}</p>
+          </motion.div>
 
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="bg-white p-6 rounded-xl shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-red-100 rounded-lg">
-              <HiOutlineExclamation className="w-6 h-6 text-red-600" />
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="bg-white p-4 rounded-xl shadow-sm"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-2 bg-red-100 rounded-lg">
+                <HiOutlineExclamation className="w-5 h-5 text-red-600" />
+              </div>
+              <h3 className="text-sm font-medium text-gray-900">{t('inventory.metrics.criticalItems')}</h3>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">{t('inventory.metrics.criticalItems')}</h3>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">{criticalItems.length}</p>
-          <p className="text-sm text-gray-500 mt-2">{t('inventory.metrics.belowMinimum')}</p>
-        </motion.div>
+            <p className="text-lg font-bold text-gray-900">{criticalItems.length}</p>
+            <p className="text-xs text-gray-500 mt-1">{t('inventory.metrics.belowMinimum')}</p>
+          </motion.div>
 
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="bg-white p-6 rounded-xl shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-yellow-100 rounded-lg">
-              <HiOutlineShoppingCart className="w-6 h-6 text-yellow-600" />
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="bg-white p-4 rounded-xl shadow-sm"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-2 bg-yellow-100 rounded-lg">
+                <HiOutlineShoppingCart className="w-5 h-5 text-yellow-600" />
+              </div>
+              <h3 className="text-sm font-medium text-gray-900">{t('inventory.metrics.reorderNeeded')}</h3>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">{t('inventory.metrics.reorderNeeded')}</h3>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">{needsReorder.length}</p>
-          <p className="text-sm text-gray-500 mt-2">{t('inventory.metrics.itemsToReorder')}</p>
-        </motion.div>
+            <p className="text-lg font-bold text-gray-900">{needsReorder.length}</p>
+            <p className="text-xs text-gray-500 mt-1">{t('inventory.metrics.itemsToReorder')}</p>
+          </motion.div>
 
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="bg-white p-6 rounded-xl shadow-sm"
-        >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <HiOutlineTrendingUp className="w-6 h-6 text-blue-600" />
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="bg-white p-4 rounded-xl shadow-sm"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <HiOutlineTrendingUp className="w-5 h-5 text-blue-600" />
+              </div>
+              <h3 className="text-sm font-medium text-gray-900">{t('inventory.metrics.usageTrend')}</h3>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">{t('inventory.metrics.usageTrend')}</h3>
-          </div>
-          <p className="text-2xl font-bold text-gray-900">+12%</p>
-          <p className="text-sm text-gray-500 mt-2">{t('inventory.metrics.monthlyConsumption')}</p>
-        </motion.div>
-      </div>
+            <p className="text-lg font-bold text-gray-900">+12%</p>
+            <p className="text-xs text-gray-500 mt-1">{t('inventory.metrics.monthlyConsumption')}</p>
+          </motion.div>
+        </div>
 
       {/* Critical Items Table */}
       <div className="bg-white rounded-xl shadow-sm p-6">

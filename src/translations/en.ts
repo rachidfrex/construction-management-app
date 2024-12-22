@@ -161,10 +161,13 @@ export const en = {
       },
       metrics: {
         totalValue: "Total Value",
-        currentStock: "Current Stock",
-        minimumRequired: "Minimum Required",
-        lastOrder: "Last Order",
-        recentMovements: "Recent Movements",
+        currentStock: "Total items in stock",
+        criticalItems: "Critical Items",
+        belowMinimum: "Items below minimum level",
+        reorderNeeded: "Reorder Needed",
+        itemsToReorder: "Items to reorder soon",
+        usageTrend: "Usage Trend",
+        monthlyConsumption: "Monthly consumption rate"
       },
       items: {
         cement: "Cement",
