@@ -56,7 +56,7 @@ const Header = () => {
         ? 'lg:right-64 right-0' 
         : 'lg:left-64 left-0'} 
       left-0 right-0`}>
-      <div className="h-full px-6 flex items-center justify-between">
+      <div className="h-full px-3 md:px-6 flex items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center ">
           <h2 className={`text-xl md:block  hidden font-semibold text-gray-800
