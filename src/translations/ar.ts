@@ -21,6 +21,7 @@
         logout: "تسجيل الخروج",
         completed: "مكتمل",
         next : "التالي",
+        previous : "السابق",
       },
       auth: {
         welcomeBack: "مرحباً بعودتك",
@@ -279,6 +280,8 @@
               details: "تفاصيل إضافية"
             },
             
+            
+            
         },
         validation: {
           nameRequired: "اسم المشروع مطلوب",
@@ -306,7 +309,7 @@
           editProject: "تعديل المشروع",
           timeline: "الجدول الزمني",
           team: "الفريق",
-          materials: "المواد",
+          // materials: "المواد",
           documents: "المستندات"
         },
         messages: {

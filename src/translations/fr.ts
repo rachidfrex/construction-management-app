@@ -20,6 +20,7 @@ export const fr = {
         logout: "Déconnexion",
         completed: "Terminé",
         next : "Suivant",
+        previous : "Précédent",
       },
       auth: {
         welcomeBack: "Bienvenue",

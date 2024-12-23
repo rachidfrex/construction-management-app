@@ -2,6 +2,8 @@
 import { motion } from 'framer-motion';
 import { HiOutlineCube } from 'react-icons/hi';
 import { useToast } from '../../../context/ToastContext';
+import { useTranslation } from 'react-i18next';
+import { useTranslationContext } from '../../../context/TranslationContext';
 
 const projectPhases = [
   'Foundation',
@@ -103,6 +105,8 @@ const availableMaterials: Material[] = [
 
 const ResourceAllocation: React.FC<ResourceAllocationProps> = ({ formData, onChange, onMaterialPhaseLink }) => {
     const { showToast } = useToast();
+    const { t } = useTranslation();
+    const { direction } = useTranslationContext();
   
     const handleMaterialChange = (materialId: number, quantity: number) => {
       const material = availableMaterials.find(m => m.id === materialId);

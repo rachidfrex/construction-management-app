@@ -158,22 +158,29 @@ const NewProject = () => {
     switch (step) {
       case 1:
         if (!formData.projectName.trim()) errors.push(t('projects.validation.nameRequired'));
-        if (!formData.clientName.trim()) errors.push(t('projects.validation.clientRequired'));
         if (!formData.projectType) errors.push(t('projects.validation.typeRequired'));
+        if (!formData.clientName.trim()) errors.push(t('projects.validation.clientRequired'));
         break;
+        
       case 2:
-        if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
+        // Only validate materials in step 2, team members will be validated in step 3
         if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
         break;
+        
       case 3:
+        if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
         if (!formData.startDate || !formData.endDate) errors.push(t('projects.validation.datesRequired'));
+        if (new Date(formData.startDate) >= new Date(formData.endDate)) {
+          errors.push(t('projects.validation.invalidDates'));
+        }
         break;
+        
       case 4:
         if (!formData.budget) errors.push(t('projects.validation.budgetRequired'));
         if (!formData.description) errors.push(t('projects.validation.descriptionRequired'));
         break;
     }
-
+  
     if (errors.length > 0) {
       errors.forEach(error => showToast('warning', error));
       return false;

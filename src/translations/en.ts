@@ -21,6 +21,7 @@ export const en = {
         logout: "Logout",
         completed: "Completed",
         next : "Next",
+        previous: "Previous",
 
       },
       auth: {
