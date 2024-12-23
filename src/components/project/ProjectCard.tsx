@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useTranslationContext } from '../../context/TranslationContext';
 import { useToast } from '../../context/ToastContext';
 import ConfirmationModal from '../ui/ConfirmationModal';
+// this for fack data prosses  
+import { storage } from '../../mockData/db';
 import { 
   HiOutlineEye,
   HiOutlinePencil,   
@@ -124,8 +126,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   };
 
   const handleDeleteProject = () => {
-    showToast('success', t('projects.messages.deleted'));
-    setShowMenu(false);
+    // showToast('success', t('projects.messages.deleted'));
+    // setShowMenu(false);
+    try {
+      // Add delete method to storage service and use it here
+      storage.deleteProject(project.id);
+      showToast('success', t('projects.messages.success.deleted'));
+    } catch (error) {
+      showToast('error', t('projects.messages.error.delete'));
+    }
   };
 
   return (

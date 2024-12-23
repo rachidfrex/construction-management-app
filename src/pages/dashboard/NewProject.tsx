@@ -10,6 +10,7 @@ import ResourceAllocation from '../../components/project/form/ResourceAllocation
 import ProjectScheduling from '../../components/project/form/ProjectScheduling';
 import AdditionalDetails from '../../components/project/form/AdditionalDetails';
 import Breadcrumb from '../../components/ui/Breadcrumb';
+import { storage } from '../../mockData/db';
 
 interface Phase {
   id: number;
@@ -145,6 +146,47 @@ const NewProject = () => {
     }));
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+    
+  //   const validationErrors = validateForm();
+  //   if (validationErrors.length > 0) {
+  //     validationErrors.forEach(error => showToast('warning', error));
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+  //   try {
+  //     // Create phases from milestones
+  //     const projectPhases: Phase[] = formData.milestones.map((milestone, index) => ({
+  //       id: index + 1,
+  //       name: milestone.phase,
+  //       startDate: milestone.date,
+  //       endDate: formData.endDate,
+  //       dependencies: [],
+  //       progress: 0,
+  //       materials: []
+  //     }));
+
+  //     // Update formData with the final data
+  //     const finalProjectData = {
+  //       ...formData,
+  //       phases: projectPhases,
+  //     };
+
+  //     // Simulate API call
+  //     await new Promise(resolve => setTimeout(resolve, 1500));
+      
+  //     console.log('Project Data:', finalProjectData);
+  //     showToast('success', 'Project created successfully!');
+  //     navigate('/projects');
+  //   } catch (error) {
+  //     showToast('error', 'Failed to create project');
+  //     console.error('Error creating project:', error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -167,20 +209,29 @@ const NewProject = () => {
         materials: []
       }));
 
-      // Update formData with the final data
-      const finalProjectData = {
-        ...formData,
-        phases: projectPhases,
+      // Prepare project data
+      const projectData = {
+        name: formData.projectName,
+        description: formData.description,
+        clientName: formData.clientName,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+        status: 'In Progress' as const,
+        type: formData.projectType,
+        team: formData.team,
+        progress: 0,
+        budget: parseFloat(formData.budget),
+        materialsUsed: 0
       };
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Create project using storage service
+      const newProject = storage.createProject(projectData);
+    
+      showToast('success', t('projects.messages.success.created'));
       
-      console.log('Project Data:', finalProjectData);
-      showToast('success', 'Project created successfully!');
       navigate('/projects');
     } catch (error) {
-      showToast('error', 'Failed to create project');
+      showToast('error', t('projects.messages.error.create'));
       console.error('Error creating project:', error);
     } finally {
       setIsLoading(false);
@@ -191,7 +242,7 @@ const NewProject = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className="lg:ml-64 mt-5 pt-16 p-6">
+      <main className="lg:ml-64 mt-5  pt-16 p-6">
         <div className="max-w-4xl mx-auto">
           <Breadcrumb 
             items={[

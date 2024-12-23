@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion';
 import { 
   HiOutlineRefresh,
-  HiOutlineUser,
   HiOutlineClock,
   HiOutlineArrowSmRight 
 } from 'react-icons/hi';
@@ -43,25 +42,6 @@ const ActivityFeed = () => {
       type: 'inventory',
       link: '/inventory'
     },
-    // ... more activities
-    // {
-    //   id: 5,
-    //   user: t('activity.users.johnDoe'),
-    //   action: t('activity.actions.createdReport'),
-    //   target: t('activity.targets.monthlyReport'),
-    //   time: '1d',
-    //   type: 'report',
-    //   link: '/reports'
-    // },
-    // {
-    //   id: 6,
-    //   user: t('activity.users.janeSmith'),
-    //   action: t('activity.actions.addedToTeam'),
-    //   target: t('activity.targets.johnDoe'),
-    //   time: '1d',
-    //   type: 'team',
-    //   link: '/team'
-    // }
   ];
 
   const getTypeColor = (type: Activity['type']) => {

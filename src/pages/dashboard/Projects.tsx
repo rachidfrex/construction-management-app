@@ -9,8 +9,11 @@ import { ProjectHeader } from '../../components/project/ProjectHeader';
 import { ProjectStatistics } from '../../components/project/ProjectStatistics';
 import { ProjectFilters } from '../../components/project/ProjectFilters';
 import { ProjectCard } from '../../components/project/ProjectCard';
+// had xi dyal fake db 
+import { storage } from '../../mockData/db';
+import { useEffect } from 'react';
 
-// Define project types
+ // lproject type 
 type ProjectStatus = 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
 type ProjectType = 'Construction' | 'Renovation' | 'Maintenance';
 
@@ -29,7 +32,7 @@ interface Project {
   materialsUsed: number;
 }
 
-// Mock data
+// fack data
 const mockProjects: Project[] = [
   {
     id: 1,
@@ -123,6 +126,8 @@ const Projects = () => {
   const { direction } = useTranslationContext();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  // this for fack db 
+  const [projects, setProjects] = useState<Project[]>([]);
   const [filters, setFilters] = useState({
     status: '',
     type: '',
@@ -131,7 +136,31 @@ const Projects = () => {
   });
   const itemsPerPage = 6;
 
-  const filteredProjects = mockProjects.filter(project => {
+  // const filteredProjects = mockProjects.filter(project => {
+  //   const matchesSearch = 
+  //     project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //     project.clientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //     project.team.some(member => member.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  //   const matchesStatus = !filters.status || project.status === filters.status;
+  //   const matchesType = !filters.type || project.type === filters.type;
+    
+  //   const projectStart = new Date(project.startDate);
+  //   const projectEnd = new Date(project.endDate);
+  //   const filterStart = filters.startDate ? new Date(filters.startDate) : null;
+  //   const filterEnd = filters.endDate ? new Date(filters.endDate) : null;
+
+  //   const matchesDateRange = 
+  //     (!filterStart || projectStart >= filterStart) &&
+  //     (!filterEnd || projectEnd <= filterEnd);
+
+  //   return matchesSearch && matchesStatus && matchesType && matchesDateRange;
+  // });
+  useEffect(() => {
+    setProjects(storage.getProjects());
+  }, []);
+
+  const filteredProjects = projects.filter(project => {
     const matchesSearch = 
       project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.clientName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -163,7 +192,7 @@ const Projects = () => {
       <Sidebar />
       <Header />
 
-      <main className={`transition-all duration-300 pt-16 p-6 ${
+      <main className={`transition-all duration-300 pt-16 p-3  sm:p-6 md:mt-7 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
         

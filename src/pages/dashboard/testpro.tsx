@@ -589,4 +589,3 @@ const Projects = () => {
 };
 
 export default Projects;
-src/pages/dashboard/Projects.tsx
