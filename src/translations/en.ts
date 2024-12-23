@@ -372,6 +372,28 @@ export const en = {
         message: "Are you sure you want to archive this project? You can restore it later.",
         confirmButton: "Archive Project"
       }
+    },
+    materials: {
+      source: {
+        label: "Material Source",
+        internal: "Internal",
+        purchase: "Purchase"
+      },
+      selection: {
+        label: "Required Materials"
+      },
+      available: "Available",
+      quantity: "Quantity ({unit})",
+      summary: {
+        title: "Material Status Summary"
+      },
+      errors: {
+        notFound: "Material not found",
+        negativeQuantity: "Quantity cannot be negative",
+        insufficientStock: "Only {stock} {unit} available in stock",
+        insufficient: "Insufficient stock"
+      },
+      noSelection: "No materials selected"
     }
   };
   

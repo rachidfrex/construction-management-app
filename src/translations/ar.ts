@@ -378,6 +378,28 @@
           message: "هل أنت متأكد من أرشفة هذا المشروع؟ يمكنك استعادته لاحقاً.",
           confirmButton: "أرشفة المشروع"
         }
+      },
+      materials: {
+        source: {
+          label: "مصدر المواد",
+          internal: "داخلي",
+          purchase: "شراء"
+        },
+        selection: {
+          label: "المواد المطلوبة"
+        },
+        available: "متوفر",
+        quantity: "الكمية ({unit})",
+        summary: {
+          title: "ملخص حالة المواد"
+        },
+        errors: {
+          notFound: "لم يتم العثور على المادة",
+          negativeQuantity: "لا يمكن أن تكون الكمية سالبة",
+          insufficientStock: "متوفر فقط {stock} {unit} في المخزون",
+          insufficient: "المخزون غير كافي"
+        },
+        noSelection: "لم يتم اختيار أي مواد"
       }
 };
 

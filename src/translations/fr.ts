@@ -369,5 +369,26 @@ export const fr = {
         message: "Êtes-vous sûr de vouloir archiver ce projet ? Vous pourrez le restaurer plus tard.",
         confirmButton: "Archiver le Projet"
       }
+    },materials: {
+      source: {
+        label: "Source du matériel",
+        internal: "Interne",
+        purchase: "Achat"
+      },
+      selection: {
+        label: "Matériaux requis"
+      },
+      available: "Disponible",
+      quantity: "Quantité ({unit})",
+      summary: {
+        title: "Résumé des matériaux"
+      },
+      errors: {
+        notFound: "Matériel non trouvé",
+        negativeQuantity: "La quantité ne peut pas être négative",
+        insufficientStock: "Seulement {stock} {unit} disponible en stock",
+        insufficient: "Stock insuffisant"
+      },
+      noSelection: "Aucun matériel sélectionné"
     }
   };
