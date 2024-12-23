@@ -161,7 +161,7 @@ export const ProjectCard = ({ project, onDelete, onArchive }: ProjectCardProps) 
       <div className="flex justify-between items-start mb-4">
         <div>
           <h3 className="text-base font-semibold text-gray-900">{project.name}</h3>
-          <p className="text-sm text-gray-500">{t('projects.client')}: {project.clientName}</p>
+          <p className="text-sm text-gray-500">{t('projects.clientName')}: {project.clientName}</p>
         </div>
         <div className="flex items-center gap-2">
           <span className={`px-2.5 py-1 rounded-full text-xxs font-medium ${statusColors[project.status]}`}>
