@@ -71,7 +71,7 @@ const InventoryOverview = () => {
       supplier: 'Paint Pro',
       monthlyUsage: 75,
       category: 'Finishing',
-      status: 'Out ofStock'
+      status: 'Out of Stock'
     }
   ];
 

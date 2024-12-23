@@ -2,8 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { 
-    HiHome, 
-    HiClipboardList, 
+    HiHome,  
     HiShoppingCart, 
     HiDocumentText,
     HiUserGroup,

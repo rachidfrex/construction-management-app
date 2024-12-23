@@ -1,3 +1,4 @@
+// src/context/ToastContext.tsx
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import Toast, { ToastType } from '../components/ui/Toast';
 
@@ -23,12 +24,13 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      {toasts.map(toast => (
+      {toasts.map((toast, index) => (
         <Toast
           key={toast.id}
           type={toast.type}
           message={toast.message}
           onClose={() => removeToast(toast.id)}
+          index={index}
         />
       ))}
     </ToastContext.Provider>
@@ -37,7 +39,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
 export const useToast = () => {
   const context = useContext(ToastContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useToast must be used within a ToastProvider');
   }
   return context;
