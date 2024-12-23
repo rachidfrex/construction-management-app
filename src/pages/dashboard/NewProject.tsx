@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useToast } from '../../context/ToastContext';
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
 import FormStepIndicator from '../../components/project/form/FormStepIndicator';
@@ -10,7 +11,7 @@ import ResourceAllocation from '../../components/project/form/ResourceAllocation
 import ProjectScheduling from '../../components/project/form/ProjectScheduling';
 import AdditionalDetails from '../../components/project/form/AdditionalDetails';
 import Breadcrumb from '../../components/ui/Breadcrumb';
-import { storage } from '../../mockData/db';
+// import { storage } from '../../mockData/db';
 
 interface Phase {
   id: number;
@@ -61,10 +62,20 @@ const steps = [
   { id: 3, title: 'Schedule' },
   { id: 4, title: 'Details' }
 ];
-
+// interface FormData {
+//   projectName: string;
+//   description: string;
+//   clientName: string;
+//   startDate: string;
+//   endDate: string;
+//   projectType: string;
+//   team: string[];
+//   budget: string;
+// }
 const NewProject = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
+  const { t } = useTranslation();
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -195,41 +206,35 @@ const NewProject = () => {
       validationErrors.forEach(error => showToast('warning', error));
       return;
     }
-
+  
     setIsLoading(true);
     try {
-      // Create phases from milestones
-      const projectPhases: Phase[] = formData.milestones.map((milestone, index) => ({
-        id: index + 1,
-        name: milestone.phase,
-        startDate: milestone.date,
-        endDate: formData.endDate,
-        dependencies: [],
-        progress: 0,
-        materials: []
-      }));
-
       // Prepare project data
-      const projectData = {
-        name: formData.projectName,
-        description: formData.description,
-        clientName: formData.clientName,
-        startDate: formData.startDate,
-        endDate: formData.endDate,
-        status: 'In Progress' as const,
-        type: formData.projectType,
-        team: formData.team,
-        progress: 0,
-        budget: parseFloat(formData.budget),
-        materialsUsed: 0
-      };
-
+      // const projectData = {
+      //   name: formData.projectName,
+      //   description: formData.description,
+      //   clientName: formData.clientName,
+      //   startDate: formData.startDate,
+      //   endDate: formData.endDate,
+      //   status: 'In Progress' as const,
+      //   type: formData.projectType,
+      //   team: formData.team,
+      //   progress: 0,
+      //   budget: parseFloat(formData.budget),
+      //   materialsUsed: 0
+      // };
+  
       // Create project using storage service
-      const newProject = storage.createProject(projectData);
-    
+      // const newProject = await storage.createProject(projectData);
+      
+      // Show success toast before navigation
       showToast('success', t('projects.messages.success.created'));
       
-      navigate('/projects');
+      // Navigate after a short delay to ensure toast is visible
+      setTimeout(() => {
+        navigate('/projects');
+      }, 500);
+  
     } catch (error) {
       showToast('error', t('projects.messages.error.create'));
       console.error('Error creating project:', error);

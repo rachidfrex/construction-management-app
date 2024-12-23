@@ -321,5 +321,21 @@ export const fr = {
         foundationWork: "Travaux de Fondation",
         projectAlpha: "Projet Alpha"
       }
+    },
+    modals: {
+      common: {
+        cancel: "Annuler",
+        confirm: "Confirmer",
+      },
+      delete: {
+        title: "Supprimer le Projet",
+        message: "Êtes-vous sûr de vouloir supprimer ce projet ? Cette action est irréversible.",
+        confirmButton: "Supprimer le Projet"
+      },
+      archive: {
+        title: "Archiver le Projet",
+        message: "Êtes-vous sûr de vouloir archiver ce projet ? Vous pourrez le restaurer plus tard.",
+        confirmButton: "Archiver le Projet"
+      }
     }
   };

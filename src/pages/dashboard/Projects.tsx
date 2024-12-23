@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTranslationContext } from '../../context/TranslationContext';
@@ -9,9 +9,12 @@ import { ProjectHeader } from '../../components/project/ProjectHeader';
 import { ProjectStatistics } from '../../components/project/ProjectStatistics';
 import { ProjectFilters } from '../../components/project/ProjectFilters';
 import { ProjectCard } from '../../components/project/ProjectCard';
-// had xi dyal fake db 
 import { storage } from '../../mockData/db';
-import { useEffect } from 'react';
+import ConfirmationModal from '../../components/ui/ConfirmationModal';
+import { useToast } from '../../context/ToastContext';
+// had xi dyal fake db 
+// import { storage } from '../../mockData/db';
+// import { useEffect } from 'react';
 
  // lproject type 
 type ProjectStatus = 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
@@ -124,10 +127,13 @@ const mockProjects: Project[] = [
 const Projects = () => {
   const { t } = useTranslation();
   const { direction } = useTranslationContext();
+  const { showToast } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  // this for fack db 
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(mockProjects);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showArchiveModal, setShowArchiveModal] = useState(false);
   const [filters, setFilters] = useState({
     status: '',
     type: '',
@@ -186,6 +192,43 @@ const Projects = () => {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+  const handleDeleteProject = (project: Project) => {
+    setSelectedProject(project);
+    setShowDeleteModal(true);
+  };
+
+  const handleArchiveProject = (project: Project) => {
+    setSelectedProject(project);
+    setShowArchiveModal(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedProject) {
+      try {
+        storage.deleteProject(selectedProject.id);
+        setProjects(projects.filter(p => p.id !== selectedProject.id));
+        showToast('success', t('projects.messages.success.deleted'));
+      } catch (error) {
+        showToast('error', t('projects.messages.error.delete'));
+      }
+      setShowDeleteModal(false);
+      setSelectedProject(null);
+    }
+  };
+
+  const confirmArchive = () => {
+    if (selectedProject) {
+      try {
+        storage.archiveProject(selectedProject.id);
+        setProjects(storage.getProjects());
+        showToast('success', t('projects.messages.success.archived'));
+      } catch (error) {
+        showToast('error', t('projects.messages.error.archive'));
+      }
+      setShowArchiveModal(false);
+      setSelectedProject(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -220,10 +263,42 @@ const Projects = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {currentProjects.map(project => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+            {currentProjects.map(project => (
+              <ProjectCard 
+                key={project.id} 
+                project={project}
+                onDelete={() => handleDeleteProject(project)}
+                onArchive={() => handleArchiveProject(project)}
+              />
+            ))}
         </div>
+        <ConfirmationModal
+            isOpen={showDeleteModal}
+            onClose={() => {
+              setShowDeleteModal(false);
+              setSelectedProject(null);
+            }}
+            onConfirm={confirmDelete}
+            title={t('modals.delete.title')}
+            message={t('modals.delete.message')}
+            type="danger"
+            confirmText={t('modals.delete.confirmButton')}
+            cancelText={t('modals.common.cancel')}
+          />
+
+          <ConfirmationModal
+            isOpen={showArchiveModal}
+            onClose={() => {
+              setShowArchiveModal(false);
+              setSelectedProject(null);
+            }}
+            onConfirm={confirmArchive}
+            title={t('modals.archive.title')}
+            message={t('modals.archive.message')}
+            type="warning"
+            confirmText={t('modals.archive.confirmButton')}
+            cancelText={t('modals.common.cancel')}
+          />
 
         {pageCount > 1 && (
           <div className="mt-6 flex justify-center">

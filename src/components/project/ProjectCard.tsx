@@ -38,17 +38,24 @@ interface Project {
 
 interface ProjectCardProps {
   project: Project;
+  onDelete: () => void;
+  onArchive: () => void;
 }
 
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+export const ProjectCard = ({ project, onDelete, onArchive }: ProjectCardProps) => {
+  // const { t } = useTranslation();
+  // const { direction } = useTranslationContext();
+  // const navigate = useNavigate();
+  // const { showToast } = useToast();
+  // const [showMenu, setShowMenu] = useState(false);
+  // const [showDeleteModal, setShowDeleteModal] = useState(false);
+  // const [showArchiveModal, setShowArchiveModal] = useState(false);
+  // const menuRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const { direction } = useTranslationContext();
   const navigate = useNavigate();
-  const { showToast } = useToast();
   const [showMenu, setShowMenu] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showArchiveModal, setShowArchiveModal] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -104,7 +111,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       label: t('projects.actions.archive'), 
       icon: <HiOutlineArchive className="w-4 h-4" />,
       action: () => {
-        setShowArchiveModal(true);
+        onArchive(); // Use the prop directly
         setShowMenu(false);
       },
       className: 'text-yellow-600 hover:text-yellow-700',
@@ -113,17 +120,17 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       label: t('projects.actions.delete'), 
       icon: <HiOutlineTrash className="w-4 h-4" />,
       action: () => {
-        setShowDeleteModal(true);
+        onDelete(); // Use the prop directly
         setShowMenu(false);
       },
       className: 'text-red-600 hover:text-red-700',
     },
   ];
 
-  const handleArchiveProject = () => {
-    showToast('success', t('projects.messages.archived'));
-    setShowMenu(false);
-  };
+  // const handleArchiveProject = () => {
+  //   showToast('success', t('projects.messages.archived'));
+  //   setShowMenu(false);
+  // };
 
   const handleDeleteProject = () => {
     // showToast('success', t('projects.messages.deleted'));
@@ -134,6 +141,15 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       showToast('success', t('projects.messages.success.deleted'));
     } catch (error) {
       showToast('error', t('projects.messages.error.delete'));
+    }
+  };
+  const handleArchiveProject = () => {
+    try {
+      // Add archive method to storage service and use it here
+      storage.archiveProject(project.id);
+      showToast('success', t('projects.messages.success.archived'));
+    } catch (error) {
+      showToast('error', t('projects.messages.error.archive'));
     }
   };
 
@@ -167,7 +183,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-gray-100"
+                  className={`absolute  mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50 border border-gray-100 ${direction === 'rtl' ? 'left-0' : 'right-0'}`}
                 >
                   {menuItems.map((item, index) => (
                     <React.Fragment key={index}>
@@ -231,31 +247,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </div>
       </div>
 
-      <ConfirmationModal
-        isOpen={showDeleteModal}
-        onClose={() => setShowDeleteModal(false)}
-        onConfirm={() => {
-          handleDeleteProject();
-          setShowDeleteModal(false);
-        }}
-        title={t('projects.modals.deleteTitle')}
-        message={t('projects.modals.deleteMessage')}
-        type="danger"
-        confirmText={t('projects.modals.deleteConfirm')}
-      />
 
-      <ConfirmationModal
-        isOpen={showArchiveModal}
-        onClose={() => setShowArchiveModal(false)}
-        onConfirm={() => {
-          handleArchiveProject();
-          setShowArchiveModal(false);
-        }}
-        title={t('projects.modals.archiveTitle')}
-        message={t('projects.modals.archiveMessage')}
-        type="warning"
-        confirmText={t('projects.modals.archiveConfirm')}
-      />
     </motion.div>
   );
 };

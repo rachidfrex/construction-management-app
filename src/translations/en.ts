@@ -325,6 +325,22 @@ export const en = {
         foundationWork: "Foundation Work",
         projectAlpha: "Project Alpha"
       }
+    },
+    modals: {
+      common: {
+        cancel: "Cancel",
+        confirm: "Confirm",
+      },
+      delete: {
+        title: "Delete Project",
+        message: "Are you sure you want to delete this project? This action cannot be undone.",
+        confirmButton: "Delete Project"
+      },
+      archive: {
+        title: "Archive Project",
+        message: "Are you sure you want to archive this project? You can restore it later.",
+        confirmButton: "Archive Project"
+      }
     }
   };
   
