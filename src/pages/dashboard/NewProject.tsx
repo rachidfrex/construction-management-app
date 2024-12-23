@@ -11,6 +11,7 @@ import ResourceAllocation from '../../components/project/form/ResourceAllocation
 import ProjectScheduling from '../../components/project/form/ProjectScheduling';
 import AdditionalDetails from '../../components/project/form/AdditionalDetails';
 import Breadcrumb from '../../components/ui/Breadcrumb';
+import { storage } from '../../mockData/db';
 // import { storage } from '../../mockData/db';
 
 interface Phase {
@@ -57,10 +58,10 @@ interface EnhancedMilestone extends Milestone {
 }
 
 const steps = [
-  { id: 1, title: 'General Info' },
-  { id: 2, title: 'Resources' },
-  { id: 3, title: 'Schedule' },
-  { id: 4, title: 'Details' }
+  { id: 1, title: 'projects.form.steps.general' },
+  { id: 2, title: 'projects.form.steps.resources' },
+  { id: 3, title: 'projects.form.steps.schedule' },
+  { id: 4, title: 'projects.form.steps.details' }
 ];
 // interface FormData {
 //   projectName: string;
@@ -118,9 +119,55 @@ const NewProject = () => {
 
     return errors;
   };
+  const validateStep = (step: number): boolean => {
+    const errors: string[] = [];
 
+    switch (step) {
+      case 1:
+        if (!formData.projectName) errors.push(t('projects.validation.nameRequired'));
+        if (!formData.projectType) errors.push(t('projects.validation.typeRequired'));
+        if (!formData.clientName) errors.push(t('projects.validation.clientRequired'));
+        break;
+      case 2:
+        if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
+        if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
+        break;
+      case 3:
+        if (!formData.startDate || !formData.endDate) errors.push(t('projects.validation.datesRequired'));
+        if (new Date(formData.startDate) >= new Date(formData.endDate)) {
+          errors.push(t('projects.validation.invalidDates'));
+        }
+        break;
+      case 4:
+        if (!formData.budget) errors.push(t('projects.validation.budgetRequired'));
+        if (!formData.description) errors.push(t('projects.validation.descriptionRequired'));
+        break;
+    }
+
+    if (errors.length > 0) {
+      errors.forEach(error => showToast('warning', error));
+      return false;
+    }
+    return true;
+  };
+  const handleStepClick = (step: number) => {
+    if (step < currentStep) {
+      setCurrentStep(step);
+    } else {
+      let canProceed = true;
+      for (let i = currentStep; i < step; i++) {
+        if (!validateStep(i)) {
+          canProceed = false;
+          break;
+        }
+      }
+      if (canProceed) {
+        setCurrentStep(step);
+      }
+    }
+  };
   const handleNext = () => {
-    if (currentStep < steps.length) {
+    if (validateStep(currentStep) && currentStep < steps.length) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -198,46 +245,34 @@ const NewProject = () => {
   //     setIsLoading(false);
   //   }
   // };
+
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    const validationErrors = validateForm();
-    if (validationErrors.length > 0) {
-      validationErrors.forEach(error => showToast('warning', error));
-      return;
-    }
-  
+    if (!validateStep(currentStep)) return;
+
     setIsLoading(true);
     try {
-      // Prepare project data
-      // const projectData = {
-      //   name: formData.projectName,
-      //   description: formData.description,
-      //   clientName: formData.clientName,
-      //   startDate: formData.startDate,
-      //   endDate: formData.endDate,
-      //   status: 'In Progress' as const,
-      //   type: formData.projectType,
-      //   team: formData.team,
-      //   progress: 0,
-      //   budget: parseFloat(formData.budget),
-      //   materialsUsed: 0
-      // };
-  
-      // Create project using storage service
-      // const newProject = await storage.createProject(projectData);
-      
-      // Show success toast before navigation
+      const projectData = {
+        name: formData.projectName,
+        description: formData.description,
+        clientName: formData.clientName,
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+        status: 'In Progress' as const,
+        type: formData.projectType,
+        team: formData.team,
+        progress: 0,
+        budget: parseFloat(formData.budget),
+        materialsUsed: 0
+      };
+
+      await storage.createProject(projectData);
       showToast('success', t('projects.messages.success.created'));
-      
-      // Navigate after a short delay to ensure toast is visible
-      setTimeout(() => {
-        navigate('/projects');
-      }, 500);
-  
+      setTimeout(() => navigate('/projects'), 500);
     } catch (error) {
       showToast('error', t('projects.messages.error.create'));
-      console.error('Error creating project:', error);
     } finally {
       setIsLoading(false);
     }
@@ -247,16 +282,20 @@ const NewProject = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className="lg:ml-64 mt-5  pt-16 p-6">
+      <main className="lg:ml-64 mt-5 pt-16 p-6">
         <div className="max-w-4xl mx-auto">
           <Breadcrumb 
             items={[
-              { label: 'Projects', path: '/projects' },
-              { label: 'Create New Project' }
+              { label: t('projects.title'), path: '/projects' },
+              { label: t('projects.newProject') }
             ]} 
           />
 
-          <FormStepIndicator currentStep={currentStep} steps={steps} />
+          <FormStepIndicator 
+            currentStep={currentStep} 
+            steps={steps.map(step => ({ ...step, title: t(step.title) }))}
+            onStepClick={handleStepClick}
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -290,54 +329,42 @@ const NewProject = () => {
                 />
               )}
 
-              <div className="flex justify-between pt-6">
-                <button
+<div className="flex justify-between pt-6">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="button"
                   disabled={isLoading}
                   onClick={currentStep === 1 ? () => navigate('/projects') : handlePrevious}
-                  className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                  className="px-6 py-2 text-sm font-medium border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
                 >
-                  {currentStep === 1 ? 'Cancel' : 'Previous'}
-                </button>
+                  {currentStep === 1 ? t('common.cancel') : t('common.previous')}
+                </motion.button>
 
-                <button
-                  type="button"
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type={currentStep === steps.length ? 'submit' : 'button'}
                   disabled={isLoading}
-                  onClick={currentStep === steps.length ? handleSubmit : handleNext}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center gap-2"
+                  onClick={currentStep === steps.length ? undefined : handleNext}
+                  className="px-6 py-2 text-sm font-medium bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center gap-2"
                 >
                   {currentStep === steps.length ? (
                     isLoading ? (
-                      <>
-                        <svg 
-                          className="animate-spin h-5 w-5 text-white" 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          fill="none" 
-                          viewBox="0 0 24 24"
-                        >
-                          <circle 
-                            className="opacity-25" 
-                            cx="12" 
-                            cy="12" 
-                            r="10" 
-                            stroke="currentColor" 
-                            strokeWidth="4"
-                          />
-                          <path 
-                            className="opacity-75" 
-                            fill="currentColor" 
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          />
+                      <div className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
-                        <span>Creating Project...</span>
-                      </>
+                        <span>{t('common.creating')}</span>
+                      </div>
                     ) : (
-                      'Create Project'
+                      t('projects.create')
                     )
                   ) : (
-                    'Next'
+                    t('common.next')
                   )}
-                </button>
+                </motion.button>
               </div>
             </form>
           </motion.div>

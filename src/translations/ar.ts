@@ -259,7 +259,34 @@
           materials: "المواد",
           location: "الموقع",
           priority: "الأولوية",
-          attachments: "المرفقات"
+          attachments: "المرفقات",
+          placeholders: {
+            projectName: "مثال: بناء مدرسة",
+            clientName: "أدخل اسم العميل",
+            budget: "مثال: 200,000",
+            description: "أدخل وصف المشروع والملاحظات الإضافية...",
+            searchTeam: "البحث عن أعضاء الفريق...",
+            searchMaterials: "البحث عن المواد...",
+            milestoneTitle: "عنوان المرحلة",
+            attachments: "PDF, DOC, JPG, PNG (الحد الأقصى 10 ميجابايت لكل ملف)"
+          },
+            steps: {
+              general: "معلومات عامة",
+              resources: "الموارد",
+              schedule: "الجدول الزمني",
+              details: "تفاصيل إضافية"
+            }
+        },
+        validation: {
+          nameRequired: "اسم المشروع مطلوب",
+          typeRequired: "نوع المشروع مطلوب",
+          clientRequired: "اسم العميل مطلوب",
+          materialsRequired: "مطلوب مادة واحدة على الأقل",
+          teamRequired: "مطلوب عضو واحد في الفريق على الأقل",
+          datesRequired: "تواريخ المشروع مطلوبة",
+          invalidDates: "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
+          budgetRequired: "الميزانية مطلوبة",
+          descriptionRequired: "وصف المشروع مطلوب"
         },
         actions: {
           edit: "تعديل المشروع",

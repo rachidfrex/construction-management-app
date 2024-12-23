@@ -258,7 +258,24 @@ export const fr = {
         materials: "Matériaux",
         location: "Emplacement",
         priority: "Priorité",
-        attachments: "Pièces Jointes"
+        attachments: "Pièces Jointes",
+        steps: {
+          general: "Informations générales",
+          resources: "Ressources",
+          schedule: "Calendrier",
+          details: "Détails supplémentaires"
+        }
+      },
+      validation: {
+        nameRequired: "Le nom du projet est requis",
+        typeRequired: "Le type de projet est requis",
+        clientRequired: "Le nom du client est requis",
+        materialsRequired: "Au moins un matériau est requis",
+        teamRequired: "Au moins un membre d'équipe est requis",
+        datesRequired: "Les dates du projet sont requises",
+        invalidDates: "La date de fin doit être postérieure à la date de début",
+        budgetRequired: "Le budget est requis",
+        descriptionRequired: "La description du projet est requise"
       },
       actions: {
         edit: "Modifier le Projet",

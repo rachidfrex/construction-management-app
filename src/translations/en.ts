@@ -262,7 +262,24 @@ export const en = {
         materials: "Materials",
         location: "Location",
         priority: "Priority",
-        attachments: "Attachments"
+        attachments: "Attachments",
+        steps: {
+          general: "General Information",
+          resources: "Resources",
+          schedule: "Schedule",
+          details: "Additional Details"
+        }
+      },
+      validation: {
+        nameRequired: "Project name is required",
+        typeRequired: "Project type is required",
+        clientRequired: "Client name is required", 
+        materialsRequired: "At least one material is required",
+        teamRequired: "At least one team member is required",
+        datesRequired: "Project dates are required",
+        invalidDates: "End date must be after start date",
+        budgetRequired: "Budget is required",
+        descriptionRequired: "Project description is required"
       },
       actions: {
         edit: "Edit Project",
