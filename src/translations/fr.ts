@@ -186,6 +186,7 @@ export const fr = {
     },
   
     projects: {
+      clients: "Clients",
       create: "Créer un Projet",
       title: "Aperçu des Projets",
       subtitle: "Gérer et suivre vos projets de construction",

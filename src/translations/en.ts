@@ -190,6 +190,7 @@ export const en = {
   
     
     projects: {
+      client: "Client",
       create: "Create Project",
       title: "Projects Overview",
       subtitle: "Manage and monitor your construction projects",
