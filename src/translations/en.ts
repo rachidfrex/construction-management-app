@@ -190,6 +190,7 @@ export const en = {
   
     
     projects: {
+      create: "Create Project",
       title: "Projects Overview",
       subtitle: "Manage and monitor your construction projects",
       newProject: "New Project",
@@ -265,6 +266,9 @@ export const en = {
         location: "Location",
         priority: "Priority",
         attachments: "Attachments",
+        milestones: "Project Milestones",
+        addMilestone: "Add Milestone",
+        
         steps: {
           general: "General Information",
           resources: "Resources",
@@ -281,6 +285,10 @@ export const en = {
           milestoneTitle: "Milestone title",
           attachments: "PDF, DOC, JPG, PNG (Max 10MB per file)",
           selectType: "Select project type",
+          startDate: "Select start date",
+          endDate: "Select end date",
+           milestoneDate: "Select milestone date"
+
         },
       },
      
@@ -293,7 +301,8 @@ export const en = {
         datesRequired: "Project dates are required",
         invalidDates: "End date must be after start date",
         budgetRequired: "Budget is required",
-        descriptionRequired: "Project description is required"
+        descriptionRequired: "Project description is required",
+         milestoneDateRange: "Milestone date must be within project duration"
       },
       actions: {
         edit: "Edit Project",

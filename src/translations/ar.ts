@@ -187,6 +187,7 @@
       },
 
       projects: {
+        create : "إنشاء مشروع ",
         title: "نظرة عامة على المشاريع",
         subtitle: "إدارة ومراقبة مشاريع البناء الخاصة بك",
         newProject: "مشروع جديد",
@@ -262,6 +263,8 @@
           location: "الموقع",
           priority: "الأولوية",
           attachments: "المرفقات",
+          milestones: "مراحل المشروع",
+          addMilestone: "إضافة مرحلة",
           placeholders: {
             projectName: "مثال: بناء مدرسة",
             clientName: "أدخل اسم العميل",
@@ -271,7 +274,10 @@
             searchMaterials: "البحث عن المواد...",
             milestoneTitle: "عنوان المرحلة",
             attachments: "PDF, DOC, JPG, PNG (الحد الأقصى 10 ميجابايت لكل ملف)",
-            selectType: "اختر نوع المشروع"
+            selectType: "اختر نوع المشروع",
+           milestoneDate: "اختر تاريخ المرحلة",
+           startDate: "اختر تاريخ البدء",
+          endDate: "اختر تاريخ الانتهاء",
           },
             steps: {
               general: "معلومات عامة",
@@ -292,7 +298,8 @@
           datesRequired: "تواريخ المشروع مطلوبة",
           invalidDates: "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
           budgetRequired: "الميزانية مطلوبة",
-          descriptionRequired: "وصف المشروع مطلوب"
+          descriptionRequired: "وصف المشروع مطلوب",
+          milestoneDateRange: "يجب أن يكون تاريخ المرحلة ضمن مدة المشروع"
         },
         
         actions: {

@@ -98,29 +98,29 @@ const NewProject = () => {
     materialLinks: [] as MaterialLink[],
   });
 
-  const validateForm = () => {
-    const errors: string[] = [];
+  // const validateForm = () => {
+  //   const errors: string[] = [];
     
-    if (!formData.projectName) errors.push('Project name is required');
-    if (!formData.projectType) errors.push('Project type is required');
-    if (formData.materials.length === 0) errors.push('At least one material is required');
-    if (!formData.startDate || !formData.endDate) errors.push('Project dates are required');
-    if (new Date(formData.startDate) >= new Date(formData.endDate)) {
-      errors.push('End date must be after start date');
-    }
-    if (!formData.budget) errors.push('Budget is required');
-    if (formData.team.length === 0) errors.push('At least one team member is required');
-    if (!formData.description) errors.push('Project description is required');
+  //   if (!formData.projectName) errors.push('Project name is required');
+  //   if (!formData.projectType) errors.push('Project type is required');
+  //   if (formData.materials.length === 0) errors.push('At least one material is required');
+  //   if (!formData.startDate || !formData.endDate) errors.push('Project dates are required');
+  //   if (new Date(formData.startDate) >= new Date(formData.endDate)) {
+  //     errors.push('End date must be after start date');
+  //   }
+  //   if (!formData.budget) errors.push('Budget is required');
+  //   if (formData.team.length === 0) errors.push('At least one team member is required');
+  //   if (!formData.description) errors.push('Project description is required');
 
-    formData.milestones.forEach(milestone => {
-      if (new Date(milestone.date) < new Date(formData.startDate) ||
-          new Date(milestone.date) > new Date(formData.endDate)) {
-        errors.push(`Milestone "${milestone.title}" date must be within project duration`);
-      }
-    });
+  //   formData.milestones.forEach(milestone => {
+  //     if (new Date(milestone.date) < new Date(formData.startDate) ||
+  //         new Date(milestone.date) > new Date(formData.endDate)) {
+  //       errors.push(`Milestone "${milestone.title}" date must be within project duration`);
+  //     }
+  //   });
 
-    return errors;
-  };
+  //   return errors;
+  // };
   // const validateStep = (step: number): boolean => {
   //   const errors: string[] = [];
 
@@ -152,41 +152,48 @@ const NewProject = () => {
   //   }
   //   return true;
   // };
-  const validateStep = (step: number): boolean => {
-    const errors: string[] = [];
-    
-    switch (step) {
-      case 1:
-        if (!formData.projectName.trim()) errors.push(t('projects.validation.nameRequired'));
-        if (!formData.projectType) errors.push(t('projects.validation.typeRequired'));
-        if (!formData.clientName.trim()) errors.push(t('projects.validation.clientRequired'));
-        break;
-        
-      case 2:
-        // Only validate materials in step 2, team members will be validated in step 3
-        if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
-        break;
-        
-      case 3:
-        if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
-        if (!formData.startDate || !formData.endDate) errors.push(t('projects.validation.datesRequired'));
-        if (new Date(formData.startDate) >= new Date(formData.endDate)) {
-          errors.push(t('projects.validation.invalidDates'));
-        }
-        break;
-        
-      case 4:
-        if (!formData.budget) errors.push(t('projects.validation.budgetRequired'));
-        if (!formData.description) errors.push(t('projects.validation.descriptionRequired'));
-        break;
-    }
+
+const validateStep = (step: number): boolean => {
+const errors: string[] = [];
   
-    if (errors.length > 0) {
-      errors.forEach(error => showToast('warning', error));
-      return false;
+switch (step) {
+  case 1:
+    if (!formData.projectName.trim()) errors.push(t('projects.validation.nameRequired'));
+    if (!formData.projectType) errors.push(t('projects.validation.typeRequired'));
+    if (!formData.clientName.trim()) errors.push(t('projects.validation.clientRequired'));
+    break;
+    
+  case 2:
+    if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
+    break;
+    
+  case 3:
+    if (!formData.startDate || !formData.endDate) errors.push(t('projects.validation.datesRequired'));
+    if (new Date(formData.startDate) >= new Date(formData.endDate)) {
+      errors.push(t('projects.validation.invalidDates'));
     }
-    return true;
-  };
+    // Add milestone validation here
+    formData.milestones.forEach(milestone => {
+      if (new Date(milestone.date) < new Date(formData.startDate) ||
+          new Date(milestone.date) > new Date(formData.endDate)) {
+        errors.push(t('projects.validation.milestoneDateRange'));
+      }
+    });
+    break;
+    
+  case 4:
+    if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
+    if (!formData.budget) errors.push(t('projects.validation.budgetRequired'));
+    if (!formData.description) errors.push(t('projects.validation.descriptionRequired'));
+    break;
+}
+
+if (errors.length > 0) {
+  errors.forEach(error => showToast('warning', error));
+  return false;
+}
+return true;
+};
   const handleStepClick = (step: number) => {
     if (step < currentStep) {
       setCurrentStep(step);

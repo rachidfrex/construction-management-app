@@ -186,6 +186,7 @@ export const fr = {
     },
   
     projects: {
+      create: "Créer un Projet",
       title: "Aperçu des Projets",
       subtitle: "Gérer et suivre vos projets de construction",
       newProject: "Nouveau Projet",
@@ -261,6 +262,8 @@ export const fr = {
         location: "Emplacement",
         priority: "Priorité",
         attachments: "Pièces Jointes",
+        milestones: "Étapes du projet",
+        addMilestone: "Ajouter une étape",
         steps: {
           general: "Informations générales",
           resources: "Ressources",
@@ -278,6 +281,7 @@ export const fr = {
           milestoneTitle: "Titre de l'étape",
           attachments: "PDF, DOC, JPG, PNG (10 Mo max par fichier)",
           selectType : "Sélectionnez le type de projet",
+          milestoneDate: "Sélectionner la date de l'étape"
         },
       },
       
@@ -290,7 +294,8 @@ export const fr = {
         datesRequired: "Les dates du projet sont requises",
         invalidDates: "La date de fin doit être postérieure à la date de début",
         budgetRequired: "Le budget est requis",
-        descriptionRequired: "La description du projet est requise"
+        descriptionRequired: "La description du projet est requise",
+        milestoneDateRange: "La date de l'étape doit être comprise dans la durée du projet"
       },
       actions: {
         edit: "Modifier le Projet",

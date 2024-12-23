@@ -1,6 +1,7 @@
-// src/components/project/form/AdditionalDetails.tsx 
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useTranslationContext } from '../../../context/TranslationContext';
 import { 
   HiOutlineCurrencyDollar, 
   HiOutlineUsers, 
@@ -20,14 +21,16 @@ interface AdditionalDetailsProps {
 }
 
 const teamMembers = [
-  { id: 1, name: 'John Doe', role: 'Project Manager' },
-  { id: 2, name: 'Jane Smith', role: 'Site Engineer' },
-  { id: 3, name: 'Mike Wilson', role: 'Architect' },
-  { id: 4, name: 'Sarah Brown', role: 'Construction Manager' },
+  { id: 1, name: 'Karim Alami', role: 'مدير المشروع' },
+  { id: 2, name: 'Amina Benali', role: 'مهندس موقع' },
+  { id: 3, name: 'Hassan El Fassi', role: 'مهندس معماري' },
+  { id: 4, name: 'Fatima Zahra', role: 'مدير البناء' },
 ];
 
 const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation();
+  const { direction } = useTranslationContext();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -45,29 +48,29 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="space-y-6"
+      className={`space-y-6 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}
     >
       {/* Budget */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Project Budget (MAD) *
+          {t('projects.form.budget')} *
         </label>
         <div className="relative">
           <input
             type="number"
             value={formData.budget}
             onChange={(e) => onChange({ ...formData, budget: e.target.value })}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            placeholder="Example: 200,000"
+            className={`w-full  py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent ${direction === 'rtl' ? 'pr-10' : 'pl-10'}`}
+            placeholder={t('projects.form.placeholders.budget')}
           />
-          <HiOutlineCurrencyDollar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <HiOutlineCurrencyDollar className={`absolute ${direction === 'rtl' ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5`} />
         </div>
       </div>
 
       {/* Team Selection */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Team Members *
+          {t('projects.form.teamMembers')} *
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {teamMembers.map((member) => (
@@ -101,7 +104,7 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
       {/* Project Description */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Project Description
+          {t('projects.form.description')} *
         </label>
         <div className="relative">
           <textarea
@@ -109,16 +112,16 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
             onChange={(e) => onChange({ ...formData, description: e.target.value })}
             rows={4}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            placeholder="Enter project description and additional notes..."
+            placeholder={t('projects.form.placeholders.description')}
           />
-          <HiOutlineDocumentText className="absolute right-3 top-3 text-gray-400 w-5 h-5" />
+          <HiOutlineDocumentText className={`absolute ${direction === 'rtl' ? 'left-3' : 'right-3'} top-3 text-gray-400 w-5 h-5`} />
         </div>
       </div>
 
       {/* File Attachments */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Attachments
+          {t('projects.form.attachments')}
         </label>
         <div className="space-y-4">
           <div 
@@ -127,10 +130,10 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
           >
             <HiOutlineUpload className="mx-auto h-8 w-8 text-gray-400" />
             <p className="mt-2 text-sm text-gray-600">
-              Click to upload or drag and drop
+              {t('projects.form.dropzone.text')}
             </p>
             <p className="text-xs text-gray-500">
-              PDF, DOC, JPG, PNG (max. 10MB each)
+              {t('projects.form.placeholders.attachments')}
             </p>
             <input
               type="file"
@@ -142,7 +145,6 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
             />
           </div>
 
-          {/* File List */}
           {formData.files.length > 0 && (
             <div className="space-y-2">
               {formData.files.map((file, index) => (
