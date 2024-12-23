@@ -156,7 +156,7 @@ export const ProjectCard = ({ project, onDelete, onArchive }: ProjectCardProps) 
   return (
     <motion.div
       whileHover={{ y: -2 }}
-      className="bg-white rounded-xl shadow-sm p-6"
+      className="bg-white rounded-xl shadow-sm p-4 md:p-6"
     >
       <div className="flex justify-between items-start mb-4">
         <div>
@@ -172,7 +172,7 @@ export const ProjectCard = ({ project, onDelete, onArchive }: ProjectCardProps) 
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setShowMenu(!showMenu)}
-              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+              className=" hover:bg-gray-100 rounded-full transition-colors"
             >
               <HiDotsVertical className="w-5 h-5 text-gray-400" />
             </motion.button>
