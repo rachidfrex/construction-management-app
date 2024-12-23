@@ -19,6 +19,7 @@ export const fr = {
         appName: "Bouhaja Sarl",
         logout: "Déconnexion",
         completed: "Terminé",
+        next : "Suivant",
       },
       auth: {
         welcomeBack: "Bienvenue",
@@ -265,7 +266,20 @@ export const fr = {
           schedule: "Calendrier",
           details: "Détails supplémentaires"
         }
+        ,
+        placeholders: {
+          projectName: "Exemple : Construction d'une École",
+          clientName: "Entrez le nom du client",
+          budget: "Exemple : 200,000",
+          description: "Entrez la description du projet et les notes supplémentaires...",
+          searchTeam: "Rechercher des membres d'équipe...",
+          searchMaterials: "Rechercher des matériaux...",
+          milestoneTitle: "Titre de l'étape",
+          attachments: "PDF, DOC, JPG, PNG (10 Mo max par fichier)",
+          selectType : "Sélectionnez le type de projet",
+        },
       },
+      
       validation: {
         nameRequired: "Le nom du projet est requis",
         typeRequired: "Le type de projet est requis",

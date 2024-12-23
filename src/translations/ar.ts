@@ -20,6 +20,7 @@
         appName: "بوحاجة",
         logout: "تسجيل الخروج",
         completed: "مكتمل",
+        next : "التالي",
       },
       auth: {
         welcomeBack: "مرحباً بعودتك",
@@ -268,14 +269,16 @@
             searchTeam: "البحث عن أعضاء الفريق...",
             searchMaterials: "البحث عن المواد...",
             milestoneTitle: "عنوان المرحلة",
-            attachments: "PDF, DOC, JPG, PNG (الحد الأقصى 10 ميجابايت لكل ملف)"
+            attachments: "PDF, DOC, JPG, PNG (الحد الأقصى 10 ميجابايت لكل ملف)",
+            selectType: "اختر نوع المشروع"
           },
             steps: {
               general: "معلومات عامة",
               resources: "الموارد",
               schedule: "الجدول الزمني",
               details: "تفاصيل إضافية"
-            }
+            },
+            
         },
         validation: {
           nameRequired: "اسم المشروع مطلوب",
@@ -288,6 +291,7 @@
           budgetRequired: "الميزانية مطلوبة",
           descriptionRequired: "وصف المشروع مطلوب"
         },
+        
         actions: {
           edit: "تعديل المشروع",
           delete: "حذف المشروع",

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useToast } from '../../context/ToastContext';
+import { useTranslationContext } from '../../context/TranslationContext'; 
 import { useTranslation } from 'react-i18next';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
@@ -77,6 +78,7 @@ const NewProject = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
   const { t } = useTranslation();
+  const { direction } = useTranslationContext();
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -119,24 +121,52 @@ const NewProject = () => {
 
     return errors;
   };
+  // const validateStep = (step: number): boolean => {
+  //   const errors: string[] = [];
+
+  //   switch (step) {
+  //     case 1:
+  //       if (!formData.projectName) errors.push(t('projects.validation.nameRequired'));
+  //       if (!formData.projectType) errors.push(t('projects.validation.typeRequired'));
+  //       if (!formData.clientName) errors.push(t('projects.validation.clientRequired'));
+  //       break;
+  //     case 2:
+  //       if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
+  //       if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
+  //       break;
+  //     case 3:
+  //       if (!formData.startDate || !formData.endDate) errors.push(t('projects.validation.datesRequired'));
+  //       if (new Date(formData.startDate) >= new Date(formData.endDate)) {
+  //         errors.push(t('projects.validation.invalidDates'));
+  //       }
+  //       break;
+  //     case 4:
+  //       if (!formData.budget) errors.push(t('projects.validation.budgetRequired'));
+  //       if (!formData.description) errors.push(t('projects.validation.descriptionRequired'));
+  //       break;
+  //   }
+
+  //   if (errors.length > 0) {
+  //     errors.forEach(error => showToast('warning', error));
+  //     return false;
+  //   }
+  //   return true;
+  // };
   const validateStep = (step: number): boolean => {
     const errors: string[] = [];
-
+    
     switch (step) {
       case 1:
-        if (!formData.projectName) errors.push(t('projects.validation.nameRequired'));
+        if (!formData.projectName.trim()) errors.push(t('projects.validation.nameRequired'));
+        if (!formData.clientName.trim()) errors.push(t('projects.validation.clientRequired'));
         if (!formData.projectType) errors.push(t('projects.validation.typeRequired'));
-        if (!formData.clientName) errors.push(t('projects.validation.clientRequired'));
         break;
       case 2:
-        if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
         if (formData.team.length === 0) errors.push(t('projects.validation.teamRequired'));
+        if (formData.materials.length === 0) errors.push(t('projects.validation.materialsRequired'));
         break;
       case 3:
         if (!formData.startDate || !formData.endDate) errors.push(t('projects.validation.datesRequired'));
-        if (new Date(formData.startDate) >= new Date(formData.endDate)) {
-          errors.push(t('projects.validation.invalidDates'));
-        }
         break;
       case 4:
         if (!formData.budget) errors.push(t('projects.validation.budgetRequired'));
@@ -282,7 +312,11 @@ const NewProject = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className="lg:ml-64 mt-5 pt-16 p-6">
+      <main className={`transition-all duration-300 pt-16 mt-5 p-6 ${
+        direction === 'rtl' 
+          ? 'mr-0 lg:mr-64' 
+          : 'ml-0 lg:ml-64'
+      }`}>
         <div className="max-w-4xl mx-auto">
           <Breadcrumb 
             items={[
@@ -291,9 +325,19 @@ const NewProject = () => {
             ]} 
           />
 
-          <FormStepIndicator 
+          {/* <FormStepIndicator 
             currentStep={currentStep} 
             steps={steps.map(step => ({ ...step, title: t(step.title) }))}
+            onStepClick={handleStepClick}
+          /> */}
+          <FormStepIndicator 
+            currentStep={currentStep} 
+            steps={steps.map(step => ({ 
+              id: step.id, 
+              title: t(step.title),
+              isCompleted: step.id < currentStep,
+              isCurrent: step.id === currentStep
+            }))}
             onStepClick={handleStepClick}
           />
 
@@ -329,7 +373,7 @@ const NewProject = () => {
                 />
               )}
 
-<div className="flex justify-between pt-6">
+                <div className="flex justify-between pt-6">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

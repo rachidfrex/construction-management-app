@@ -20,6 +20,7 @@ export const en = {
          appName: "Bouhaja Sarl",
         logout: "Logout",
         completed: "Completed",
+        next : "Next",
 
       },
       auth: {
@@ -268,8 +269,20 @@ export const en = {
           resources: "Resources",
           schedule: "Schedule",
           details: "Additional Details"
-        }
+        },
+        placeholders: {
+          projectName: "Example: School Building Construction",
+          clientName: "Enter client name",
+          budget: "Example: 200,000",
+          description: "Enter project description and additional notes...",
+          searchTeam: "Search team members...",
+          searchMaterials: "Search materials...",
+          milestoneTitle: "Milestone title",
+          attachments: "PDF, DOC, JPG, PNG (Max 10MB per file)",
+          selectType: "Select project type",
+        },
       },
+     
       validation: {
         nameRequired: "Project name is required",
         typeRequired: "Project type is required",
