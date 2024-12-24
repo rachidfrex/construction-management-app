@@ -10,11 +10,13 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineUsers,
   HiOutlineCube,
-  HiDotsVertical,
-  HiOutlinePlusCircle
+  HiOutlinePlusCircle,
+  HiOutlineDocumentText,
+  HiOutlineDownload
 } from 'react-icons/hi';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
+import { storage } from '../../mockData/db';
 
 interface Project {
   id: number;
@@ -25,7 +27,11 @@ interface Project {
   endDate: string;
   status: 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
   type: string;
-  team: string[];
+  team: {
+    id: string;
+    name: string;
+    role: string;
+  }[];
   progress: number;
   budget: number;
   materialsUsed: number;
