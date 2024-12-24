@@ -72,11 +72,11 @@ interface TeamMember {
 }
 
 interface Material {
-  id: string;
+  id: number;
   name: string;
   quantity: number;
   unit: string;
-  used: number; 
+  used: number;
 }
 
 interface FormData {
@@ -157,19 +157,25 @@ const NewProject = () => {
   //     ]
   //   }));
   // };
-  const handleAddMaterial = async (materialData: any) => {
-    try {
-      // Simulated API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      showToast('success', t('projects.messages.success.materialAdded'));
-      // Update project data locally
-      setProject(prev => prev ? {
-        ...prev,
-        materials: [...prev.materials, materialData]
-      } : null);
-    } catch (error) {
-      showToast('error', t('projects.messages.error.addMaterial'));
-    }
+  const handleAddMaterial = (materialData: { id: number; quantity: number }) => {
+    // Get material details from the availableMaterials array
+    const materialInfo = availableMaterials.find(m => m.id === materialData.id);
+    
+    if (!materialInfo) return;
+  
+    setFormData(prev => ({
+      ...prev,
+      materials: [
+        ...prev.materials,
+        {
+          id: materialData.id,
+          name: materialInfo.name, // Get name from availableMaterials
+          quantity: materialData.quantity,
+          unit: materialInfo.unit, // Get unit from availableMaterials
+          used: 0 // Initialize used to 0
+        }
+      ]
+    }));
   };
   const handleAddFile = (file: File) => {
     setFormData(prev => ({
@@ -400,16 +406,13 @@ return true;
           role: member.role
         })),
         // Add materials array
-        materials: formData.materials.map(material => {
-          const materialInfo = availableMaterials.find(m => m.id === material.id);
-          return {
-            id: material.id,
-            name: materialInfo?.name || '',
-            quantity: material.quantity,
-            unit: materialInfo?.unit || '',
-            used: 0
-          };
-        }),
+        materials: formData.materials.map(material => ({
+          id: material.id,
+          name: material.name,
+          quantity: material.quantity,
+          unit: material.unit,
+          used: 0 // Initialize used amount to 0
+        })),
         files: formData.files?.map(file => ({
           id: Date.now().toString(),
           name: file.name,
@@ -431,6 +434,25 @@ return true;
     } finally {
       setIsLoading(false);
     }
+  };
+  const getDefaultMaterialName = (id: number): string => {
+    const materialNames: Record<number, string> = {
+      1: "Cement",
+      2: "Steel",
+      3: "Bricks"
+      // Add more materials as needed
+    };
+    return materialNames[id] || "Unknown Material";
+  };
+  
+  const getDefaultUnit = (id: number): string => {
+    const materialUnits: Record<number, string> = {
+      1: "bags",
+      2: "tons",
+      3: "pieces"
+      // Add more units as needed
+    };
+    return materialUnits[id] || "units";
   };
 
   return (

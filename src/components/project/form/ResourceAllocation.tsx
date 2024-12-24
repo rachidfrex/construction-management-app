@@ -92,15 +92,34 @@ const ResourceAllocation: React.FC<ResourceAllocationProps> = ({ formData, onCha
       updatedMaterials = [
         ...formData.materials,
         { 
-          id: materialId, 
-          quantity, 
-          source: formData.materialSource as 'internal' | 'purchase' 
+          // id: materialId, 
+          // quantity, 
+          // source: formData.materialSource as 'internal' | 'purchase' 
+          id: materialId,
+          name: material.name,
+          quantity: quantity,
+          unit: material.unit,
+          used: 0
         }
       ];
     }
 
     onChange({ ...formData, materials: updatedMaterials });
   };
+  // const updatedMaterials = formData.materials.map(m => 
+  //   m.id === materialId 
+  //     ? { 
+  //         id: materialId,
+  //         name: material.name,
+  //         quantity: quantity,
+  //         unit: material.unit,
+  //         used: 0
+  //       } 
+  //     : m
+  // );
+
+//   onChange({ ...formData, materials: updatedMaterials });
+// };
 
   return (
     <motion.div
