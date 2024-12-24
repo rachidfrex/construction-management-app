@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';   
 import { useToast } from '../../context/ToastContext';
 import { useTranslationContext } from '../../context/TranslationContext'; 
+import { useNavigate } from 'react-router-dom'; 
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import {
   HiOutlineClock,
@@ -53,51 +54,41 @@ interface Project {
 const ProjectDetails = () => {
   const { id } = useParams();
   const { showToast } = useToast();
+  const { t } = useTranslation();
+  const { direction } = useTranslationContext();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
-    const { t } = useTranslation();
-  const { direction } = useTranslationContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getProjectDetails = async () => {
+    const fetchProject = async () => {
       try {
-        setLoading(true);
-        // Mock data - replace with your actual data fetching logic
-        const mockProject = {
-          id: Number(id),
-          name: "Construction Site A",
-          description: "Main building construction project in downtown area",
-          clientName: "ABC Corporation",
-          startDate: "2024-01-15",
-          endDate: "2024-06-30",
-          status: "In Progress",
-          type: "Construction",
-          team: ["John Doe", "Jane Smith", "Bob Wilson"],
-          progress: 45,
-          budget: 1500000,
-          materialsUsed: 25,
-          tasks: [
-            { id: 1, title: "Foundation Work", date: "2024-02-01", status: "completed" },
-            { id: 2, title: "Structure Development", date: "2024-03-15", status: "in-progress" }
-          ],
-          materials: [
-            { id: 1, name: "Cement", quantity: "500 bags", status: "In Stock", usage: "60%" },
-            { id: 2, name: "Steel", quantity: "200 tons", status: "Low Stock", usage: "75%" }
-          ]
-        };
-        
-        setProject(mockProject);
+        if (!id) {
+          showToast('error', t('projects.messages.error.notFound'));
+          navigate('/projects');
+          return;
+        }
 
+        const projectData = storage.getProject(Number(id));
+        if (!projectData) {
+          showToast('error', t('projects.messages.error.notFound'));
+          navigate('/projects');
+          return;
+        }
+        
+        setProject(projectData);
       } catch (error) {
         showToast('error', t('projects.messages.error.load'));
+        navigate('/projects');
       } finally {
         setLoading(false);
       }
     };
 
-    getProjectDetails();
-  }, [id, showToast,]);
+    fetchProject();
+  }, [id, navigate, showToast, t]);
+
 
   const handleAddTeamMember = async (memberData: any) => {
     try {
@@ -139,8 +130,16 @@ const ProjectDetails = () => {
     }
   };
 
-  if (loading) return <div className="flex items-center justify-center min-h-screen">{t('loading')}</div>;
-  if (!project) return <div className="text-red-500">{t('projectNotFound')}</div>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
+          <p className="mt-4 text-gray-600">{t('common.loading')}</p>
+        </div>
+      </div>
+    );
+  }
 
   const statusColors = {
     'In Progress': 'bg-yellow-100 text-yellow-800',
