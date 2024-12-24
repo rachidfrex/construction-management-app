@@ -117,20 +117,7 @@ const ProjectDetails = () => {
     }
   };
 
-  const handleAddMaterial = async (materialData: any) => {
-    try {
-      // Simulated API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      showToast('success', t('projects.messages.success.materialAdded'));
-      // Update project data locally
-      setProject(prev => prev ? {
-        ...prev,
-        materials: [...prev.materials, materialData]
-      } : null);
-    } catch (error) {
-      showToast('error', t('projects.messages.error.addMaterial'));
-    }
-  };
+
 
   const handleAddMilestone = async (milestoneData: any) => {
     try {
@@ -164,7 +151,7 @@ const ProjectDetails = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 mt-5 p-6 ${
+      <main className={`transition-all duration-300 pt-16 mt-5 p-4 md:p-6 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
         <div className="mx-auto">
@@ -265,210 +252,224 @@ const ProjectDetails = () => {
 
           {/* Tabs */}
           <div className="bg-white rounded-xl shadow-sm">
-  <div className="border-b border-gray-200">
-    <nav className="flex space-x-8 px-6" aria-label="Tabs">
-      {[
-        { id: 'overview', label: t('projects.tabs.overview') },
-        { id: 'timeline', label: t('projects.tabs.timeline') },
-        { id: 'team', label: t('projects.tabs.team') },
-        { id: 'materials', label: t('projects.tabs.materials') }
-      ].map((tab) => (
-        <motion.button
-          key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
-          className={`py-4 px-1 border-b-2 font-medium text-sm relative ${
-            activeTab === tab.id
-              ? 'border-green-500 text-green-600'
-              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-          }`}
-          whileHover={{ y: -1 }}
-          whileTap={{ y: 0 }}
-        >
-          {tab.label}
-          {activeTab === tab.id && (
-            <motion.div
-              className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
-              layoutId="activeTab"
-            />
-          )}
-        </motion.button>
-      ))}
-    </nav>
-  </div>
-
-  <AnimatePresence mode="wait">
-    <motion.div 
-      key={activeTab}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.2 }}
-      className="p-6"
-    >
-      {activeTab === 'overview' && (
-        <div className="space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              {t('projects.details.description')}
-            </h3>
-            <p className="text-gray-600">{project.description}</p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              {t('projects.details.projectDetails')}
-            </h3>
-            <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="border-b border-gray-200">
+            <nav className="flex space-x-8 px-6" aria-label="Tabs">
               {[
-                { label: 'projects.details.type', value: project.type },
-                { label: 'projects.details.client', value: project.clientName },
-                { 
-                  label: 'projects.details.startDate', 
-                  value: new Date(project.startDate).toLocaleDateString() 
-                },
-                { 
-                  label: 'projects.details.endDate', 
-                  value: new Date(project.endDate).toLocaleDateString() 
-                }
-              ].map((item, index) => (
-                <div key={index} className="bg-gray-50 px-4 py-3 rounded-lg">
-                  <dt className="text-sm font-medium text-gray-500">{t(item.label)}</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      )}
-
-      {activeTab === 'timeline' && (
-        <div className="space-y-6">
-          <div className="relative">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">
-              {t('projects.details.timeline')}
-            </h3>
-            <div className="space-y-8">
-              {project.timeline?.map((milestone, index) => (
-                <motion.div
-                  key={milestone.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="relative flex items-start gap-6"
+                { id: 'overview', label: t('projects.tabs.overview') },
+                { id: 'timeline', label: t('projects.tabs.timeline') },
+                { id: 'team', label: t('projects.tabs.team') },
+                { id: 'materials', label: t('projects.tabs.materials') }
+              ].map((tab) => (
+                <motion.button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm relative ${
+                    activeTab === tab.id
+                      ? ' text-green-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ y: 0 }}
                 >
-                  <div className="flex-none">
-                    <div className={`w-3 h-3 rounded-full mt-2 ${
-                      milestone.status === 'completed' ? 'bg-green-500' :
-                      milestone.status === 'in-progress' ? 'bg-yellow-500' : 'bg-gray-300'
-                    }`} />
-                    {index < project.timeline.length - 1 && (
-                      <div className="w-px h-16 bg-gray-200 mx-auto mt-2" />
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">
-                      {new Date(milestone.date).toLocaleDateString()}
-                    </p>
-                    <h4 className="text-base font-medium text-gray-900 mt-1">
-                      {milestone.title}
-                    </h4>
-                  </div>
-                </motion.div>
+                  {tab.label}
+                  {activeTab === tab.id && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
+                      layoutId="activeTab"
+                    />
+                  )}
+                </motion.button>
               ))}
-            </div>
+            </nav>
           </div>
-        </div>
-      )}
 
-      {activeTab === 'team' && (
-        <div className="space-y-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">
-            {t('projects.details.teamMembers')}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {project.team?.map((member) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -2 }}
-                className="p-4 bg-gray-50 rounded-lg"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                    <span className="text-green-600 font-medium">
-                      {member.name?.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={activeTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              className="p-6"
+            >
+              {activeTab === 'overview' && (
+                <div className="space-y-6">
                   <div>
-                    <h4 className="text-sm font-medium text-gray-900">{member.name}</h4>
-                    <p className="text-xs text-gray-500">{member.role}</p>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {t('projects.details.description')}
+                    </h3>
+                    <p className="text-gray-600">{project.description}</p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {t('projects.details.projectDetails')}
+                    </h3>
+                    <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        { label: 'projects.details.type', value: project.type },
+                        { label: 'projects.details.client', value: project.clientName },
+                        { 
+                          label: 'projects.details.startDate', 
+                          value: new Date(project.startDate).toLocaleDateString() 
+                        },
+                        { 
+                          label: 'projects.details.endDate', 
+                          value: new Date(project.endDate).toLocaleDateString() 
+                        }
+                      ].map((item, index) => (
+                        <div key={index} className="bg-gray-50 px-4 py-3 rounded-lg">
+                          <dt className="text-sm font-medium text-gray-500">{t(item.label)}</dt>
+                          <dd className="mt-1 text-sm text-gray-900">{item.value}</dd>
+                        </div>
+                      ))}
+                    </dl>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      )}
+              )}
 
-      {activeTab === 'materials' && (
-        <div className="space-y-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">
-            {t('projects.details.materials')}
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    {t('projects.materials.name')}
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    {t('projects.materials.quantity')}
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    {t('projects.materials.status')}
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    {t('projects.materials.usage')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {project.materials?.map((material) => (
-                  <tr key={material.id}>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {material.name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {material.quantity} {material.unit}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                        material.status === 'In Stock' ? 'bg-green-100 text-green-800' : 
-                        'bg-yellow-100 text-yellow-800'
-                      }`}>
-                        {t(`inventory.status.${material.status.toLowerCase().replace(' ', '')}`)}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="w-24 bg-gray-200 rounded-full h-2">
+              {activeTab === 'timeline' && (
+                <div className="space-y-6">
+                  <div className="relative">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                      {t('projects.details.timeline')}
+                    </h3>
+                    <div className="space-y-8">
+                      {project.timeline?.map((milestone, index) => (
                         <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${(material.used / material.quantity) * 100}%` }}
-                          className="bg-green-500 h-2 rounded-full"
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                          key={milestone.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="relative flex items-start gap-6"
+                        >
+                          <div className="flex-none">
+                            <div className={`w-3 h-3 rounded-full mt-2 ${
+                              milestone.status === 'completed' ? 'bg-green-500' :
+                              milestone.status === 'in-progress' ? 'bg-yellow-500' : 'bg-gray-300'
+                            }`} />
+                            {index < project.timeline.length - 1 && (
+                              <div className="w-px h-16 bg-gray-200 mx-auto mt-2" />
+                            )}
+                          </div>
+                          <div>
+                            <p className="text-sm text-gray-500">
+                              {new Date(milestone.date).toLocaleDateString()}
+                            </p>
+                            <h4 className="text-base font-medium text-gray-900 mt-1">
+                              {milestone.title}
+                            </h4>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'team' && (
+                <div className="space-y-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                    {t('projects.details.teamMembers')}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {project.team?.map((member) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        whileHover={{ y: -2 }}
+                        className="p-4 bg-gray-50 rounded-lg"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                            <span className="text-green-600 font-medium">
+                              {member.name?.split(' ').map(n => n[0]).join('')}
+                            </span>
+                          </div>
+                          <div>
+                            <h4 className="text-sm font-medium text-gray-900">{member.name}</h4>
+                            <p className="text-xs text-gray-500">{member.role}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              
+              {activeTab === 'materials' && (
+                  <div className="space-y-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                      {t('projects.details.materials')}
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                          <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              {t('projects.materials.name')}
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              {t('projects.materials.quantity')}
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              {t('projects.materials.status')}
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              {t('projects.materials.usage')}
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                          {project.materials?.map((material) => {
+                            // Add null check and default status
+                            const status = material.status || 'Out of Stock';
+                            const statusKey = status.toLowerCase().replace(' ', '');
+                            
+                            return (
+                              <tr key={material.id}>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                  {material.name}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                  {material.quantity} {material.unit}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+                                    status === 'In Stock' ? 'bg-green-100 text-green-800' : 
+                                    'bg-yellow-100 text-yellow-800'
+                                  }`}>
+                                    {t(`inventory.status.${statusKey}`)}
+                                  </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  <div className="w-24 bg-gray-200 rounded-full h-2">
+                                    <motion.div
+                                      initial={{ width: 0 }}
+                                      animate={{ width: `${(material.used / material.quantity) * 100}%` }}
+                                      className="bg-green-500 h-2 rounded-full"
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                          {(!project.materials || project.materials.length === 0) && (
+                            <tr>
+                              <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                                {t('projects.materials.noMaterials')}
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+            </motion.div>
+          </AnimatePresence>
         </div>
-      )}
-    </motion.div>
-  </AnimatePresence>
-</div>
         </div>
       </main>
     </div>

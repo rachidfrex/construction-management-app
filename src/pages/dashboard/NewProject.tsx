@@ -76,22 +76,41 @@ interface Material {
   name: string;
   quantity: number;
   unit: string;
+  used: number; 
 }
 
 interface FormData {
   projectName: string;
   clientName: string;
   projectType: string;
-  materials: Material[];
-  materialSource: 'internal' | 'purchase';
+  description: string;
   startDate: string;
   endDate: string;
-  milestones: EnhancedMilestone[];
   budget: string;
-  description: string;
   team: TeamMember[];
-  files: { name: string; type: string }[];
+  materials: Material[];
+  files?: { name: string; type: string }[];
+  milestones: Array<{  // Add this
+    id: number;
+    title: string;
+    date: string;
+    phase: string;
+    reminder: boolean;
+  }>;
 }
+// interface FormData {
+//   projectName: string;
+//   clientName: string;
+//   projectType: string;
+//   description: string;
+//   startDate: string;
+//   endDate: string;
+//   budget: string;
+//   team: TeamMember[];
+//   materials: Material[];
+//   files?: { name: string; type: string }[];
+// }
+
 const NewProject = () => {
   const navigate = useNavigate();
   const { showToast } = useToast();
@@ -99,21 +118,19 @@ const NewProject = () => {
   const { direction } = useTranslationContext();
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     projectName: '',
     clientName: '',
     projectType: '',
-    materials: [] as { id: number; quantity: number; source: 'internal' | 'purchase' }[],
-    materialSource: 'internal',
+    description: '',
     startDate: '',
     endDate: '',
-    milestones: [] as EnhancedMilestone[],
     budget: '',
-    description: '',
-    team: [] as TeamMember[],
-    files: [] as File[],
-    phases: [] as Phase[],
-    materialLinks: [] as MaterialLink[],
+    team: [],
+    materials: [],
+    files: [],
+    milestones: []
+
   });
   const handleAddTeamMember = (member: { name: string; specialty: string }) => {
     setFormData(prev => ({
@@ -128,17 +145,31 @@ const NewProject = () => {
       ]
     }));
   };
-  const handleAddMaterial = (material: { name: string; quantity: number; unit: string }) => {
-    setFormData(prev => ({
-      ...prev,
-      materials: [
-        ...prev.materials,
-        {
-          id: Date.now().toString(),
-          ...material
-        }
-      ]
-    }));
+  // const handleAddMaterial = (material: { name: string; quantity: number; unit: string }) => {
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     materials: [
+  //       ...prev.materials,
+  //       {
+  //         id: Date.now().toString(),
+  //         ...material
+  //       }
+  //     ]
+  //   }));
+  // };
+  const handleAddMaterial = async (materialData: any) => {
+    try {
+      // Simulated API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      showToast('success', t('projects.messages.success.materialAdded'));
+      // Update project data locally
+      setProject(prev => prev ? {
+        ...prev,
+        materials: [...prev.materials, materialData]
+      } : null);
+    } catch (error) {
+      showToast('error', t('projects.messages.error.addMaterial'));
+    }
   };
   const handleAddFile = (file: File) => {
     setFormData(prev => ({
@@ -352,21 +383,6 @@ return true;
   
     setIsLoading(true);
     try {
-      // const projectData = {
-      //   name: formData.projectName,
-      //   description: formData.description,
-      //   clientName: formData.clientName,
-      //   startDate: formData.startDate,
-      //   endDate: formData.endDate,
-      //   status: 'In Progress' as const,
-      //   type: formData.projectType,
-      //   team: formData.team,
-      //   materials: formData.materials,
-      //   files: formData.files,
-      //   progress: 0,
-      //   budget: parseFloat(formData.budget),
-      //   materialsUsed: 0
-      // };
       const projectData = {
         name: formData.projectName,
         description: formData.description,
@@ -375,17 +391,22 @@ return true;
         endDate: formData.endDate,
         status: 'In Progress' as const,
         type: formData.projectType,
-        team: formData.team, // Just pass the team array directly
+        progress: 0,
+        budget: parseFloat(formData.budget),
+        materialsUsed: 0,
+        team: formData.team.map(member => ({
+          id: member.id,
+          name: member.name,
+          role: member.role
+        })),
         materials: formData.materials.map(material => ({
           id: material.id,
           name: material.name,
           quantity: material.quantity,
-          unit: material.unit
-        })),
-        budget: parseFloat(formData.budget),
-        materialsUsed: 0
+          unit: material.unit,
+          used: 0 // Start with 0 used materials
+        }))
       };
-  
   
       await storage.createProject(projectData);
       showToast('success', t('projects.messages.success.created'));
