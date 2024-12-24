@@ -260,7 +260,8 @@ export const fr = {
         documents: "Documents",
         tasks: "Tâches",
         budget: "Budget",
-        gallery: "Galerie"
+        gallery: "Galerie",
+        files: "Fichiers"
       },
       form: {
         projectName: "Nom du Projet",
@@ -347,7 +348,30 @@ export const fr = {
           delete: "Échec de la suppression du projet",
           archive: "Échec de l'archivage du projet"
         }
-      }
+      },
+      details: {
+        description: "Description",
+        projectDetails: "Détails du Projet",
+        type: "Type de Projet",
+        client: "Client",
+        startDate: "Date de Début",
+        endDate: "Date de Fin",
+        teamMembers: "Membres de l'Équipe",
+        timeline: "Chronologie",
+        materials: "Matériaux",
+        documents: "Documents"
+      },
+      milestones: {
+        title: "Étapes du Projet",
+        add: "Ajouter une Étape",
+        date: "Date",
+        status: "Statut",
+        completed: "Terminé",
+        active: "Actif",
+         },
+      complete: "Terminé",
+
+
     },
     activity: {
       recentActivity: "Activité Récente",
@@ -409,4 +433,6 @@ export const fr = {
       },
       noSelection: "Aucun matériel sélectionné"
     }
+    ,
+    
   };

@@ -128,8 +128,8 @@ const NewProject = () => {
     budget: '',
     team: [],
     materials: [],
-    files: [],
-    milestones: []
+    milestones: [],
+    files: []
 
   });
   const handleAddTeamMember = (member: { name: string; specialty: string }) => {
@@ -399,13 +399,12 @@ return true;
           name: member.name,
           role: member.role
         })),
-        materials: formData.materials.map(material => ({
-          id: material.id,
-          name: material.name,
-          quantity: material.quantity,
-          unit: material.unit,
-          used: 0 // Start with 0 used materials
-        }))
+        files: formData.files?.map(file => ({
+          id: Date.now().toString(), // Generate unique ID
+          name: file.name,
+          type: file.type
+        })) || []
+        
       };
   
       await storage.createProject(projectData);

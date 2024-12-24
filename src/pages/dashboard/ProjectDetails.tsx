@@ -11,42 +11,14 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineUsers,
   HiOutlineCube,
+  HiOutlineDocumentText,
+  HiOutlineDownload 
 } from 'react-icons/hi';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
 import { storage } from '../../mockData/db';
 
-// interface Project {
-//   id: number;
-//   name: string;
-//   description: string;
-//   clientName: string;
-//   startDate: string;
-//   endDate: string;
-//   status: 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
-//   type: string;
-//   team: {
-//     id: string;
-//     name: string;
-//     role: string;
-//   }[];
-//   progress: number;
-//   budget: number;
-//   materialsUsed: number;
-//   tasks: {
-//     id: number;
-//     title: string;
-//     date: string;
-//     status: 'completed' | 'in-progress' | 'pending';
-//   }[];
-//   materials: {
-//     id: number;
-//     name: string;
-//     quantity: string;
-//     status: string;
-//     usage: string;
-//   }[];
-// }
+
 interface Project {
   id: number;
   name: string;
@@ -154,7 +126,7 @@ const ProjectDetails = () => {
       <main className={`transition-all duration-300 pt-16 mt-5 p-4 md:p-6 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
-        <div className="mx-auto">
+        <div className="mx-auto mt-10">
         <Breadcrumb 
           items={[
             { label: t('projects.title'), path: '/projects' },
@@ -167,15 +139,15 @@ const ProjectDetails = () => {
           <div className="flex justify-between items-start">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">{project?.name}</h1>
-              <p className="text-gray-600 mt-1">{t('projects.client')}: {project?.clientName}</p>
+              <p className="text-gray-600 text-sm mt-1">{t('projects.client')}: {project?.clientName}</p>
             </div>
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[project?.status || 'In Progress']}`}>
+            <span className={`px-3 py-1  rounded-full text-xs font-medium ${statusColors[project?.status || 'In Progress']}`}>
               {t(`projects.status.${project?.status?.toLowerCase().replace(' ', '')}`)}
             </span>
           </div>
 
             {/* Project Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
                 <div className="bg-gray-50 rounded-lg p-4">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-green-100 rounded-lg">
@@ -183,7 +155,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.duration')}</p>
-                      <p className="font-semibold text-gray-900">
+                      <p className="font-semibold text-sm text-gray-900">
                         {new Date(project.startDate).toLocaleDateString()} - {new Date(project.endDate).toLocaleDateString()}
                       </p>
                     </div>
@@ -197,7 +169,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.budget')}</p>
-                      <p className="font-semibold text-gray-900">${project.budget.toLocaleString()}</p>
+                      <p className="font-semibold text-sm text-gray-900">${project.budget.toLocaleString()}</p>
                     </div>
                   </div>
                 </div>
@@ -209,7 +181,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.teamSize')}</p>
-                      <p className="font-semibold text-gray-900">{project.team.length} {t('projects.members')}</p>
+                      <p className="font-semibold text-sm text-gray-900">{project.team.length} {t('projects.members')}</p>
                     </div>
                   </div>
                 </div>
@@ -221,7 +193,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.materialsUsed')}</p>
-                      <p className="font-semibold text-gray-900">{project.materialsUsed} {t('projects.items')}</p>
+                      <p className="font-semibold text-sm text-gray-900">{project.materialsUsed} {t('projects.items')}</p>
                     </div>
                   </div>
                 </div>
@@ -231,7 +203,7 @@ const ProjectDetails = () => {
           {/* Progress Bar */}
           <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">{t('projects.progress')}</h2>
+              <h2 className=" font-semibold text-gray-900">{t('projects.progress')}</h2>
               <span className="text-sm font-medium text-gray-600">
                 {project.progress}% {t('projects.complete')}
               </span>
@@ -258,7 +230,8 @@ const ProjectDetails = () => {
                 { id: 'overview', label: t('projects.tabs.overview') },
                 { id: 'timeline', label: t('projects.tabs.timeline') },
                 { id: 'team', label: t('projects.tabs.team') },
-                { id: 'materials', label: t('projects.tabs.materials') }
+                { id: 'materials', label: t('projects.tabs.materials') },
+                { id: 'files', label: t('projects.tabs.documents') }
               ].map((tab) => (
                 <motion.button
                   key={tab.id}
@@ -295,14 +268,14 @@ const ProjectDetails = () => {
               {activeTab === 'overview' && (
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    <h3 className=" font-semibold text-gray-900 mb-2">
                       {t('projects.details.description')}
                     </h3>
-                    <p className="text-gray-600">{project.description}</p>
+                    <p className="text-gray-600 text-sm">{project.description}</p>
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    <h3 className=" font-semibold text-gray-900 mb-2">
                       {t('projects.details.projectDetails')}
                     </h3>
                     <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -331,7 +304,7 @@ const ProjectDetails = () => {
               {activeTab === 'timeline' && (
                 <div className="space-y-6">
                   <div className="relative">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                    <h3 className=" font-semibold text-gray-900 mb-6">
                       {t('projects.details.timeline')}
                     </h3>
                     <div className="space-y-8">
@@ -368,7 +341,7 @@ const ProjectDetails = () => {
 
               {activeTab === 'team' && (
                 <div className="space-y-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                  <h3 className=" font-semibold text-gray-900 mb-6">
                     {t('projects.details.teamMembers')}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -400,7 +373,7 @@ const ProjectDetails = () => {
               
               {activeTab === 'materials' && (
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-6">
+                    <h3 className=" font-semibold text-gray-900 mb-6">
                       {t('projects.details.materials')}
                     </h3>
                     <div className="overflow-x-auto">
@@ -466,7 +439,50 @@ const ProjectDetails = () => {
                       </table>
                     </div>
                   </div>
+                  
+                  
                 )}
+                {activeTab === 'files' && (
+                    <div className="space-y-6">
+                      <h3 className=" font-semibold text-gray-900 mb-6">
+                        {t('projects.details.documents')}
+                      </h3>
+                      <div className="grid gap-4">
+                        {project.files?.length > 0 ? (
+                          project.files.map((file) => (
+                            <motion.div
+                              key={file.id}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                            >
+                              <div className="flex items-center gap-3">
+                                <div className="p-2 bg-blue-100 rounded-lg">
+                                  <HiOutlineDocumentText className="w-5 h-5 text-blue-600" />
+                                </div>
+                                <div>
+                                  <h4 className="text-sm font-medium text-gray-900">{file.name}</h4>
+                                  <p className="text-xs text-gray-500">{file.type}</p>
+                                </div>
+                              </div>
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="p-2 text-gray-400 hover:text-blue-500 rounded-full"
+                              >
+                                <HiOutlineDownload className="w-5 h-5" />
+                              </motion.button>
+                            </motion.div>
+                          ))
+                        ) : (
+                          <div className="text-center py-12 bg-gray-50 rounded-lg">
+                            <HiOutlineDocumentText className="w-10 h-10 mx-auto text-gray-400" />
+                            <p className="mt-2 text-sm text-gray-500">{t('projects.messages.noFiles')}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
             </motion.div>
           </AnimatePresence>
         </div>

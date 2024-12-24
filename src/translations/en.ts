@@ -269,7 +269,8 @@ export const en = {
         documents: "Documents",
         tasks: "Tasks",
         budget: "Budget",
-        gallery: "Gallery"
+        gallery: "Gallery",
+        files: "Files"
       },
       form: {
         projectName: "Project Name",
@@ -361,7 +362,22 @@ export const en = {
           archive: "Failed to archive project",
           notFound: "Project not found",
         }
-      }
+      },
+      details: {
+        description: "Description",
+        projectDetails: "Project Details",
+        type: "Project Type",
+        client: "Client",
+        startDate: "Start Date",
+        endDate: "End Date",
+        teamMembers: "Team Members",
+        timeline: "Timeline",
+        materials: "Materials",
+        documents: "Documents"
+      },
+
+      complete: "Complete",
+   
     },
     activity: {
       recentActivity: "Recent Activity",
@@ -385,6 +401,8 @@ export const en = {
         foundationWork: "Foundation Work",
         projectAlpha: "Project Alpha"
       }
+      ,
+     
     },
     modals: {
       common: {
@@ -423,7 +441,8 @@ export const en = {
         insufficient: "Insufficient stock"
       },
       noSelection: "No materials selected"
-    }
+    },
+    
   };
   
 

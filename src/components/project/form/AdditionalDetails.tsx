@@ -14,12 +14,13 @@ interface TeamMember {
   name: string;
   role: string;
 }
+
 interface AdditionalDetailsProps {
   formData: {
     budget: string;
     description: string;
-    team: TeamMember[]; // Change from string[] to TeamMember[]
-    files: { name: string; type: string }[]; // Change from File[] to simpler structure
+    team: TeamMember[];
+    files: { id: string; name: string }[]; // Keep only necessary file info
   };
   onChange: (data: any) => void;
 }
@@ -40,10 +41,14 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newFiles = Array.from(e.target.files).map(file => ({
-        name: file.name,
-        type: file.type
+        id: Date.now().toString(), // Generate unique ID
+        name: file.name // Store only the file name
       }));
-      onChange({ ...formData, files: [...formData.files, ...newFiles] });
+
+      onChange({
+        ...formData,
+        files: [...(formData.files || []), ...newFiles]
+      });
     }
   };
 
@@ -171,7 +176,7 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
       </div>
 
       {/* File Attachments */}
-      <div>
+      {/* <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {t('projects.form.attachments')}
         </label>
@@ -220,7 +225,58 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
             </div>
           )}
         </div>
+      </div> */}
+      <div>
+      <label className="block text-sm font-medium text-gray-700 mb-2">
+        {t('projects.form.attachments')}
+      </label>
+      <div className="space-y-4">
+        <div 
+          onClick={() => fileInputRef.current?.click()}
+          className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-green-500 transition-colors"
+        >
+          <HiOutlineUpload className="mx-auto h-8 w-8 text-gray-400" />
+          <p className="mt-2 text-sm text-gray-600">
+            {t('projects.form.dropzone.text')}
+          </p>
+          <p className="text-xs text-gray-500">
+            {t('projects.form.placeholders.attachments')}
+          </p>
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            multiple
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+            className="hidden"
+          />
+        </div>
+
+        {/* File List */}
+        {formData.files && formData.files.length > 0 && (
+          <div className="space-y-2">
+            {formData.files.map((file, index) => (
+              <div
+                key={file.id}
+                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+              >
+                <div className="flex items-center space-x-2">
+                  <HiOutlineDocumentText className="w-5 h-5 text-gray-400" />
+                  <span className="text-sm text-gray-700">{file.name}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeFile(index)}
+                  className="text-gray-400 hover:text-red-500"
+                >
+                  <HiOutlineX className="w-5 h-5" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+    </div>
     </motion.div>
   );
 };

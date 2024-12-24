@@ -263,8 +263,10 @@
           documents: "المستندات",
           tasks: "المهام",
           budget: "الميزانية",
-          gallery: "معرض الصور"
+          gallery: "معرض الصور",
+           files: "الملفات"
         },
+
         form: {
           projectName: "اسم المشروع",
           clientName: "اسم العميل",
@@ -355,7 +357,28 @@
             delete: "فشل في حذف المشروع",
             archive: "فشل في أرشفة المشروع"
           }
-        }
+        },
+        details: {
+          description: "الوصف",
+          projectDetails: "تفاصيل المشروع",
+          type: "نوع المشروع",
+          client: "العميل",
+          startDate: "تاريخ البدء",
+          endDate: "تاريخ الانتهاء",
+          teamMembers: "أعضاء الفريق",
+          timeline: "الجدول الزمني",
+          materials: "المواد",
+          documents: "المستندات"
+        },
+        milestones: {
+          title: "مراحل المشروع",
+          add: "إضافة مرحلة",
+          date: "تاريخ المرحلة",
+          titlePlaceholder: "عنوان المرحلة"
+        },
+        complete: "مكتمل",
+        noFiles: "لم يتم رفع أي ملفات بعد",
+
       },
       activity: {
         recentActivity: "النشاط الحديث",
@@ -423,7 +446,8 @@
           insufficient: "المخزون غير كافي"
         },
         noSelection: "لم يتم اختيار أي مواد"
-      }
+      },
+      
 };
 
 // src/
