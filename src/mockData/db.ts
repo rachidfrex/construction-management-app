@@ -5,6 +5,11 @@ interface DB {
     inventory: InventoryItem[];
     activities: Activity[];
   }
+  interface TeamMember {
+    id: string;
+    name: string;
+    role: string;
+  }
   
   const initialDB: DB = {
     users: [
@@ -27,10 +32,20 @@ interface DB {
         endDate: "2024-06-30",
         status: "In Progress",
         type: "Construction",
-        team: ["John Doe", "Jane Smith", "Bob Wilson"],
         progress: 45,
         budget: 1500000,
-        materialsUsed: 25
+        materialsUsed: 25,
+        team: [
+          { id: "1", name: "Karim Alami", role: "مدير المشروع" },
+          { id: "2", name: "Amina Benali", role: "مهندس موقع" },
+          { id: "3", name: "Hassan El Fassi", role: "مهندس معماري" },
+          { id: "4", name: "Fatima Zahra", role: "مدير البناء" }
+        ],
+        materials: [
+          { id: 1, name: "Cement", quantity: 1000, unit: "bags", used: 450 },
+          { id: 2, name: "Steel", quantity: 500, unit: "tons", used: 200 },
+          { id: 3, name: "Bricks", quantity: 50000, unit: "pieces", used: 20000 }
+        ]
       }
       // Add more mock projects
     ],
@@ -69,18 +84,68 @@ interface DB {
     private static instance: StorageService;
     private db: DB;
   
+    // private constructor() {
+    //   // Load data from localStorage if exists, else use initialDB
+    //   const stored = localStorage.getItem('appDB');
+    //   this.db = stored ? JSON.parse(stored) : initialDB;
+    // }
     private constructor() {
-      // Load data from localStorage if exists, else use initialDB
+      // Get stored data or use initial data
       const stored = localStorage.getItem('appDB');
-      this.db = stored ? JSON.parse(stored) : initialDB;
+      this.db = stored ? JSON.parse(stored) : {
+        projects: [
+          {
+            id: 1,
+            name: "Construction Site A",
+            description: "Main building construction project in downtown area",
+            clientName: "ABC Corporation",
+            startDate: "2024-01-15",
+            endDate: "2024-06-30",
+            status: "In Progress",
+            type: "Construction",
+            team: [
+              { id: "1", name: "Karim Alami", role: "مدير المشروع" },
+              { id: "2", name: "Amina Benali", role: "مهندس موقع" },
+              { id: "3", name: "Hassan El Fassi", role: "مهندس معماري" },
+              { id: "4", name: "Fatima Zahra", role: "مدير البناء" }
+            ],
+            progress: 45,
+            budget: 1500000,
+            materialsUsed: 25,
+            materials: [
+              { id: 1, name: "Cement", quantity: 1000, unit: "bags", used: 450 },
+              { id: 2, name: "Steel", quantity: 500, unit: "tons", used: 200 },
+              { id: 3, name: "Bricks", quantity: 50000, unit: "pieces", used: 20000 }
+            ]
+          }
+        ],
+      };
     }
   
+  
+    // static getInstance(): StorageService {
+    //   if (!StorageService.instance) {
+    //     StorageService.instance = new StorageService();
+    //   }
+    //   return StorageService.instance;
+    // }
     static getInstance(): StorageService {
       if (!StorageService.instance) {
         StorageService.instance = new StorageService();
       }
       return StorageService.instance;
     }
+    getProject(id: number) {
+      const project = this.db.projects.find(p => p.id === id);
+      if (!project) {
+        throw new Error('Project not found');
+      }
+      return project;
+    }
+  
+    // getProjects() {
+    //   return this.db.projects;
+    // }
   
     // Save changes to localStorage
     private persist() {
@@ -196,3 +261,5 @@ interface DB {
   }
   
   export const storage = StorageService.getInstance();
+  storage.reset();
+  

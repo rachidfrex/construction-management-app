@@ -200,7 +200,20 @@
         progress: "التقدم",
         noResults: "لم يتم العثور على مشاريع تطابق معايير البحث",
         quickAccess: "الوصول السريع",
+        teamSize: "حجم الفريق",
+        duration: "المدة",
+        materialsUsed: "المواد المستخدمة",
         quickAccessDescription: "عرض المشاريع حسب حالتها الحالية أو إدارة مشاريعك النشطة",
+
+        budget: "الميزانية",
+        team: "الفريق",
+        materials: "المواد",
+        manageMaterials: "إدارة المواد",
+        manageTeam: "إدارة الفريق",
+        description: "الوصف",
+        viewTimeline: "عرض الجدول الزمني",
+        timeline: "الجدول الزمني",
+        items: "عناصر",
         filters: {
           title: "تصفية المشاريع",
           clear: "مسح التصفية",
@@ -228,6 +241,7 @@
           maintenance: "صيانة"
         },
         statistics: {
+          title: "إحصائيات المشروع",
           total: "إجمالي المشاريع",
           inProgress: "قيد التنفيذ",
           completed: "مكتملة",
@@ -318,7 +332,8 @@
           timeline: "الجدول الزمني",
           team: "الفريق",
           // materials: "المواد",
-          documents: "المستندات"
+          documents: "المستندات",
+          title: "إجراءات المشروع",
         },
         messages: {
           deleteConfirm: "هل أنت متأكد من حذف هذا المشروع؟",

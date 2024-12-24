@@ -22,6 +22,7 @@ export const en = {
         completed: "Completed",
         next : "Next",
         previous: "Previous",
+        backToProjects: "Back to Projects"
 
       },
       auth: {
@@ -204,6 +205,21 @@ export const en = {
       noResults: "No projects found matching your criteria",
       quickAccess: "Quick Access",
       quickAccessDescription: "View projects by their current status or manage your active projects",
+      
+
+      budget: "Budget",
+      duration: "Duration",
+      teamSize: "Team Size",
+      materialsUsed: "Materials Used",
+      items: "items",
+      team: "Team",
+      materials: "Materials",
+      manageMaterials: "Manage Materials",
+      manageTeam: "Manage Team",
+      description: "Description",
+      viewTimeline: "View Timeline",
+      timeline : "Timeline", 
+
       filters: {
         title: "Filter Projects",
         clear: "Clear Filters",
@@ -231,6 +247,7 @@ export const en = {
         maintenance: "Maintenance"
       },
       statistics: {
+        title: "Project Statistics",
         total: "Total Projects",
         inProgress: "In Progress",
         completed: "Completed",
@@ -306,6 +323,7 @@ export const en = {
          milestoneDateRange: "Milestone date must be within project duration"
       },
       actions: {
+        title: "Actions",
         edit: "Edit Project",
         delete: "Delete Project",
         archive: "Archive Project",
@@ -340,7 +358,8 @@ export const en = {
           create: "Failed to create project",
           update: "Failed to update project",
           delete: "Failed to delete project",
-          archive: "Failed to archive project"
+          archive: "Failed to archive project",
+          notFound: "Project not found",
         }
       }
     },

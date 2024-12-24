@@ -200,6 +200,17 @@ export const fr = {
       noResults: "Aucun projet ne correspond à vos critères",
       quickAccess: "Accès Rapide",
       quickAccessDescription: "Voir les projets par leur statut actuel ou gérer vos projets actifs",
+      duration: "Duration",
+      teamSize: "Team Size",
+      materialsUsed: "Materials Used",
+      items: "items",
+      team: "Team",
+      materials: "Materials",
+      manageMaterials: "Manage Materials",
+      manageTeam: "Manage Team",
+      description: "Description",
+      viewTimeline: "View Timeline",
+      timeline : "Timeline",
       filters: {
         title: "Filtrer les Projets",
         clear: "Effacer les Filtres",
@@ -227,6 +238,7 @@ export const fr = {
         maintenance: "Maintenance"
       },
       statistics: {
+        title : "Statistiques du projet",
         total: "Total des Projets",
         inProgress: "En Cours",
         completed: "Terminés",
