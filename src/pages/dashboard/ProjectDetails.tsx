@@ -272,7 +272,7 @@ const ProjectDetails = () => {
                     whileHover={{ y: -1 }}
                     whileTap={{ y: 0 }}
                   >
-                    <span className="md:hidden  flex   spac
+                    <span className="md:hidden mx-3 flex justify-center w-full items-center
                     ">{tab.icon}</span>
                     <span className="hidden md:block">{tab.label}</span>
                     {activeTab === tab.id && (
