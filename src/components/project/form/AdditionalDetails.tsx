@@ -9,16 +9,21 @@ import {
   HiOutlineUpload,
   HiOutlineX
 } from 'react-icons/hi';
-
+interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+}
 interface AdditionalDetailsProps {
   formData: {
     budget: string;
     description: string;
-    team: string[];
-    files: File[];
+    team: TeamMember[]; // Change from string[] to TeamMember[]
+    files: { name: string; type: string }[]; // Change from File[] to simpler structure
   };
   onChange: (data: any) => void;
 }
+
 
 const teamMembers = [
   { id: 1, name: 'Karim Alami', role: 'مدير المشروع' },
@@ -34,10 +39,31 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const newFiles = Array.from(e.target.files);
+      const newFiles = Array.from(e.target.files).map(file => ({
+        name: file.name,
+        type: file.type
+      }));
       onChange({ ...formData, files: [...formData.files, ...newFiles] });
     }
   };
+
+  const handleTeamSelection = (member: typeof teamMembers[0]) => {
+    const isSelected = formData.team.some(t => t.id === member.id.toString());
+    let newTeam;
+    
+    if (isSelected) {
+      newTeam = formData.team.filter(t => t.id !== member.id.toString());
+    } else {
+      newTeam = [...formData.team, {
+        id: member.id.toString(),
+        name: member.name,
+        role: member.role
+      }];
+    }
+    
+    onChange({ ...formData, team: newTeam });
+  };
+
 
   const removeFile = (index: number) => {
     const updatedFiles = formData.files.filter((_, i) => i !== index);
@@ -68,7 +94,7 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
       </div>
 
       {/* Team Selection */}
-      <div>
+      {/* <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
           {t('projects.form.teamMembers')} *
         </label>
@@ -99,8 +125,34 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
             </motion.div>
           ))}
         </div>
+      </div> */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          {t('projects.form.teamMembers')} *
+        </label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {teamMembers.map((member) => (
+            <motion.div
+              key={member.id}
+              whileHover={{ scale: 1.02 }}
+              className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                formData.team.some(t => t.id === member.id.toString())
+                  ? 'border-green-500 bg-green-50'
+                  : 'border-gray-200 hover:border-green-500'
+              }`}
+              onClick={() => handleTeamSelection(member)}
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium text-gray-900">{member.name}</p>
+                  <p className="text-sm text-gray-500">{member.role}</p>
+                </div>
+                <HiOutlineUsers className="w-5 h-5 text-gray-400" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
-
       {/* Project Description */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
