@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useToast } from '../../context/ToastContext';
 import { useTranslationContext } from '../../context/TranslationContext'; 
 import { useNavigate } from 'react-router-dom'; 
+
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import {
   HiOutlineClock,
@@ -12,8 +13,14 @@ import {
   HiOutlineUsers,
   HiOutlineCube,
   HiOutlineDocumentText,
-  HiOutlineDownload 
+  HiOutlineDownload ,
+  HiOutlineHome,
+  HiOutlineCalendar,
+  HiOutlineUserGroup,
+  HiOutlineDocument 
 } from 'react-icons/hi';
+
+
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
 import { storage } from '../../mockData/db';
@@ -44,7 +51,33 @@ const ProjectDetails = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const navigate = useNavigate();
-
+  const tabs = [
+    { 
+      id: 'overview', 
+      label: t('projects.tabs.overview'),
+      icon: <HiOutlineHome className="w-5 h-5" />
+    },
+    { 
+      id: 'timeline', 
+      label: t('projects.tabs.timeline'),
+      icon: <HiOutlineCalendar className="w-5 h-5" />
+    },
+    { 
+      id: 'team', 
+      label: t('projects.tabs.team'),
+      icon: <HiOutlineUserGroup className="w-5 h-5" />
+    },
+    { 
+      id: 'materials', 
+      label: t('projects.tabs.materials'),
+      icon: <HiOutlineCube className="w-5 h-5" />
+    },
+    { 
+      id: 'files', 
+      label: t('projects.tabs.documents'),
+      icon: <HiOutlineDocument className="w-5 h-5" />
+    }
+  ];
   useEffect(() => {
     const fetchProject = async () => {
       try {
@@ -225,35 +258,32 @@ const ProjectDetails = () => {
           {/* Tabs */}
           <div className="bg-white rounded-xl shadow-sm">
           <div className="border-b border-gray-200">
-            <nav className="flex space-x-8 px-6" aria-label="Tabs">
-              {[
-                { id: 'overview', label: t('projects.tabs.overview') },
-                { id: 'timeline', label: t('projects.tabs.timeline') },
-                { id: 'team', label: t('projects.tabs.team') },
-                { id: 'materials', label: t('projects.tabs.materials') },
-                { id: 'files', label: t('projects.tabs.documents') }
-              ].map((tab) => (
-                <motion.button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm relative ${
-                    activeTab === tab.id
-                      ? ' text-green-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ y: 0 }}
-                >
-                  {tab.label}
-                  {activeTab === tab.id && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
-                      layoutId="activeTab"
-                    />
-                  )}
-                </motion.button>
-              ))}
-            </nav>
+
+            <nav className="flex space-x-4 md:space-x-8 px-4 md:px-6 overflow-x-auto" aria-label="Tabs">
+                {tabs.map((tab) => (
+                  <motion.button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`py-4 px-1 m border-b-2 font-medium text-sm relative flex items-center gap-2 ${
+                      activeTab === tab.id
+                        ? 'text-green-600 border-green-500'
+                        : 'border-transparent text-gray-500  '
+                    }`}
+                    whileHover={{ y: -1 }}
+                    whileTap={{ y: 0 }}
+                  >
+                    <span className="md:hidden  flex   spac
+                    ">{tab.icon}</span>
+                    <span className="hidden md:block">{tab.label}</span>
+                    {activeTab === tab.id && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
+                        layoutId="activeTab"
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </nav>
           </div>
 
           <AnimatePresence mode="wait">
@@ -302,8 +332,8 @@ const ProjectDetails = () => {
               )}
 
               {activeTab === 'timeline' && (
-                <div className="space-y-6">
-                  <div className="relative">
+                <div className="space-y-6  ">
+                  <div className="relative ">
                     <h3 className=" font-semibold text-gray-900 mb-6">
                       {t('projects.details.timeline')}
                     </h3>
