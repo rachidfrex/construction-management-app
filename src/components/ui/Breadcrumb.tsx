@@ -29,7 +29,7 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
               </Link>
             </motion.div>
           ) : (
-            <span className="text-gray-900 font-medium">{item.label}</span>
+            <span className="text-gray-900 font-medium line-clamp-1">{item.label}</span>
           )}
         </div>
       ))}

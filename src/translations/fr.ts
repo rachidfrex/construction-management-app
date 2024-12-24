@@ -205,7 +205,14 @@ export const fr = {
       materialsUsed: "Materials Used",
       items: "items",
       team: "Team",
-      materials: "Materials",
+      material: "Materials",
+      materials: {
+        name: "Nom du Matériau",
+        quantity: "Quantité",
+        status: "Statut",
+        usage: "Utilisation",
+        noMaterials: "Aucun matériau ajouté à ce projet"
+      },
       manageMaterials: "Manage Materials",
       manageTeam: "Manage Team",
       description: "Description",
@@ -333,6 +340,7 @@ export const fr = {
         archiveConfirm: "Êtes-vous sûr de vouloir archiver ce projet ?",
         archived: "Projet archivé avec succès",
         deleted: "Projet supprimé avec succès",
+        noFiles: "Aucun fichier téléchargé",
         success: {
           created: "Projet créé avec succès",
           updated: "Projet mis à jour avec succès",
@@ -361,14 +369,8 @@ export const fr = {
         materials: "Matériaux",
         documents: "Documents"
       },
-      milestones: {
-        title: "Étapes du Projet",
-        add: "Ajouter une Étape",
-        date: "Date",
-        status: "Statut",
-        completed: "Terminé",
-        active: "Actif",
-         },
+
+
       complete: "Terminé",
 
 

@@ -98,7 +98,7 @@ export const ProjectCard = ({ project, onDelete, onArchive }: ProjectCardProps) 
       action: () => navigate(`/projects/${project.id}/team`),
     },
     { 
-      label: t('projects.actions.materials'), 
+      label: t('projects.actions.material'), 
       icon: <HiOutlineCube className="w-4 h-4" />,
       action: () => navigate(`/projects/${project.id}/materials`),
     },

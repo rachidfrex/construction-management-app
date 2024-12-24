@@ -213,7 +213,14 @@ export const en = {
       materialsUsed: "Materials Used",
       items: "items",
       team: "Team",
-      materials: "Materials",
+      material: "Materials",
+      materials: {
+        name: "Material Name",
+        quantity: "Quantity",
+        status: "Status",
+        usage: "Usage",
+        noMaterials: "No materials added to this project"
+      },
       manageMaterials: "Manage Materials",
       manageTeam: "Manage Team",
       description: "Description",
@@ -346,6 +353,7 @@ export const en = {
         archiveConfirm: "Are you sure you want to archive this project?",
         archived: "Project archived successfully",
         deleted: "Project deleted successfully",
+          noFiles: "No files uploaded yet",
         success: {
           created: "Project created successfully",
           updated: "Project updated successfully",
