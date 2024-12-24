@@ -207,7 +207,14 @@
 
         budget: "الميزانية",
         team: "الفريق",
-        materials: "المواد",
+        material: "المواد",
+        materials: {
+          name: "اسم المادة",
+          quantity: "الكمية",
+          status: "الحالة",
+          usage: "الاستخدام",
+          noMaterials: "لم تتم إضافة مواد لهذا المشروع"
+        },
         manageMaterials: "إدارة المواد",
         manageTeam: "إدارة الفريق",
         description: "الوصف",

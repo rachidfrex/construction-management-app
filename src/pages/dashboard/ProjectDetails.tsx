@@ -126,7 +126,7 @@ const ProjectDetails = () => {
       <main className={`transition-all duration-300 pt-16 mt-5 p-4 md:p-6 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
-        <div className="mx-auto mt-10 ">
+        <div className="mx-auto md:mt-10 ">
         <Breadcrumb 
           items={[
             { label: t('projects.title'), path: '/projects' },

@@ -205,6 +205,7 @@ export const en = {
       noResults: "No projects found matching your criteria",
       quickAccess: "Quick Access",
       quickAccessDescription: "View projects by their current status or manage your active projects",
+     
       
 
       budget: "Budget",
@@ -213,7 +214,6 @@ export const en = {
       materialsUsed: "Materials Used",
       items: "items",
       team: "Team",
-      material: "Materials",
       materials: {
         name: "Material Name",
         quantity: "Quantity",
@@ -345,7 +345,7 @@ export const en = {
         editProject: "Edit Project",
         timeline: "Timeline",
         team: "Team",
-        materials: "Materials",
+        material: "Materials",
         documents: "Documents",
       },
       messages: {
@@ -353,7 +353,7 @@ export const en = {
         archiveConfirm: "Are you sure you want to archive this project?",
         archived: "Project archived successfully",
         deleted: "Project deleted successfully",
-          noFiles: "No files uploaded yet",
+        noFiles: "No files uploaded yet",
         success: {
           created: "Project created successfully",
           updated: "Project updated successfully",

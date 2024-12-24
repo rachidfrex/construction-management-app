@@ -399,12 +399,28 @@ return true;
           name: member.name,
           role: member.role
         })),
+        // Add materials array
+        materials: formData.materials.map(material => {
+          const materialInfo = availableMaterials.find(m => m.id === material.id);
+          return {
+            id: material.id,
+            name: materialInfo?.name || '',
+            quantity: material.quantity,
+            unit: materialInfo?.unit || '',
+            used: 0
+          };
+        }),
         files: formData.files?.map(file => ({
-          id: Date.now().toString(), // Generate unique ID
+          id: Date.now().toString(),
           name: file.name,
           type: file.type
-        })) || []
-        
+        })) || [],
+        timeline: formData.milestones.map(milestone => ({
+          id: milestone.id,
+          title: milestone.title,
+          date: milestone.date,
+          status: 'pending'
+        }))
       };
   
       await storage.createProject(projectData);

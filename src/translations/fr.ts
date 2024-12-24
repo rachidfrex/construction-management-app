@@ -332,7 +332,7 @@ export const fr = {
         editProject: "Modifier le Projet",
         timeline: "Chronologie",
         team: "Équipe",
-        materials: "Matériaux",
+        material: "Matériaux",
         documents: "Documents"
       },
       messages: {

@@ -23,7 +23,7 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
             <motion.div whileHover={{ x: -2 }}>
               <Link 
                 to={item.path}
-                className="hover:text-gray-900 transition-colors"
+                className="hover:text-gray-900 line-clamp-1 transition-colors"
               >
                 {item.label}
               </Link>
