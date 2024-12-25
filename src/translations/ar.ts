@@ -1,5 +1,4 @@
-  
-  export const ar = {
+export const ar = {
     common: {
         loading: "جاري التحميل...",
         save: "حفظ",
@@ -22,6 +21,7 @@
         completed: "مكتمل",
         next : "التالي",
         previous : "السابق",
+        projects: "المشاريع",
       },
       auth: {
         welcomeBack: "مرحباً بعودتك",
@@ -353,7 +353,7 @@
         },
         messages: {
           deleteConfirm: "هل أنت متأكد من حذف هذا المشروع؟",
-          archiveConfirm: "هل أنت متأكد من أرشفة هذا المشروع؟",
+          archiveConfirm: "هل أنت متأكد من أرشفة هذا المشروع؟ يمكنك استعادته لاحقاً.",
           archived: "تم أرشفة المشروع بنجاح",
           deleted: "تم حذف المشروع بنجاح",
             noFiles: "لم يتم رفع أي ملفات بعد",
@@ -394,7 +394,9 @@
         complete: "مكتمل",
         noFiles: "لم يتم رفع أي ملفات بعد",
 
+        
       },
+      
       activity: {
         recentActivity: "النشاط الحديث",
         refresh: "تحديث",
@@ -462,6 +464,75 @@
         },
         noSelection: "لم يتم اختيار أي مواد"
       },
+      editProject: {
+        title: 'تعديل المشروع',
+        generalInfo: 'معلومات عامة',
+        description: 'الوصف',
+        materials: 'المواد',
+        progress: 'تقدم المشروع',
+        financial: 'النظرة المالية',
+        teamMembers: 'أعضاء الفريق',
+        files: 'الملفات والمستندات',
+        dangerZone: 'منطقة الخطر',
+        addMember: 'إضافة عضو',
+        uploadFiles: 'رفع الملفات',
+        form: {
+          projectName: 'اسم المشروع',
+          clientName: 'اسم العميل',
+          startDate: 'تاريخ البدء',
+          endDate: 'تاريخ الانتهاء',
+          budget: 'الميزانية',
+          descriptionPlaceholder: 'أدخل وصف المشروع...',
+        },
+        buttons: {
+          save: 'حفظ التغييرات',
+          saving: 'جاري الحفظ...',
+          addMaterial: 'إضافة مواد',
+          addMember: 'إضافة عضو',
+          uploadFiles: 'رفع الملفات',
+          deleteProject: 'حذف المشروع',
+        },
+        dropzone: {
+          text: 'أو اسحب وأفلت الملفات هنا'
+        },
+        status: {
+          'on-track': 'في المسار الصحيح',
+          onTrack: 'في المسار الصحيح',
+          delayed: 'متأخر',
+          ahead: 'متقدم',
+          inStock: 'متوفر',
+          lowStock: 'مخزون منخفض',
+          outOfStock: 'نفذ من المخزون'
+        },
+        messages: {
+          success: {
+            updated: 'تم تحديث المشروع بنجاح!',
+          },
+          error: {
+            fetch: 'فشل في تحميل تفاصيل المشروع',
+            update: 'فشل في تحديث المشروع',
+          }
+        },
+        projectProgress: 'تقدم المشروع',
+        financialOverview: 'النظرة المالية',
+        filesDocuments: 'الملفات والمستندات',
+        addTransaction: 'إضافة معاملة',
+        dragDropFiles: 'أو اسحب وأفلت الملفات هنا',
+        expenseAmount: '$',
+        milestones: 'مراحل المشروع',
+        addMilestone: 'إضافة مرحلة',
+        noFiles: 'لم يتم رفع أي ملفات بعد',
+        confirmDelete: 'هل أنت متأكد من حذف هذا المشروع؟',
+        transactionStatus: {
+          pending: 'قيد الانتظار',
+          completed: 'مكتمل',
+          cancelled: 'ملغي'
+        },
+        transactionTypes: {
+          expense: 'مصروف',
+          payment: 'دفعة'
+        }
+      }
       
 };
 

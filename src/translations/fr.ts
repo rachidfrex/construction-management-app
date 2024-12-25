@@ -21,6 +21,7 @@ export const fr = {
         completed: "Terminé",
         next : "Suivant",
         previous : "Précédent",
+        projects: "Projets",
       },
       auth: {
         welcomeBack: "Bienvenue",
@@ -434,7 +435,74 @@ export const fr = {
         insufficient: "Stock insuffisant"
       },
       noSelection: "Aucun matériel sélectionné"
+    },
+    editProject: {
+      title: 'Modifier le Projet',
+      generalInfo: 'Informations Générales',
+      description: 'Description',
+      materials: 'Matériaux',
+      progress: 'Progression du Projet',
+      financial: 'Aperçu Financier',
+      teamMembers: 'Membres de l\'Équipe',
+      files: 'Fichiers et Documents',
+      dangerZone: 'Zone de Danger',
+      addMember: 'Ajouter un Membre',
+      uploadFiles: 'Télécharger des Fichiers',
+      form: {
+        projectName: 'Nom du Projet',
+        clientName: 'Nom du Client',
+        startDate: 'Date de Début',
+        endDate: 'Date de Fin',
+        budget: 'Budget',
+        descriptionPlaceholder: 'Entrez la description du projet...',
+      },
+      buttons: {
+        save: 'Enregistrer les Modifications',
+        saving: 'Enregistrement en cours...',
+        addMaterial: 'Ajouter un Matériau',
+        addMember: 'Ajouter un Membre',
+        uploadFiles: 'Télécharger des Fichiers',
+        deleteProject: 'Supprimer le Projet',
+      },
+      dropzone: {
+        text: 'ou glissez-déposez les fichiers ici'
+      },
+      status: {
+        onTrack: 'En Bonne Voie',
+        delayed: 'En Retard',
+        ahead: 'En Avance',
+        inStock: 'En Stock',
+        lowStock: 'Stock Faible',
+        outOfStock: 'Rupture de Stock'
+      },
+      messages: {
+        success: {
+          updated: 'Projet mis à jour avec succès!',
+        },
+        error: {
+          fetch: 'Échec du chargement des détails du projet',
+          update: 'Échec de la mise à jour du projet',
+        }
+      },
+      projectProgress: 'Progression du Projet',
+      financialOverview: 'Aperçu Financier',
+      filesDocuments: 'Fichiers et Documents',
+      addTransaction: 'Ajouter une Transaction',
+      dragDropFiles: 'ou glissez-déposez les fichiers ici',
+      expenseAmount: '$',
+      milestones: 'Étapes du Projet',
+      addMilestone: 'Ajouter une Étape',
+      noFiles: 'Aucun fichier téléchargé',
+      confirmDelete: 'Êtes-vous sûr de vouloir supprimer ce projet?',
+      transactionStatus: {
+        pending: 'En Attente',
+        completed: 'Terminée',
+        cancelled: 'Annulée'
+      },
+      transactionTypes: {
+        expense: 'Dépense',
+        payment: 'Paiement'
+      },
+  
     }
-    ,
-    
   };

@@ -22,7 +22,8 @@ export const en = {
         completed: "Completed",
         next : "Next",
         previous: "Previous",
-        backToProjects: "Back to Projects"
+        backToProjects: "Back to Projects",
+        projects: "Projects",
 
       },
       auth: {
@@ -388,6 +389,7 @@ export const en = {
       complete: "Complete",
    
     },
+    
     activity: {
       recentActivity: "Recent Activity",
       refresh: "Refresh",
@@ -451,7 +453,77 @@ export const en = {
       },
       noSelection: "No materials selected"
     },
+    editProject: {
+      title: 'Edit Project',
+      generalInfo: 'General Information',
+      description: 'Description',
+      materials: 'Materials',
+      progress: 'Project Progress',
+      financial: 'Financial Overview',
+      teamMembers: 'Team Members',
+      files: 'Files & Documents',
+      dangerZone: 'Danger Zone',
+      addMember: 'Add Member',
+      uploadFiles : 'Upload Files',
+      form: {
+        projectName: 'Project Name',
+        clientName: 'Client Name',
+        startDate: 'Start Date',
+        endDate: 'End Date',
+        budget: 'Budget',
+        descriptionPlaceholder: 'Enter project description...',
+      },
+      buttons: {
+        save: 'Save Changes',
+        saving: 'Saving Changes...',
+        addMaterial: 'Add Material',
+        addMember: 'Add Member',
+        uploadFiles: 'Upload Files',
+        deleteProject: 'Delete Project',
+      },
+      dropzone: {
+        text: 'or drag and drop files here'
+      },
+      status: {
+        'on-track': 'On Track',
+        onTrack: 'On Track',
+        delayed: 'Delayed',
+        ahead: 'Ahead',
+        inStock: 'In Stock',
+        lowStock: 'Low Stock',
+        outOfStock: 'Out of Stock'
+      },
+      messages: {
+        success: {
+          updated: 'Project updated successfully!',
+        },
+        error: {
+          fetch: 'Failed to fetch project details',
+          update: 'Failed to update project',
+        }
+      },
+      projectProgress: 'Project Progress',
+      financialOverview: 'Financial Overview',
+      filesDocuments: 'Files & Documents',
+      addTransaction: 'Add Transaction',
+      dragDropFiles: 'or drag and drop files here',
+      expenseAmount: '$',
+      milestones: 'Project Milestones',
+      addMilestone: 'Add Milestone',
+      noFiles: 'No files uploaded yet',
+      confirmDelete: 'Are you sure you want to delete this project?',
+      transactionStatus: {
+        pending: 'Pending',
+        completed: 'Completed',
+        cancelled: 'Cancelled'
+      },
+      transactionTypes: {
+        expense: 'Expense',
+        payment: 'Payment'
+      }
+    },
+    
     
   };
-  
+
 
