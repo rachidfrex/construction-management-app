@@ -246,7 +246,8 @@ export const en = {
         inprogress: "In Progress",
         completed: "Completed",
         delayed: "Delayed",
-        canceled: "Canceled"
+        canceled: "Canceled",
+        pending: "Pending"
       },
       types: {
         construction: "Construction",

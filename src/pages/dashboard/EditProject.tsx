@@ -497,3 +497,4 @@ const Input = ({ label, value, onChange, icon, type = 'text', prefix }: InputPro
 );
 
 export default EditProject;
+
