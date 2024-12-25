@@ -30,7 +30,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/projects/:id/edit" element={<EditProject />} />
       <Route path="/projects/:id/timeline" element={<ProjectTimeline />} />
       <Route path="/inventory" element={<Inventory />} />
-      <Route path="/inventory/construction" element={<Construction />} />
+      <Route path="/inventory/construction/manage" element={<Construction />} />
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
   );

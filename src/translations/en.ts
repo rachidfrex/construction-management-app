@@ -24,6 +24,7 @@ export const en = {
         previous: "Previous",
         backToProjects: "Back to Projects",
         projects: "Projects",
+        refresh: "Refresh",
 
       },
       auth: {
@@ -187,10 +188,71 @@ export const en = {
         bags: "bags",
         tons: "tons",
         gallons: "gallons"
+      },
+      searchPlaceholder: "Search inventory...",
+      filters: {
+        allCategories: "All Categories",
+        construction: "Construction Materials",
+        fertilizers: "Fertilizers"
+      },
+      sort: {
+        name: "Sort by Name",
+        quantity: "Sort by Quantity",
+        value: "Sort by Value"
+      },
+      timeRange: {
+        week: "Last 7 Days",
+        month: "Last 30 Days",
+        quarter: "Last 90 Days"
+      },
+      statistics: {
+        totalProducts: "Total Products",
+        lowStock: "Low Stock Items",
+        totalValue: "Total Value",
+        recentMovements: "Recent Movements",
+        expiringSoon: "Expiring Soon"
+      },
+      transactions: {
+        title: "Recent Transactions",
+        viewAll: "View All",
+        type: "Type",
+        product: "Product",
+        quantity: "Quantity",
+        date: "Date",
+        supplier: "Supplier/Warehouse",
+        incoming: "Incoming",
+        outgoing: "Outgoing",
+        supplierWarehouse: "Supplier/Warehouse"
+      },
+      alerts: {
+        title: "Low Stock Alerts",
+        viewAll: "View All Alerts",
+        critical: "Critical",
+        current: "Current",
+        minimum: "Minimum",
+        lastOrder: "Last Order",
+        placeOrder: "Place Order"
+      },
+      quickActions: {
+        title: "Quick Actions",
+        comingSoon: "Quick actions menu coming soon!"
+      },
+      lowStock: {
+        title: "Low Stock Items",
+        viewAll: "View All Low Stock Items",
+        critical: "Critical",
+        current: "Current Stock",
+        minimum: "Minimum Required",
+        lastOrder: "Last Order Date",
+        placeOrder: "Place Order"
+      },
+      quickLinks: {
+        manage: "Manage Inventory",
+        orders: "Orders",
+        reports: "Reports"
       }
     },
   
-    
     projects: {
       client: "Client",
       create: "Create Project",

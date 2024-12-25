@@ -22,6 +22,7 @@ export const ar = {
         next : "التالي",
         previous : "السابق",
         projects: "المشاريع",
+        refresh: "تحديث",
       },
       auth: {
         welcomeBack: "مرحباً بعودتك",
@@ -183,6 +184,68 @@ export const ar = {
           bags: "كيس",
           tons: "طن",
           gallons: "جالون"
+        },
+        searchPlaceholder: "البحث في المخزون...",
+        filters: {
+          allCategories: "جميع الفئات",
+          construction: "مواد البناء",
+          fertilizers: "الأسمدة"
+        },
+        sort: {
+          name: "ترتيب حسب الاسم",
+          quantity: "ترتيب حسب الكمية",
+          value: "ترتيب حسب القيمة"
+        },
+        timeRange: {
+          week: "آخر 7 أيام",
+          month: "آخر 30 يوم",
+          quarter: "آخر 90 يوم"
+        },
+        statistics: {
+          totalProducts: "إجمالي المنتجات",
+          lowStock: "المواد منخفضة المخزون",
+          totalValue: "القيمة الإجمالية",
+          recentMovements: "التحركات الأخيرة",
+          expiringSoon: "ينتهي قريباً"
+        },
+        transactions: {
+          title: "المعاملات الأخيرة",
+          viewAll: "عرض الكل",
+          type: "النوع",
+          product: "المنتج",
+          quantity: "الكمية",
+          date: "التاريخ",
+          supplier: "المورد/المستودع",
+          incoming: "وارد",
+          outgoing: "صادر",
+          supplierWarehouse: "المورد/المستودع"
+        },
+        alerts: {
+          title: "تنبيهات المخزون المنخفض",
+          viewAll: "عرض كل التنبيهات",
+          critical: "حرج",
+          current: "الحالي",
+          minimum: "الحد الأدنى",
+          lastOrder: "آخر طلب",
+          placeOrder: "تقديم طلب"
+        },
+        quickActions: {
+          title: "إجراءات سريعة",
+          comingSoon: "قائمة الإجراءات السريعة قريباً!"
+        },
+        lowStock: {
+          title: "المواد منخفضة المخزون",
+          viewAll: "عرض كل المواد منخفضة المخزون",
+          critical: "حرج",
+          current: "المخزون الحالي",
+          minimum: "الحد الأدنى المطلوب",
+          lastOrder: "تاريخ آخر طلب",
+          placeOrder: "تقديم طلب"
+        },
+        quickLinks: {
+          manage: "إدارة المخزون",
+          orders: "الطلبات",
+          reports: "التقارير"
         }
       },
 

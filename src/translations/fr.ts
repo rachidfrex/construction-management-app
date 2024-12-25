@@ -22,6 +22,7 @@ export const fr = {
         next : "Suivant",
         previous : "Précédent",
         projects: "Projets",
+        refresh: "Actualiser",
       },
       auth: {
         welcomeBack: "Bienvenue",
@@ -183,6 +184,58 @@ export const fr = {
         bags: "sacs",
         tons: "tonnes",
         gallons: "litres"
+      },
+      searchPlaceholder: "Rechercher dans l'inventaire...",
+      filters: {
+        allCategories: "Toutes les Catégories",
+        construction: "Matériaux de Construction",
+        fertilizers: "Engrais"
+      },
+      sort: {
+        name: "Trier par Nom",
+        quantity: "Trier par Quantité",
+        value: "Trier par Valeur"
+      },
+      timeRange: {
+        week: "7 Derniers Jours",
+        month: "30 Derniers Jours",
+        quarter: "90 Derniers Jours"
+      },
+      statistics: {
+        totalProducts: "Produits Totaux",
+        lowStock: "Articles en Stock Faible",
+        totalValue: "Valeur Totale",
+        recentMovements: "Mouvements Récents",
+        expiringSoon: "Expiration Proche"
+      },
+      transactions: {
+        title: "Transactions Récentes",
+        viewAll: "Voir Tout",
+        type: "Type",
+        product: "Produit",
+        quantity: "Quantité",
+        date: "Date",
+        supplier: "Fournisseur/Entrepôt",
+        incoming: "Entrée",
+        outgoing: "Sortie"
+      },
+      alerts: {
+        title: "Alertes Stock Faible",
+        viewAll: "Voir Toutes les Alertes",
+        critical: "Critique",
+        current: "Actuel",
+        minimum: "Minimum",
+        lastOrder: "Dernière Commande",
+        placeOrder: "Commander"
+      },
+      quickActions: {
+        title: "Actions Rapides",
+        comingSoon: "Menu d'actions rapides bientôt disponible!"
+      },
+      quickLinks: {
+        manage: "Gérer l'inventaire",
+        orders: "Commandes",
+        reports: "Rapports"
       }
     },
   
