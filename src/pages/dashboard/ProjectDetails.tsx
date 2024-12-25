@@ -259,22 +259,23 @@ const ProjectDetails = () => {
           <div className="bg-white rounded-xl shadow-sm">
           <div className="border-b border-gray-200">
 
-            <nav className="flex space-x-4 md:space-x-8 px-4 md:px-6 overflow-x-auto" aria-label="Tabs">
+          <nav className="flex space-x-4 md:space-x-8 px-4 md:px-6 overflow-x-auto rtl:space-x-reverse" aria-label="Tabs">
                 {tabs.map((tab) => (
                   <motion.button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`py-4 px-1 m border-b-2 font-medium text-sm relative flex items-center gap-2 ${
+                    className={`py-4 px-3 flex-1 md:flex-none  border-b-2 font-medium text-sm relative flex items-center gap-3 ${
                       activeTab === tab.id
-                        ? 'text-green-600 border-green-500'
-                        : 'border-transparent text-gray-500  '
+                        ? 'text-green-600'
+                        : 'text-gray-500'
                     }`}
                     whileHover={{ y: -1 }}
                     whileTap={{ y: 0 }}
                   >
-                    <span className="md:hidden mx-3 flex justify-center w-full items-center
-                    ">{tab.icon}</span>
-                    <span className="hidden md:block">{tab.label}</span>
+                    <span className="md:hidden flex items-center justify-center w-full">
+                      {tab.icon}
+                    </span>
+                    <span className="hidden md:block whitespace-nowrap">{tab.label}</span>
                     {activeTab === tab.id && (
                       <motion.div
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
