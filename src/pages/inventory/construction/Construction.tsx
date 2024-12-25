@@ -104,7 +104,7 @@ const Construction = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 p-3 md:p-6 ${
+      <main className={`transition-all duration-300 pt-16 mt-4 px-3 md:px-6  ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
         {/* Breadcrumb */}
@@ -119,7 +119,7 @@ const Construction = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t('inventory.construction.title')}</h1>
-            <p className="text-gray-600 mt-1">{t('inventory.construction.subtitle')}</p>
+            <p className="text-gray-600 text-sm mt-1">{t('inventory.construction.subtitle')}</p>
           </div>
           
           <div className="flex flex-wrap gap-2">
@@ -127,13 +127,13 @@ const Construction = () => {
             <div className="flex rounded-lg border border-gray-300 p-1">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-gray-100' : ''}`}
+                className={`p-1 t rounded ${viewMode === 'grid' ? 'bg-gray-100' : ''}`}
               >
                 <HiOutlineViewGrid className="w-5 h-5 text-gray-600" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded ${viewMode === 'list' ? 'bg-gray-100' : ''}`}
+                className={`p-1 rounded ${viewMode === 'list' ? 'bg-gray-100' : ''}`}
               >
                 <HiOutlineViewList className="w-5 h-5 text-gray-600" />
               </button>
@@ -144,7 +144,7 @@ const Construction = () => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                className="flex items-center gap-2 px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700"
               >
                 <HiOutlinePlusCircle className="w-5 h-5" />
                 {t('inventory.construction.addMaterial')}
@@ -154,7 +154,7 @@ const Construction = () => {
             {/* Export Button */}
             <motion.button
               whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-gray-50"
+              className="flex items-center gap-2 px-4 py-2  text-sm bg-white rounded-lg hover:bg-gray-50"
             >
               <HiOutlineDownload className="w-5 h-5 text-gray-600" />
               <span className="text-sm text-gray-600">{t('common.export')}</span>
@@ -172,7 +172,7 @@ const Construction = () => {
                 placeholder={t('inventory.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
+                className={`w-full text-sm py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
                   direction === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4'
                 }`}
               />
@@ -186,7 +186,7 @@ const Construction = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className={`w-full py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
+                className={`w-full text-sm py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
                   direction === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4'
                 }`}
               >
@@ -205,7 +205,7 @@ const Construction = () => {
               <select
                 value={selectedSupplier}
                 onChange={(e) => setSelectedSupplier(e.target.value)}
-                className={`w-full py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
+                className={`w-full text-sm py-1  border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
                   direction === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4'
                 }`}
               >
@@ -224,7 +224,7 @@ const Construction = () => {
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className={`w-full py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
+                className={`w-full text-sm py-1  border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 ${
                   direction === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4'
                 }`}
               >
@@ -251,14 +251,14 @@ const Construction = () => {
                   placeholder={t('inventory.priceRange.min')}
                   value={minPrice}
                   onChange={(e) => setMinPrice(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 text-sm py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
                 />
                 <input
                   type="number"
                   placeholder={t('inventory.priceRange.max')}
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full text-sm px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
                 />
               </div>
             </div>
