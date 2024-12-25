@@ -218,7 +218,7 @@ const EditProject = () => {
       <div className="min-h-screen bg-gray-50">
         <Sidebar />
         <Header />
-        <main className="lg:ml-64 mt-5 pt-16 p-6">
+        <main className="lg:ml-64 mt-5 pt-16  p-6">
           <div className="flex items-center justify-center h-[60vh]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
           </div>
@@ -231,7 +231,7 @@ const EditProject = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 p-6 mt-5 ${
+      <main className={`transition-all duration-300 pt-16 p-3 md:p-6 mt-5 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
         <div className=" mx-auto">
