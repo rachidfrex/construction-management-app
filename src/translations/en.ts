@@ -144,7 +144,13 @@ export const en = {
         monthlyUsage: "Monthly Usage",
         supplier: "Supplier",
         status: "Status",
-        lastRestock: "Last Restock"
+        lastRestock: "Last Restock",
+        category: "Category",
+        stock: "Stock",
+        value: "Value",
+        warehouse: "Warehouse",
+        actions: "Actions",
+        material: "Material"
       },
       construction: {
         title: "Construction Materials",
@@ -193,7 +199,9 @@ export const en = {
       filters: {
         allCategories: "All Categories",
         construction: "Construction Materials",
-        fertilizers: "Fertilizers"
+        fertilizers: "Fertilizers",
+        allSuppliers: "All Suppliers",
+        allStatuses: "All Statuses"
       },
       sort: {
         name: "Sort by Name",
@@ -244,12 +252,16 @@ export const en = {
         current: "Current Stock",
         minimum: "Minimum Required",
         lastOrder: "Last Order Date",
-        placeOrder: "Place Order"
       },
-      quickLinks: {
-        manage: "Manage Inventory",
-        orders: "Orders",
-        reports: "Reports"
+      priceRange: {
+        min: "Min Price",
+        max: "Max Price"
+      },
+      bulkActions: {
+        title: "Bulk Actions",
+        selected: "selected",
+        deleteSelected: "Delete Selected",
+        editSelected: "Edit Selected"
       }
     },
   

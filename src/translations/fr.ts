@@ -140,7 +140,13 @@ export const fr = {
         monthlyUsage: "Utilisation mensuelle",
         supplier: "Fournisseur",
         status: "Statut",
-        lastRestock: "Dernier réapprovisionnement"
+        lastRestock: "Dernier réapprovisionnement",
+        category: "Catégorie",
+        stock: "Stock",
+        value: "Valeur",
+        warehouse: "Entrepôt",
+        actions: "Actions",
+        material: "Matériau"
       },
       construction: {
         title: "Matériaux de construction",
@@ -189,7 +195,9 @@ export const fr = {
       filters: {
         allCategories: "Toutes les Catégories",
         construction: "Matériaux de Construction",
-        fertilizers: "Engrais"
+        fertilizers: "Engrais",
+        allSuppliers: "Tous les Fournisseurs",
+        allStatuses: "Tous les Statuts"
       },
       sort: {
         name: "Trier par Nom",
@@ -236,6 +244,17 @@ export const fr = {
         manage: "Gérer l'inventaire",
         orders: "Commandes",
         reports: "Rapports"
+      },
+      allCategories: "Toutes les Catégories",
+      allSuppliers: "Tous les Fournisseurs",
+      allStatuses: "Tous les Statuts",
+      minPrice: "Prix Minimum",
+      maxPrice: "Prix Maximum",
+      selected: "sélectionné(s)",
+      bulkActions: {
+        title: "Actions Groupées",
+        deleteSelected: "Supprimer la Sélection",
+        editSelected: "Modifier la Sélection"
       }
     },
   

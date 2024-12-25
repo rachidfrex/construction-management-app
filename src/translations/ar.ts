@@ -140,7 +140,13 @@ export const ar = {
           monthlyUsage: "الاستهلاك الشهري",
           supplier: "المورد",
           status: "الحالة",
-          lastRestock: "آخر تجديد"
+          lastRestock: "آخر تجديد",
+          category: "الفئة",
+          stock: "المخزون",
+          value: "القيمة",
+          warehouse: "المستودع",
+          actions: "الإجراءات",
+          material: "المادة"
         },
         construction: {
           title: "مواد البناء",
@@ -189,7 +195,9 @@ export const ar = {
         filters: {
           allCategories: "جميع الفئات",
           construction: "مواد البناء",
-          fertilizers: "الأسمدة"
+          fertilizers: "الأسمدة",
+          allSuppliers: "جميع الموردين",
+          allStatuses: "جميع الحالات"
         },
         sort: {
           name: "ترتيب حسب الاسم",
@@ -246,6 +254,17 @@ export const ar = {
           manage: "إدارة المخزون",
           orders: "الطلبات",
           reports: "التقارير"
+        },
+        allCategories: "جميع الفئات",
+        allSuppliers: "جميع الموردين",
+        allStatuses: "جميع الحالات",
+        minPrice: "الحد الأدنى للسعر",
+        maxPrice: "الحد الأقصى للسعر",
+        selected: "محدد",
+        bulkActions: {
+          title: "إجراءات متعددة",
+          deleteSelected: "حذف المحدد",
+          editSelected: "تعديل المحدد"
         }
       },
 
