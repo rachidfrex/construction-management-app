@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useToast } from '../../context/ToastContext';
@@ -231,7 +233,7 @@ const EditProject = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 p-3 md:p-6 mt-5 ${
+      <main className={`transition-all duration-300  pt-16 mt-4 px-3 md:px-6  ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
         <div className=" mx-auto">
@@ -322,22 +324,40 @@ const EditProject = () => {
                     onChange={(value) => setFormData({ ...formData, clientName: value })}
                     icon={<HiOutlineUser />}
                   />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <Input
-                      label={t('editProject.form.startDate')}
-                      type="date"
-                      value={formData.startDate}
-                      onChange={(value) => setFormData({ ...formData, startDate: value })}
-                      icon={<HiOutlineCalendar />}
-                    />
-                    <Input
-                      label={t('editProject.form.endDate')}
-                      type="date"
-                      value={formData.endDate}
-                      onChange={(value) => setFormData({ ...formData, endDate: value })}
-                      icon={<HiOutlineCalendar />}
-                    />
+                <div className="grid grid-cols-1  md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block  text-sm font-medium text-gray-700 mb-2">
+                      {t('editProject.form.startDate')}
+                    </label>
+                    <div  className="relative  ">
+                      <DatePicker
+                        selected={formData.startDate ? new Date(formData.startDate) : null}
+                        onChange={(date) => setFormData({ ...formData, startDate: date?.toISOString() })}
+                        dateFormat="dd/MM/yyyy"
+                        className="w-full px-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        placeholderText={t('editProject.form.placeholders.startDate')}
+                      />
+                      <HiOutlineCalendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    </div>
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      {t('editProject.form.endDate')}
+                    </label>
+                    <div className="relative">
+                      <DatePicker
+                        selected={formData.endDate ? new Date(formData.endDate) : null}
+                        onChange={(date) => setFormData({ ...formData, endDate: date?.toISOString() })}
+                        dateFormat="dd/MM/yyyy"
+                        className="w-full px-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        placeholderText={t('editProject.form.placeholders.endDate')}
+                        minDate={formData.startDate ? new Date(formData.startDate) : null}
+                      />
+                      <HiOutlineCalendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    </div>
+                  </div>
+                </div>
                   <Input
                     label={t('editProject.form.budget')}
                     value={formData.budget}

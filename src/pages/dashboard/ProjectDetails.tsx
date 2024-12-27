@@ -151,7 +151,7 @@ const ProjectDetails = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 mt-5 p-3 md:p-6 ${
+      <main className={`transition-all duration-300 pt-16 mt-4 px-3 md:px-6  ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
         <div className="mx-auto">

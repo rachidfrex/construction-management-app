@@ -29,7 +29,7 @@ const Dashboard = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       setStats({
         products: { value: 2420, change: 12 },
-        sales: { value: 45280, change: 8 },
+        sales: { value: 3474747, change: 8 },
         projects: { value: 12, change: 2 },
         team: { value: 48, change: 5 }
       });
