@@ -146,7 +146,11 @@ export const fr = {
         value: "Valeur",
         warehouse: "Entrepôt",
         actions: "Actions",
-        material: "Matériau"
+        material: "Matériau",
+        type: "Type",
+        expiryDate: "Date d'expiration",
+        composition: "Composition",
+        storageConditions: "Conditions de stockage"
       },
       construction: {
         title: "Matériaux de construction",
@@ -164,6 +168,20 @@ export const fr = {
       fertilizers: {
         title: "Engrais",
         subtitle: "Gérer votre inventaire d'engrais",
+        addFertilizer: "Ajouter un Engrais",
+        types: {
+          chemical: "Chimique",
+          organic: "Organique",
+          mineral: "Minéral",
+          biofertilizer: "Biofertilisant"
+        },
+        expiryDate: "Date d'expiration",
+        composition: "Composition",
+        storage: {
+          conditions: "Conditions de stockage",
+          temperature: "Température",
+          humidity: "Humidité"
+        }
       },
       status: {
         instock: "En stock",

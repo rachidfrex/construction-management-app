@@ -15,48 +15,12 @@ import Breadcrumb from '../../components/ui/Breadcrumb';
 import { storage } from '../../mockData/db';
 // import { storage } from '../../mockData/db';
 
-interface Phase {
-  id: number;
-  name: string;
-  startDate: string;
-  endDate: string;
-  dependencies: string[];
-  progress: number;
-  materials: {
-    materialId: number;
-    quantity: number;
-  }[];
-}
 
-interface Milestone {
-  id: number;
-  title: string;
-  date: string;
-  phase: string;
-  reminder: boolean;
-}
 
-interface MaterialLink {
-  id: number;
-  materialId: number;
-  phaseId: number;
-  quantity: number;
-  consumptionRate: number;
-  estimatedDeliveryDate?: string;
-  source: 'internal' | 'purchase';
-  status: 'pending' | 'allocated' | 'consumed';
-}
 
-interface EnhancedMilestone extends Milestone {
-  dependencies: number[];
-  notificationDays: number;
-  priority: 'low' | 'medium' | 'high';
-  description: string;
-  attachments: string[];
-  status: 'pending' | 'in-progress' | 'completed';
-  assignees: string[];
-  completed: boolean;
-}
+
+
+
 
 const steps = [
   { id: 1, title: 'projects.form.steps.general' },

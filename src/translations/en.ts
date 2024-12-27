@@ -150,7 +150,11 @@ export const en = {
         value: "Value",
         warehouse: "Warehouse",
         actions: "Actions",
-        material: "Material"
+        material: "Material",
+        type: "Type",
+        expiryDate: "Expiry Date",
+        composition: "Composition",
+        storageConditions: "Storage Conditions"
       },
       construction: {
         title: "Construction Materials",
@@ -168,6 +172,20 @@ export const en = {
       fertilizers: {
         title: "Fertilizers",
         subtitle: "Manage your fertilizers inventory",
+        addFertilizer: "Add Fertilizer",
+        types: {
+          chemical: "Chemical",
+          organic: "Organic",
+          mineral: "Mineral",
+          biofertilizer: "Biofertilizer"
+        },
+        expiryDate: "Expiry Date",
+        composition: "Composition",
+        storage: {
+          conditions: "Storage Conditions",
+          temperature: "Temperature",
+          humidity: "Humidity"
+        }
       },
       status: {
         instock: "In Stock",

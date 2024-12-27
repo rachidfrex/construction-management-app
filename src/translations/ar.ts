@@ -146,7 +146,11 @@ export const ar = {
           value: "القيمة",
           warehouse: "المستودع",
           actions: "الإجراءات",
-          material: "المادة"
+          material: "المادة",
+          type: "النوع",
+          expiryDate: "تاريخ الصلاحية",
+          composition: "التركيب",
+          storageConditions: "ظروف التخزين"
         },
         construction: {
           title: "مواد البناء",
@@ -164,6 +168,20 @@ export const ar = {
         fertilizers: {
           title: "الأسمدة",
           subtitle: "إدارة مخزون الأسمدة الخاص بك",
+          addFertilizer: "إضافة سماد",
+          types: {
+            chemical: "كيميائي",
+            organic: "عضوي",
+            mineral: "معدني",
+            biofertilizer: "سماد حيوي"
+          },
+          expiryDate: "تاريخ الصلاحية",
+          composition: "التركيب",
+          storage: {
+            conditions: "ظروف التخزين",
+            temperature: "درجة الحرارة",
+            humidity: "الرطوبة"
+          }
         },
         status: {
           instock: "متوفر",

@@ -50,7 +50,7 @@ const LanguageSwitcher = () => {
             }`}
           >
             {lang.flag}
-            <span>{lang.label}</span>
+            <span className='font-arabic'>{lang.label}</span>
             {language === lang.code && (
               <motion.div
                 layoutId="activeLang"
