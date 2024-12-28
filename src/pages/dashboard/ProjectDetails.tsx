@@ -10,7 +10,17 @@ import {
   HiOutlineClock,
   HiOutlineCurrencyDollar,
   HiOutlineUsers,
-  HiOutlineCube,
+  HiOutlineHome, 
+  HiOutlineCalendar, 
+  HiOutlineUserGroup, 
+  HiOutlineCube ,
+  HiOutlineDocumentText,
+  HiOutlinePhotograph,
+  HiOutlineDocument,
+  HiOutlineDownload,
+  HiOutlineTrash,
+  HiOutlineDocumentAdd,
+  HiOutlineCloudUpload
 } from 'react-icons/hi';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
@@ -146,6 +156,33 @@ const ProjectDetails = () => {
     'Delayed': 'bg-red-100 text-red-800',
     'Canceled': 'bg-gray-100 text-gray-800'
   };
+  const tabs = [
+    { 
+      id: 'overview', 
+      label: t('projects.tabs.overview'),
+      icon: <HiOutlineHome className="w-5 h-5" />
+    },
+    { 
+      id: 'timeline', 
+      label: t('projects.tabs.timeline'),
+      icon: <HiOutlineCalendar className="w-5 h-5" />
+    },
+    { 
+      id: 'team', 
+      label: t('projects.tabs.team'),
+      icon: <HiOutlineUserGroup className="w-5 h-5" />
+    },
+    { 
+      id: 'materials', 
+      label: t('projects.tabs.materials'),
+      icon: <HiOutlineCube className="w-5 h-5" />
+    },
+    { 
+      id: 'files', 
+      label: t('projects.tabs.files'),
+      icon: <HiOutlineDocument className="w-5 h-5" />
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -253,34 +290,39 @@ const ProjectDetails = () => {
           {/* Tabs */}
           <div className="bg-white rounded-xl shadow-sm">
           <div className="border-b border-gray-200">
-            <nav className="flex space-x-8 px-6" aria-label="Tabs">
-              {[
-                { id: 'overview', label: t('projects.tabs.overview') },
-                { id: 'timeline', label: t('projects.tabs.timeline') },
-                { id: 'team', label: t('projects.tabs.team') },
-                { id: 'materials', label: t('projects.tabs.materials') }
-              ].map((tab) => (
-                <motion.button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`py-4 px-1 border-b-2 font-medium text-sm relative ${
-                    activeTab === tab.id
-                      ? ' text-green-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
-                  whileHover={{ y: -1 }}
-                  whileTap={{ y: 0 }}
-                >
-                  {tab.label}
-                  {activeTab === tab.id && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
-                      layoutId="activeTab"
-                    />
-                  )}
-                </motion.button>
-              ))}
-            </nav>
+          <nav 
+  className="flex w-full"
+  aria-label="Tabs"
+>
+  <div className={`w-full flex md:justify-start  justify-around px-4 md:px-6 ${
+    direction === 'rtl' 
+      ? 'md:space-x-8 md:space-x-reverse' 
+      : 'md:space-x-8'
+  }`}>
+    {tabs.map((tab) => (
+      <motion.button
+        key={tab.id}
+        onClick={() => setActiveTab(tab.id)}
+        className={`flex flex-col md:flex-row items-center gap-1 md:gap-2 py-4 px-1 border-b-2 font-medium text-sm relative ${
+          activeTab === tab.id
+            ? 'text-green-600 border-green-500'
+            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+        }`}
+        whileHover={{ y: -1 }}
+        whileTap={{ y: 0 }}
+      >
+        <span className="md:hidden">{tab.icon}</span>
+        <span className="hidden md:block whitespace-nowrap">{tab.label}</span>
+        {activeTab === tab.id && (
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
+            layoutId="activeTab"
+          />
+        )}
+      </motion.button>
+    ))}
+  </div>
+</nav>
           </div>
 
           <AnimatePresence mode="wait">
@@ -465,6 +507,95 @@ const ProjectDetails = () => {
                         </tbody>
                       </table>
                     </div>
+                  </div>
+                )}
+                {activeTab === 'files' && (
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between mb-6">
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {t('projects.details.documents')}
+                      </h3>
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-2 text-sm text-green-600 hover:text-green-700"
+                      >
+                        <HiOutlineCloudUpload className="w-5 h-5" />
+                        {t('projects.form.uploadFiles')}
+                      </motion.button>
+                    </div>
+
+                    {project.files && project.files.length > 0 ? (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {project.files.map((file) => (
+                          <motion.div
+                          key={file.id}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          className="bg-white border border-gray-200 rounded-lg p-4 transition-shadow"
+                        >
+                          <div className="flex items-center justify-center gap-3">
+                            {/* Icon Section */}
+                            <div className="flex-shrink-0">
+                              <div className="p-2 bg-gray-100 rounded-lg">
+                                {file.name.toLowerCase().endsWith('.pdf') ? (
+                                  <HiOutlineDocumentText className="w-6 h-6 text-red-500" />
+                                ) : file.name.toLowerCase().match(/\.(jpg|jpeg|png|gif)$/) ? (
+                                  <HiOutlinePhotograph className="w-6 h-6 text-blue-500" />
+                                ) : file.name.toLowerCase().match(/\.(doc|docx)$/) ? (
+                                  <HiOutlineDocument className="w-6 h-6 text-blue-600" />
+                                ) : (
+                                  <HiOutlineDocument className="w-6 h-6 text-gray-500" />
+                                )}
+                              </div>
+                            </div>
+                        
+                            {/* Content Section */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-start justify-between gap-2">
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium text-gray-900 truncate">
+                                    {file.name}
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    {new Date(parseInt(file.id)).toLocaleDateString()}
+                                  </p>
+                                </div>
+                                
+                                {/* Actions */}
+                                <div className="flex-shrink-0 flex items-center gap-1">
+                                  <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="p-1 text-gray-500 hover:text-blue-600 rounded-full hover:bg-blue-50"
+                                  >
+                                    <HiOutlineDownload className="w-5 h-5" />
+                                  </motion.button>
+                                  <motion.button
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="p-1 text-gray-500 hover:text-red-600 rounded-full hover:bg-red-50"
+                                  >
+                                    <HiOutlineTrash className="w-5 h-5" />
+                                  </motion.button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="text-center py-12">
+                        <HiOutlineDocumentAdd className="mx-auto h-12 w-12 text-gray-400" />
+                        <h3 className="mt-2 text-sm font-medium text-gray-900">
+                          {t('projects.messages.noFiles')}
+                        </h3>
+                        <p className="mt-1 text-sm text-gray-500">
+                          {t('projects.messages.uploadFiles')}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
             </motion.div>
