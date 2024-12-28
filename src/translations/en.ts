@@ -308,6 +308,7 @@ export const en = {
       items: "items",
       team: "Team",
       materials: {
+        add: "Add Material",
         name: "Material Name",
         quantity: "Quantity",
         status: "Status",

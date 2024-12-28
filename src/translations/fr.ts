@@ -298,6 +298,7 @@ export const fr = {
       team: "Team",
       material: "Materials",
       materials: {
+        add: "Ajouter un Matériau",
         name: "Nom du Matériau",
         quantity: "Quantité",
         status: "Statut",

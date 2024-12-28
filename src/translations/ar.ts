@@ -309,6 +309,7 @@ export const ar = {
         team: "الفريق",
         material: "المواد",
         materials: {
+          add: "إضافة مواد",
           name: "اسم المادة",
           quantity: "الكمية",
           status: "الحالة",
