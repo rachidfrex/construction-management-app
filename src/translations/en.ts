@@ -388,6 +388,7 @@ export const en = {
         attachments: "Attachments",
         milestones: "Project Milestones",
         addMilestone: "Add Milestone",
+        uploadFiles: "Upload Files",
         
         steps: {
           general: "General Information",

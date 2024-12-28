@@ -362,6 +362,7 @@ export const fr = {
         files: "Fichiers"
       },
       form: {
+        uploadFiles: "Télécharger des Fichiers",
         projectName: "Nom du Projet",
         clientName: "Nom du Client",
         projectType: "Type de Projet",

@@ -375,6 +375,7 @@ export const ar = {
         },
 
         form: {
+          uploadFiles: "رفع الملفات",
           projectName: "اسم المشروع",
           clientName: "اسم العميل",
           projectType: "نوع المشروع",

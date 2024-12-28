@@ -20,43 +20,15 @@ import {
   HiOutlineDownload,
   HiOutlineTrash,
   HiOutlineDocumentAdd,
-  HiOutlineCloudUpload
+  HiOutlineCloudUpload,
+  HiOutlinePencil, 
+  HiOutlinePlusCircle
 } from 'react-icons/hi';
 import Sidebar from '../../components/dashboard/Sidebar';
 import Header from '../../components/dashboard/Header';
 import { storage } from '../../mockData/db';
 
-// interface Project {
-//   id: number;
-//   name: string;
-//   description: string;
-//   clientName: string;
-//   startDate: string;
-//   endDate: string;
-//   status: 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
-//   type: string;
-//   team: {
-//     id: string;
-//     name: string;
-//     role: string;
-//   }[];
-//   progress: number;
-//   budget: number;
-//   materialsUsed: number;
-//   tasks: {
-//     id: number;
-//     title: string;
-//     date: string;
-//     status: 'completed' | 'in-progress' | 'pending';
-//   }[];
-//   materials: {
-//     id: number;
-//     name: string;
-//     quantity: string;
-//     status: string;
-//     usage: string;
-//   }[];
-// }
+
 interface Project {
   id: number;
   name: string;
@@ -183,6 +155,15 @@ const ProjectDetails = () => {
       icon: <HiOutlineDocument className="w-5 h-5" />
     }
   ];
+  const handleEditMaterial = (materialId: number) => {
+    // Implement edit functionality
+    console.log('Edit material:', materialId);
+  };
+  
+  const handleDeleteMaterial = (materialId: number) => {
+    // Implement delete functionality
+    console.log('Delete material:', materialId);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -206,7 +187,7 @@ const ProjectDetails = () => {
               <h1 className="text-2xl font-bold text-gray-900">{project?.name}</h1>
               <p className="text-gray-600 mt-1">{t('projects.client')}: {project?.clientName}</p>
             </div>
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[project?.status || 'In Progress']}`}>
+            <span className={`px-3 py-1 rounded-full text-xs font-medium ${statusColors[project?.status || 'In Progress']}`}>
               {t(`projects.status.${project?.status?.toLowerCase().replace(' ', '')}`)}
             </span>
           </div>
@@ -290,39 +271,39 @@ const ProjectDetails = () => {
           {/* Tabs */}
           <div className="bg-white rounded-xl shadow-sm">
           <div className="border-b border-gray-200">
-          <nav 
-  className="flex w-full"
-  aria-label="Tabs"
->
-  <div className={`w-full flex md:justify-start  justify-around px-4 md:px-6 ${
-    direction === 'rtl' 
-      ? 'md:space-x-8 md:space-x-reverse' 
-      : 'md:space-x-8'
-  }`}>
-    {tabs.map((tab) => (
-      <motion.button
-        key={tab.id}
-        onClick={() => setActiveTab(tab.id)}
-        className={`flex flex-col md:flex-row items-center gap-1 md:gap-2 py-4 px-1 border-b-2 font-medium text-sm relative ${
-          activeTab === tab.id
-            ? 'text-green-600 border-green-500'
-            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-        }`}
-        whileHover={{ y: -1 }}
-        whileTap={{ y: 0 }}
-      >
-        <span className="md:hidden">{tab.icon}</span>
-        <span className="hidden md:block whitespace-nowrap">{tab.label}</span>
-        {activeTab === tab.id && (
-          <motion.div
-            className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
-            layoutId="activeTab"
-          />
-        )}
-      </motion.button>
-    ))}
-  </div>
-</nav>
+            <nav 
+              className="flex w-full"
+              aria-label="Tabs"
+            >
+              <div className={`w-full flex md:justify-start  justify-around px-4 md:px-6 ${
+                direction === 'rtl' 
+                  ? 'md:space-x-8 md:space-x-reverse' 
+                  : 'md:space-x-8'
+              }`}>
+                {tabs.map((tab) => (
+                  <motion.button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex flex-col md:flex-row items-center gap-1 md:gap-2 py-4 px-1 border-b-2 font-medium text-sm relative ${
+                      activeTab === tab.id
+                        ? 'text-green-600 border-green-500'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    }`}
+                    whileHover={{ y: -1 }}
+                    whileTap={{ y: 0 }}
+                  >
+                    <span className="md:hidden">{tab.icon}</span>
+                    <span className="hidden md:block whitespace-nowrap">{tab.label}</span>
+                    {activeTab === tab.id && (
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-green-500"
+                        layoutId="activeTab"
+                      />
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+            </nav>
           </div>
 
           <AnimatePresence mode="wait">
@@ -440,75 +421,146 @@ const ProjectDetails = () => {
               )}
 
               
-              {activeTab === 'materials' && (
-                  <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-6">
-                      {t('projects.details.materials')}
-                    </h3>
-                    <div className="overflow-x-auto">
-                      <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                          <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              {t('projects.materials.name')}
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              {t('projects.materials.quantity')}
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              {t('projects.materials.status')}
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                              {t('projects.materials.usage')}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
-                          {project.materials?.map((material) => {
-                            // Add null check and default status
-                            const status = material.status || 'Out of Stock';
-                            const statusKey = status.toLowerCase().replace(' ', '');
-                            
-                            return (
-                              <tr key={material.id}>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                  {material.name}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                  {material.quantity} {material.unit}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                    status === 'In Stock' ? 'bg-green-100 text-green-800' : 
-                                    'bg-yellow-100 text-yellow-800'
-                                  }`}>
-                                    {t(`inventory.status.${statusKey}`)}
-                                  </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <div className="w-24 bg-gray-200 rounded-full h-2">
-                                    <motion.div
-                                      initial={{ width: 0 }}
-                                      animate={{ width: `${(material.used / material.quantity) * 100}%` }}
-                                      className="bg-green-500 h-2 rounded-full"
-                                    />
-                                  </div>
-                                </td>
-                              </tr>
-                            );
-                          })}
-                          {(!project.materials || project.materials.length === 0) && (
-                            <tr>
-                              <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
-                                {t('projects.materials.noMaterials')}
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
+{activeTab === 'materials' && (
+  <div className="space-y-6">
+    <div className="flex items-center justify-between mb-6">
+      <h3 className="text-lg font-semibold text-gray-900">
+        {t('projects.details.materials')}
+      </h3>
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="flex items-center gap-2 text-sm text-green-600 hover:text-green-700"
+      >
+        <HiOutlinePlusCircle className="w-5 h-5" />
+        {t('projects.materials.add')}
+      </motion.button>
+    </div>
+    <div className="overflow-x-auto">
+      <table className={`min-w-full divide-y divide-gray-200 ${
+        direction === 'rtl' ? 'text-right' : 'text-left'
+      }`}>
+        <thead className="bg-gray-50">
+          <tr>
+            <th className={`px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider ${
+              direction === 'rtl' ? 'text-right' : 'text-left'
+            }`}>
+              {t('projects.materials.name')}
+            </th>
+            <th className={`px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider ${
+              direction === 'rtl' ? 'text-right' : 'text-left'
+            }`}>
+              {t('projects.materials.quantity')}
+            </th>
+            <th className={`px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider ${
+              direction === 'rtl' ? 'text-right' : 'text-left'
+            }`}>
+              {t('projects.materials.status')}
+            </th>
+            <th className={`px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider ${
+              direction === 'rtl' ? 'text-right' : 'text-left'
+            }`}>
+              {t('projects.materials.usage')}
+            </th>
+            <th className="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+              {t('common.actions')}
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200">
+          {project.materials?.map((material) => {
+            const usagePercentage = material.quantity > 0 
+              ? Math.round((material.used / material.quantity) * 100)
+              : 0;
+            
+            const getStatus = (used: number, quantity: number) => {
+              if (quantity === 0) return 'outofstock';
+              const remaining = quantity - used;
+              if (remaining <= 0) return 'outofstock';
+              if (remaining < quantity * 0.2) return 'lowstock';
+              return 'instock';
+            };
+
+            const status = getStatus(material.used, material.quantity);
+            
+            return (
+              <tr key={material.id}>
+                <td className={`px-6 py-4 whitespace-nowrap text-sm text-gray-900 ${
+                  direction === 'rtl' ? 'text-right' : 'text-left'
+                }`}>
+                  {material.name}
+                </td>
+                <td className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${
+                  direction === 'rtl' ? 'text-right' : 'text-left'
+                }`}>
+                  {material.quantity} {material.unit}
+                </td>
+                <td className={`px-6 py-4 whitespace-nowrap ${
+                  direction === 'rtl' ? 'text-right' : 'text-left'
+                }`}>
+                  <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
+                    status === 'instock' ? 'bg-green-100 text-green-800' : 
+                    status === 'lowstock' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-red-100 text-red-800'
+                  }`}>
+                    {t(`inventory.status.${status}`)}
+                  </span>
+                </td>
+                <td className={`px-6 py-4 whitespace-nowrap ${
+                  direction === 'rtl' ? 'text-right' : 'text-left'
+                }`}>
+                  <div className="flex items-center gap-2">
+                    <div className="w-24 bg-gray-200 rounded-full h-2">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${usagePercentage}%` }}
+                        className={`h-2 rounded-full ${
+                          usagePercentage > 80 ? 'bg-red-500' :
+                          usagePercentage > 50 ? 'bg-yellow-500' :
+                          'bg-green-500'
+                        }`}
+                      />
                     </div>
+                    <span className="text-xs text-gray-500">
+                      {usagePercentage}%
+                    </span>
                   </div>
-                )}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <div className="flex items-center gap-2">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-1 text-blue-600 hover:text-blue-700 rounded-full hover:bg-blue-50"
+                      onClick={() => handleEditMaterial(material.id)}
+                    >
+                      <HiOutlinePencil className="w-5 h-5" />
+                    </motion.button>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-1 text-red-600 hover:text-red-700 rounded-full hover:bg-red-50"
+                      onClick={() => handleDeleteMaterial(material.id)}
+                    >
+                      <HiOutlineTrash className="w-5 h-5" />
+                    </motion.button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+          {(!project.materials || project.materials.length === 0) && (
+            <tr>
+              <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
+                {t('projects.materials.noMaterials')}
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
                 {activeTab === 'files' && (
                   <div className="space-y-6">
                     <div className="flex items-center justify-between mb-6">
