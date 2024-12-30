@@ -29,6 +29,27 @@ import Header from '../../components/dashboard/Header';
 import { storage } from '../../mockData/db';
 
 
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+}
+
+interface Material {
+  id: number;
+  name: string;
+  quantity: number;
+  unit: string;
+  used: number;
+}
+
+interface Milestone {
+  id: number;
+  title: string;
+  date: string;
+  status: 'completed' | 'in-progress' | 'pending';
+}
+
 interface Project {
   id: number;
   name: string;
@@ -44,6 +65,7 @@ interface Project {
   materialsUsed: number;
   materials: Material[];
   timeline: Milestone[];
+  files?: { id: string; name: string; }[];
 }
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -84,32 +106,32 @@ const ProjectDetails = () => {
   }, [id, navigate, showToast, t]);
 
 
-  const handleAddTeamMember = async (memberData: any) => {
-    try {
-      // Simulated API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      showToast('success', t('projects.messages.success.teamMemberAdded'));
-      // Update project data locally
-      setProject(prev => prev ? {
-        ...prev,
-        team: [...prev.team, memberData.name]
-      } : null);
-    } catch (error) {
-      showToast('error', t('projects.messages.error.addTeamMember'));
-    }
-  };
+  // const handleAddTeamMember = async (memberData: any) => {
+  //   try {
+  //     // Simulated API call
+  //     await new Promise(resolve => setTimeout(resolve, 1000));
+  //     showToast('success', t('projects.messages.success.teamMemberAdded'));
+  //     // Update project data locally
+  //     setProject(prev => prev ? {
+  //       ...prev,
+  //       team: [...prev.team, memberData.name]
+  //     } : null);
+  //   } catch (error) {
+  //     showToast('error', t('projects.messages.error.addTeamMember'));
+  //   }
+  // };
 
 
 
-  const handleAddMilestone = async (milestoneData: any) => {
-    try {
-      await fetchApi.post(`/projects/${id}/milestones`, milestoneData);
-      toast.success(t('milestoneAdded'));
-      // Refresh project data
-    } catch (error) {
-      toast.error(t('errorAddingMilestone'));
-    }
-  };
+  // const handleAddMilestone = async (milestoneData: any) => {
+  //   try {
+  //     await fetchApi.post(`/projects/${id}/milestones`, milestoneData);
+  //     toast.success(t('milestoneAdded'));
+  //     // Refresh project data
+  //   } catch (error) {
+  //     toast.error(t('errorAddingMilestone'));
+  //   }
+  // };
 
   if (loading) {
     return (
@@ -202,7 +224,10 @@ const ProjectDetails = () => {
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.duration')}</p>
                       <p className="font-semibold text-gray-900">
-                        {new Date(project.startDate).toLocaleDateString()} - {new Date(project.endDate).toLocaleDateString()}
+                        {project?.startDate && project?.endDate ? 
+                          `${new Date(project.startDate).toLocaleDateString()} - ${new Date(project.endDate).toLocaleDateString()}` 
+                          : '-'
+                        }
                       </p>
                     </div>
                   </div>
@@ -215,7 +240,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.budget')}</p>
-                      <p className="font-semibold text-gray-900">${project.budget.toLocaleString()}</p>
+                      <p className="font-semibold text-gray-900">${project?.budget?.toLocaleString() ?? 0}</p>
                     </div>
                   </div>
                 </div>
@@ -227,7 +252,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.teamSize')}</p>
-                      <p className="font-semibold text-gray-900">{project.team.length} {t('projects.members')}</p>
+                      <p className="font-semibold text-gray-900">{project?.team?.length || 0} {t('projects.members')}</p>
                     </div>
                   </div>
                 </div>
@@ -239,7 +264,7 @@ const ProjectDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">{t('projects.materialsUsed')}</p>
-                      <p className="font-semibold text-gray-900">{project.materialsUsed} {t('projects.items')}</p>
+                      <p className="font-semibold text-gray-900">{project?.materialsUsed ?? 0} {t('projects.items')}</p>
                     </div>
                   </div>
                 </div>
@@ -251,17 +276,17 @@ const ProjectDetails = () => {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900">{t('projects.progress')}</h2>
               <span className="text-sm font-medium text-gray-600">
-                {project.progress}% {t('projects.complete')}
+                {project?.progress ?? 0}% {t('projects.complete')}
               </span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2.5">
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${project.progress}%` }}
+                animate={{ width: `${project?.progress ?? 0}%` }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className={`h-2.5 rounded-full ${
-                  project.progress >= 90 ? 'bg-green-600' :
-                  project.progress >= 50 ? 'bg-yellow-500' :
+                  (project?.progress ?? 0) >= 90 ? 'bg-green-600' :
+                  (project?.progress ?? 0) >= 50 ? 'bg-yellow-500' :
                   'bg-red-500'
                 }`}
               />
@@ -286,8 +311,8 @@ const ProjectDetails = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex flex-col md:flex-row items-center gap-1 md:gap-2 py-4 px-1 border-b-2 font-medium text-sm relative ${
                       activeTab === tab.id
-                        ? 'text-green-600 border-green-500'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        ? 'text-green-600 '
+                        : 'border-transparent text-gray-500 hover:text-gray-700 '
                     }`}
                     whileHover={{ y: -1 }}
                     whileTap={{ y: 0 }}
@@ -321,7 +346,7 @@ const ProjectDetails = () => {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
                       {t('projects.details.description')}
                     </h3>
-                    <p className="text-gray-600">{project.description}</p>
+                    <p className="text-gray-600">{project?.description}</p>
                   </div>
                   
                   <div>
@@ -330,15 +355,15 @@ const ProjectDetails = () => {
                     </h3>
                     <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {[
-                        { label: 'projects.details.type', value: project.type },
-                        { label: 'projects.details.client', value: project.clientName },
+                        { label: 'projects.details.type', value: project?.type ?? '-' },
+                        { label: 'projects.details.client', value: project?.clientName ?? '-' },
                         { 
                           label: 'projects.details.startDate', 
-                          value: new Date(project.startDate).toLocaleDateString() 
+                          value: project?.startDate ? new Date(project.startDate).toLocaleDateString() : '-'
                         },
                         { 
                           label: 'projects.details.endDate', 
-                          value: new Date(project.endDate).toLocaleDateString() 
+                          value: project?.endDate ? new Date(project.endDate).toLocaleDateString() : '-'
                         }
                       ].map((item, index) => (
                         <div key={index} className="bg-gray-50 px-4 py-3 rounded-lg">
@@ -358,7 +383,7 @@ const ProjectDetails = () => {
                       {t('projects.details.timeline')}
                     </h3>
                     <div className="space-y-8">
-                      {project.timeline?.map((milestone, index) => (
+                      {project?.timeline?.map((milestone, index) => (
                         <motion.div
                           key={milestone.id}
                           initial={{ opacity: 0, y: 20 }}
@@ -395,7 +420,7 @@ const ProjectDetails = () => {
                     {t('projects.details.teamMembers')}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {project.team?.map((member) => (
+                    {project?.team?.map((member) => (
                       <motion.div
                         key={member.id}
                         initial={{ opacity: 0, y: 20 }}
@@ -406,7 +431,7 @@ const ProjectDetails = () => {
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
                             <span className="text-green-600 font-medium">
-                              {member.name?.split(' ').map(n => n[0]).join('')}
+                              {member.name?.split(' ').map((n: string) => n[0]).join('')}
                             </span>
                           </div>
                           <div>
@@ -468,7 +493,7 @@ const ProjectDetails = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {project.materials?.map((material) => {
+          {project?.materials?.map((material) => {
             const usagePercentage = material.quantity > 0 
               ? Math.round((material.used / material.quantity) * 100)
               : 0;
@@ -549,7 +574,7 @@ const ProjectDetails = () => {
               </tr>
             );
           })}
-          {(!project.materials || project.materials.length === 0) && (
+          {(!project?.materials || project?.materials?.length === 0) && (
             <tr>
               <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
                 {t('projects.materials.noMaterials')}
@@ -577,7 +602,7 @@ const ProjectDetails = () => {
                       </motion.button>
                     </div>
 
-                    {project.files && project.files.length > 0 ? (
+                    {project?.files && project.files.length > 0 ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {project.files.map((file) => (
                           <motion.div
