@@ -96,19 +96,19 @@ const NewProject = () => {
     files: []
 
   });
-  const handleAddTeamMember = (member: { name: string; specialty: string }) => {
-    setFormData(prev => ({
-      ...prev,
-      team: [
-        ...prev.team,
-        {
-          id: Date.now().toString(),
-          name: member.name,
-          specialty: member.specialty
-        }
-      ]
-    }));
-  };
+  // const handleAddTeamMember = (member: { name: string; specialty: string }) => {
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     team: [
+  //       ...prev.team,
+  //       {
+  //         id: Date.now().toString(),
+  //         name: member.name,
+  //         specialty: member.specialty
+  //       }
+  //     ]
+  //   }));
+  // };
   // const handleAddMaterial = (material: { name: string; quantity: number; unit: string }) => {
   //   setFormData(prev => ({
   //     ...prev,
@@ -121,38 +121,38 @@ const NewProject = () => {
   //     ]
   //   }));
   // };
-  const handleAddMaterial = (materialData: { id: number; quantity: number }) => {
-    // Get material details from the availableMaterials array
-    const materialInfo = availableMaterials.find(m => m.id === materialData.id);
+  // const handleAddMaterial = (materialData: { id: number; quantity: number }) => {
+  //   // Get material details from the availableMaterials array
+  //   const materialInfo = availableMaterials.find(m => m.id === materialData.id);
     
-    if (!materialInfo) return;
+  //   if (!materialInfo) return;
   
-    setFormData(prev => ({
-      ...prev,
-      materials: [
-        ...prev.materials,
-        {
-          id: materialData.id,
-          name: materialInfo.name, // Get name from availableMaterials
-          quantity: materialData.quantity,
-          unit: materialInfo.unit, // Get unit from availableMaterials
-          used: 0 // Initialize used to 0
-        }
-      ]
-    }));
-  };
-  const handleAddFile = (file: File) => {
-    setFormData(prev => ({
-      ...prev,
-      files: [
-        ...prev.files,
-        {
-          name: file.name,
-          type: file.type
-        }
-      ]
-    }));
-  };
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     materials: [
+  //       ...prev.materials,
+  //       {
+  //         id: materialData.id,
+  //         name: materialInfo.name, // Get name from availableMaterials
+  //         quantity: materialData.quantity,
+  //         unit: materialInfo.unit, // Get unit from availableMaterials
+  //         used: 0 // Initialize used to 0
+  //       }
+  //     ]
+  //   }));
+  // };
+  // const handleAddFile = (file: File) => {
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     files: [
+  //       ...prev.files,
+  //       {
+  //         name: file.name,
+  //         type: file.type
+  //       }
+  //     ]
+  //   }));
+  // };
   // const validateForm = () => {
   //   const errors: string[] = [];
     

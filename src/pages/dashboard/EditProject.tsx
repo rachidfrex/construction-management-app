@@ -18,9 +18,7 @@ import {
     HiOutlineCloudUpload,
     HiOutlineX,
     HiOutlineCube,
-    HiOutlineChartBar,
     HiOutlineCurrencyDollar,
-    HiOutlineClipboardList,
 } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 import { useTranslationContext } from '../../context/TranslationContext';
@@ -332,7 +330,7 @@ const EditProject = () => {
                     <div  className="relative  ">
                       <DatePicker
                         selected={formData.startDate ? new Date(formData.startDate) : null}
-                        onChange={(date) => setFormData({ ...formData, startDate: date?.toISOString() })}
+                        onChange={(date) => setFormData({ ...formData, startDate: date ? date.toISOString() : '' })}
                         dateFormat="dd/MM/yyyy"
                         className="w-full px-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholderText={t('editProject.form.placeholders.startDate')}
@@ -348,11 +346,11 @@ const EditProject = () => {
                     <div className="relative">
                       <DatePicker
                         selected={formData.endDate ? new Date(formData.endDate) : null}
-                        onChange={(date) => setFormData({ ...formData, endDate: date?.toISOString() })}
+                        onChange={(date) => setFormData({ ...formData, endDate: date?.toISOString() ?? '' })}
                         dateFormat="dd/MM/yyyy"
                         className="w-full px-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholderText={t('editProject.form.placeholders.endDate')}
-                        minDate={formData.startDate ? new Date(formData.startDate) : null}
+                        minDate={formData.startDate ? new Date(formData.startDate) : undefined}
                       />
                       <HiOutlineCalendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     </div>
