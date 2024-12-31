@@ -226,25 +226,25 @@ return true;
       setIsLoading(false);
     }
   };
-  const getDefaultMaterialName = (id: number): string => {
-    const materialNames: Record<number, string> = {
-      1: "Cement",
-      2: "Steel",
-      3: "Bricks"
-      // Add more materials as needed
-    };
-    return materialNames[id] || "Unknown Material";
-  };
+  // const getDefaultMaterialName = (id: number): string => {
+  //   const materialNames: Record<number, string> = {
+  //     1: "Cement",
+  //     2: "Steel",
+  //     3: "Bricks"
+  //     // Add more materials as needed
+  //   };
+  //   return materialNames[id] || "Unknown Material";
+  // };
   
-  const getDefaultUnit = (id: number): string => {
-    const materialUnits: Record<number, string> = {
-      1: "bags",
-      2: "tons",
-      3: "pieces"
-      // Add more units as needed
-    };
-    return materialUnits[id] || "units";
-  };
+  // const getDefaultUnit = (id: number): string => {
+  //   const materialUnits: Record<number, string> = {
+  //     1: "bags",
+  //     2: "tons",
+  //     3: "pieces"
+  //     // Add more units as needed
+  //   };
+  //   return materialUnits[id] || "units";
+  // };
 
   return (
     <div className="min-h-screen bg-gray-50">

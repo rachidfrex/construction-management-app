@@ -469,7 +469,7 @@ const Inventory = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-600 text-white rounded-full shadow-lg hover:bg-green-700"
-          onClick={() => showToast('info', t('inventory.quickActions.comingSoon'))}
+          onClick={() => showToast('warning', t('inventory.quickActions.comingSoon'))}
         >
           <HiOutlinePlusCircle className="w-6 h-6" />
         </motion.button>

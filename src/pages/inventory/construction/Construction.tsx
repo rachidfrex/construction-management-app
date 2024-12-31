@@ -6,11 +6,9 @@ import {
   HiOutlineFilter,
   HiOutlineSearch,
   HiOutlineDownload,
-  HiOutlinePrinter,
   HiOutlineCube,
   HiOutlineExclamation,
-  HiOutlineRefresh,
-  HiOutlineChartBar,
+
   HiOutlineAdjustments,
   HiOutlineViewGrid,
   HiOutlineViewList,
@@ -81,7 +79,7 @@ const Construction = () => {
   ];
 
   const categories = ['Basic Materials', 'Metals', 'Wood', 'Concrete', 'Tools'];
-  const warehouses = ['Main Warehouse', 'Metal Storage', 'Tool Storage'];
+  // const warehouses = ['Main Warehouse', 'Metal Storage', 'Tool Storage'];
   const suppliers = ['ABC Suppliers', 'Steel Corp', 'Wood Inc', 'Cement Pro'];
   const statuses = ['In Stock', 'Low Stock', 'Out of Stock'];
 
@@ -104,10 +102,9 @@ const Construction = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 mt-4 px-3 md:px-6  ${
+      <main className={`transition-all duration-300 mt-5 md:mt-12 ease-in-out pt-16 p-3 sm:p-6 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
-        {/* Breadcrumb */}
         <Breadcrumb 
           items={[
             { label: t('inventory.title'), path: '/inventory' },
@@ -115,56 +112,60 @@ const Construction = () => {
           ]} 
         />
 
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        {/* Header Section - Adjusted Typography */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6"
+        >
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t('inventory.construction.title')}</h1>
-            <p className="text-gray-600 text-sm mt-1">{t('inventory.construction.subtitle')}</p>
+            <p className="text-gray-600 text-xs font-semibold mt-2">{t('inventory.construction.subtitle')}</p>
           </div>
           
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-2">
             {/* View Toggle */}
-            <div className="flex rounded-lg border border-gray-300 p-1">
+            <div className="flex rounded-lg border border-gray-200 p-1">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1 t rounded ${viewMode === 'grid' ? 'bg-gray-100' : ''}`}
+                className={`p-1.5 rounded transition-colors ${viewMode === 'grid' ? 'bg-gray-100' : ''}`}
               >
-                <HiOutlineViewGrid className="w-5 h-5 text-gray-600" />
+                <HiOutlineViewGrid className="w-4 h-4 text-gray-600" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-1 rounded ${viewMode === 'list' ? 'bg-gray-100' : ''}`}
+                className={`p-1.5 rounded transition-colors ${viewMode === 'list' ? 'bg-gray-100' : ''}`}
               >
-                <HiOutlineViewList className="w-5 h-5 text-gray-600" />
+                <HiOutlineViewList className="w-4 h-4 text-gray-600" />
               </button>
             </div>
 
             {/* Action Buttons */}
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white rounded-lg hover:bg-gray-50 border border-gray-200"
+            >
+              <HiOutlineDownload className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-600">{t('common.export')}</span>
+            </motion.button>
+
             <Link to="/inventory/construction/add">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center gap-2 px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700"
               >
-                <HiOutlinePlusCircle className="w-5 h-5" />
+                <HiOutlinePlusCircle className="w-4 h-4" />
                 {t('inventory.construction.addMaterial')}
               </motion.button>
             </Link>
-            
-            {/* Export Button */}
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center gap-2 px-4 py-2  text-sm bg-white rounded-lg hover:bg-gray-50"
-            >
-              <HiOutlineDownload className="w-5 h-5 text-gray-600" />
-              <span className="text-sm text-gray-600">{t('common.export')}</span>
-            </motion.button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Enhanced Filters Section */}
+        {/* Enhanced Filters Section - Adjusted Sizing */}
         <div className={`bg-white rounded-lg shadow-sm p-4 mb-6 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
             {/* Search Input */}
             <div className="relative">
               <input
@@ -176,7 +177,7 @@ const Construction = () => {
                   direction === 'rtl' ? 'pr-10 pl-4' : 'pl-10 pr-4'
                 }`}
               />
-              <HiOutlineSearch className={`absolute top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 ${
+              <HiOutlineSearch className={`absolute top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 ${
                 direction === 'rtl' ? 'right-3' : 'left-3'
               }`} />
             </div>
@@ -429,54 +430,53 @@ const Construction = () => {
 };
 
 // MaterialCard component with translations and RTL support
-const MaterialCard = ({ material, t, direction }) => {
+interface MaterialCardProps {
+  material: ConstructionMaterial;
+  t: (key: string) => string;
+  direction?: string;
+}
+
+const MaterialCard = ({ material, t }: MaterialCardProps) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
-      className={`bg-white rounded-lg shadow-sm p-4 ${
-        direction === 'rtl' ? 'text-right' : 'text-left'
-      }`}
+      whileHover={{ scale: 1.01 }}
+      className="bg-white rounded-lg shadow-sm p-4 border border-gray-100"
     >
-      {/* Material card content with translations */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 rounded-lg">
-            <HiOutlineCube className="w-5 h-5 text-blue-600" />
-          </div>
-          <div>
-            <h3 className="font-medium text-gray-900">{material.name}</h3>
-            <p className="text-sm text-gray-500">{material.category}</p>
-          </div>
+      <div className="flex items-center gap-3 mb-3">
+        <div className="p-2 bg-blue-100 rounded-lg">
+          <HiOutlineCube className="w-4 h-4 text-blue-600" />
+        </div>
+        <div>
+          <h3 className="text-sm font-semibold text-gray-900">{material.name}</h3>
+          <p className="text-xs text-gray-500">{material.category}</p>
         </div>
       </div>
       
-      <div className="space-y-2">
-        <div className="flex justify-between">
-          <span className="text-sm text-gray-500">{t('inventory.transactions.quantity')}</span>
-          <span className="text-sm font-medium">{material.quantity} {material.unit}</span>
+      <div className="space-y-2 mb-4">
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-500">{t('inventory.transactions.quantity')}</span>
+          <span className="font-medium">{material.quantity} {material.unit}</span>
         </div>
-        <div className="flex justify-between">
-          <span className="text-sm text-gray-500">{t('inventory.metrics.totalValue')}</span>
-          <span className="text-sm font-medium">${(material.quantity * material.price).toLocaleString()}</span>
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-500">{t('inventory.metrics.totalValue')}</span>
+          <span className="font-medium">${(material.quantity * material.price).toLocaleString()}</span>
         </div>
       </div>
 
-      <div className="mt-4 pt-4 border-t">
-        <div className="flex justify-between items-center">
-          <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-            material.status === 'In Stock' ? 'bg-green-100 text-green-800' :
-            material.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' :
-            'bg-red-100 text-red-800'
-          }`}>
-            {t(`inventory.status.${material.status.toLowerCase().replace(' ', '')}`)}
-          </span>
-          <Link
-            to={`/inventory/construction/edit/${material.id}`}
-            className="text-sm text-blue-600 hover:text-blue-700"
-          >
-            {t('common.edit')}
-          </Link>
-        </div>
+      <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+        <span className={`px-2 py-1 text-xs font-medium rounded-full ${
+          material.status === 'In Stock' ? 'bg-green-100 text-green-800' :
+          material.status === 'Low Stock' ? 'bg-yellow-100 text-yellow-800' :
+          'bg-red-100 text-red-800'
+        }`}>
+          {t(`inventory.status.${material.status.toLowerCase().replace(' ', '')}`)}
+        </span>
+        <Link
+          to={`/inventory/construction/edit/${material.id}`}
+          className="text-xs font-medium text-blue-600 hover:text-blue-700"
+        >
+          {t('common.edit')}
+        </Link>
       </div>
     </motion.div>
   );
