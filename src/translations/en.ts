@@ -155,7 +155,9 @@ export const en = {
         type: "Type",
         expiryDate: "Expiry Date",
         composition: "Composition",
-        storageConditions: "Storage Conditions"
+        storageConditions: "Storage Conditions",
+        unit: "Unit",
+        price: "Price",
       },
       construction: {
         title: "Construction Materials",
@@ -169,6 +171,8 @@ export const en = {
           concrete: "Concrete",
           tools: "Tools",
         },
+        uploadImage: "Upload Image",
+        dragDrop: "or drag and drop image here",
       },
       fertilizers: {
         title: "Fertilizers",
@@ -212,7 +216,9 @@ export const en = {
       units: {
         bags: "bags",
         tons: "tons",
-        gallons: "gallons"
+        gallons: "gallons",
+        pieces: "pieces",
+        meters: "meters",
       },
       searchPlaceholder: "Search inventory...",
       filters: {
@@ -286,6 +292,21 @@ export const en = {
         manage: "Manage Inventory",
         orders: "Orders",
         reports: "Reports"
+      },
+      minimumStock: "Minimum Stock Level",
+      description: "Description",
+      selectUnit: "Select Unit",
+      messages: {
+        success: {
+          materialAdded: "Material added successfully"
+        },
+        error: {
+          addMaterial: "Failed to add material"
+        }
+      },
+      placeholders: {
+        materialName: "Enter material name",
+        description: "Enter material description..."
       }
     },
   

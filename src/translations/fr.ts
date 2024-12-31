@@ -152,7 +152,9 @@ export const fr = {
         type: "Type",
         expiryDate: "Date d'expiration",
         composition: "Composition",
-        storageConditions: "Conditions de stockage"
+        storageConditions: "Conditions de stockage",
+        unit: "Unité",
+        price: "Prix",
       },
       construction: {
         title: "Matériaux de construction",
@@ -166,6 +168,8 @@ export const fr = {
           concrete: "Béton",
           tools: "Outils",
         },
+        uploadImage: "Télécharger une image",
+        dragDrop: "ou glissez-déposez l'image ici",
       },
       fertilizers: {
         title: "Engrais",
@@ -209,7 +213,9 @@ export const fr = {
       units: {
         bags: "sacs",
         tons: "tonnes",
-        gallons: "litres"
+        gallons: "litres",
+        pieces: "pièces",
+        meters: "mètres",
       },
       searchPlaceholder: "Rechercher dans l'inventaire...",
       filters: {
@@ -275,6 +281,21 @@ export const fr = {
         title: "Actions Groupées",
         deleteSelected: "Supprimer la Sélection",
         editSelected: "Modifier la Sélection"
+      },
+      minimumStock: "Niveau de stock minimum",
+      description: "Description",
+      selectUnit: "Sélectionner l'unité",
+      messages: {
+        success: {
+          materialAdded: "Matériel ajouté avec succès"
+        },
+        error: {
+          addMaterial: "Échec de l'ajout du matériel"
+        }
+      },
+      placeholders: {
+        materialName: "Entrez le nom du matériau",
+        description: "Entrez la description du matériau..."
       }
     },
   

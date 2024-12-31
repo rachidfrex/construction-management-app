@@ -15,6 +15,7 @@ import Inventory from '../pages/inventory/Inventory';
 import Construction from '../pages/inventory/construction/Construction';
 import Fertilizers from  '../pages/inventory/Fertilizers/Fertilizers';
 import Logout from '../pages/auth/Logout';
+import AddConstruction from '../pages/inventory/construction/AddConstruction';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/inventory" element={<Inventory />} />
       <Route path="/inventory/construction/manage" element={<Construction />} />
       <Route path="/inventory/fertilizers/manage" element={<Fertilizers />} />
+      <Route path="/inventory/construction/add" element={<AddConstruction />} />
       <Route path="/logout" element={<Logout />} />
 
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}

@@ -151,7 +151,9 @@ export const ar = {
           type: "النوع",
           expiryDate: "تاريخ الصلاحية",
           composition: "التركيب",
-          storageConditions: "ظروف التخزين"
+          storageConditions: "ظروف التخزين",
+          unit: "الوحدة",
+          price: "السعر",
         },
         construction: {
           title: "مواد البناء",
@@ -165,6 +167,8 @@ export const ar = {
             concrete: "الخرسانة",
             tools: "الأدوات",
           },
+          uploadImage: "تحميل صورة",
+          dragDrop: "أو اسحب وأفلت الصورة هنا",
         },
         fertilizers: {
           title: "الأسمدة",
@@ -208,7 +212,9 @@ export const ar = {
         units: {
           bags: "كيس",
           tons: "طن",
-          gallons: "جالون"
+          gallons: "جالون",
+          pieces: "قطعة",
+          meters: "متر",
         },
         searchPlaceholder: "البحث في المخزون...",
         filters: {
@@ -284,6 +290,21 @@ export const ar = {
           title: "إجراءات متعددة",
           deleteSelected: "حذف المحدد",
           editSelected: "تعديل المحدد"
+        },
+        minimumStock: "الحد الأدنى للمخزون",
+        description: "الوصف",
+        selectUnit: "اختر الوحدة",
+        messages: {
+          success: {
+            materialAdded: "تمت إضافة المادة بنجاح"
+          },
+          error: {
+            addMaterial: "فشل في إضافة المادة"
+          }
+        },
+        placeholders: {
+          materialName: "أدخل اسم المادة",
+          description: "أدخل وصف المادة..."
         }
       },
 
