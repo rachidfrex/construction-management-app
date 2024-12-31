@@ -89,12 +89,20 @@ const Construction = () => {
     return matchesSearch && matchesCategory && matchesWarehouse;
   });
 
-  const handleBulkAction = () => {
+  const handleBulkAction = (action: 'delete' | 'update') => {
     if (selectedMaterials.length === 0) {
       // Show toast or alert
       return;
     }
-    // Handle bulk actions like delete, update, etc.
+    // Handle bulk actions based on the action type
+    switch (action) {
+      case 'delete':
+        // Handle delete action
+        break;
+      case 'update':
+        // Handle update action
+        break;
+    }
   };
 
   return (
