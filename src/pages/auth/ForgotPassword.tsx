@@ -5,6 +5,7 @@ import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { useToast } from '../../context/ToastContext';
 import { useTranslationContext } from '../../context/TranslationContext';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from '../../components/ui/LanguageSwitcher';
 
 const ForgotPassword = () => {
   const { t } = useTranslation();
@@ -40,6 +41,9 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
+       <div className=' bg-white rounded-lg  absolute top-4 right-4 shadow-sm '>
+          <LanguageSwitcher  />
+        </div>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

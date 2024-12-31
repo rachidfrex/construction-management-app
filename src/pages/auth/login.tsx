@@ -3,27 +3,20 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import { HiTranslate } from 'react-icons/hi';
 import { useToast } from '../../context/ToastContext';
 import { useTranslationContext } from '../../context/TranslationContext';
 import { useTranslation } from 'react-i18next';
-import { GB, FR, MA } from 'country-flag-icons/react/3x2';
 import authConfig from '../../config/auth.config.json';
+import LanguageSwitcher from '../../components/ui/LanguageSwitcher';
 
 const Login = () => {
   const { t } = useTranslation();
   const { showToast } = useToast();
   const navigate = useNavigate();
-  const { language, changeLanguage, direction } = useTranslationContext();
+  const { direction } = useTranslationContext();
   const [showPassword, setShowPassword] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [showLanguageMenu, setShowLanguageMenu] = React.useState(false);
 
-  const languages = [
-    { code: 'en', label: 'English', flag: <GB className="w-4 h-full rounded-sm " title="English" /> },
-    { code: 'fr', label: 'Français', flag: <FR className="w-4 h-full  rounded-sm " title="Français" /> },
-    { code: 'ar', label: 'العربية', flag: <MA className="w-4 h-full  rounded-sm" title="العربية" /> },
-  ];
 
   const [formData, setFormData] = React.useState({
     email: '',
@@ -60,54 +53,9 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center p-4">
-      {/* Language Switcher */}
-      <div className="absolute top-4 right-4">
-        <div className="relative">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-            className="flex items-center gap-2 px-3 py-2 bg-white rounded-lg hover:bg-gray-50 shadow-sm"
-          >
-            <HiTranslate className="w-5 h-5 text-gray-600" />
-            <span className="text-sm text-gray-700">
-              {languages.find(lang => lang.code === language)?.flag}
-            </span>
-          </motion.button>
-
-          {showLanguageMenu && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="absolute right-0 mt-2 w-48 py-2 bg-white rounded-lg shadow-lg border border-gray-100"
-            >
-              {languages.map((lang) => (
-                <motion.button
-                  key={lang.code}
-                  whileHover={{ x: 4 }}
-                  onClick={() => {
-                    changeLanguage(lang.code);
-                    setShowLanguageMenu(false);
-                  }}
-                  className={`w-full px-4 py-2 text-sm text-left flex items-center gap-2 hover:bg-gray-50 ${
-                    language === lang.code ? 'text-green-600 font-medium' : 'text-gray-700'
-                  }`}
-                >
-                  <span>{lang.flag}</span>
-                  <span>{lang.label}</span>
-                  {language === lang.code && (
-                    <motion.div
-                      layoutId="activeLang"
-                      className="w-1.5 h-1.5 rounded-full bg-green-600 ml-auto"
-                    />
-                  )}
-                </motion.button>
-              ))}
-            </motion.div>
-          )}
+        <div className=' bg-white rounded-lg  absolute top-4 right-4 shadow-sm '>
+          <LanguageSwitcher  />
         </div>
-      </div>
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
