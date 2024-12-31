@@ -8,7 +8,6 @@ import {
   HiOutlineDownload,
   HiOutlineCube,
   HiOutlineExclamation,
-
   HiOutlineAdjustments,
   HiOutlineViewGrid,
   HiOutlineViewList,
@@ -90,7 +89,7 @@ const Construction = () => {
     return matchesSearch && matchesCategory && matchesWarehouse;
   });
 
-  const handleBulkAction = (action: string) => {
+  const handleBulkAction = () => {
     if (selectedMaterials.length === 0) {
       // Show toast or alert
       return;
