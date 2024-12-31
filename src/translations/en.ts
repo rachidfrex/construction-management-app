@@ -78,9 +78,10 @@ export const en = {
         verifying: "Verifying...",
         noCodeReceived: "Didn't receive the code?",
         resendCode: "Resend",
-        newCodeSent: "New code sent!"
-        
-        
+        newCodeSent: "New code sent!",
+        logoutSuccess: "Logged out successfully",
+        logoutError: "Error logging out",
+        loggingOut: "Logging out...",
       },
 
   
@@ -280,6 +281,11 @@ export const en = {
         selected: "selected",
         deleteSelected: "Delete Selected",
         editSelected: "Edit Selected"
+      },
+      quickLinks: {
+        manage: "Manage Inventory",
+        orders: "Orders",
+        reports: "Reports"
       }
     },
   

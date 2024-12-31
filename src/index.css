@@ -5,12 +5,14 @@
 @layer base {
   html {
     font-family: 'Poppins', sans-serif;
+    
   }
 
   html[lang="ar"] {
     font-family: 'Cairo', sans-serif;
   }
 }
+
 
 /* Add specific styles for Arabic text */
 .arabic-text {
@@ -84,4 +86,51 @@
 .react-datepicker__input-container input:focus {
   border-color: #16a34a;
   box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+}
+
+/* scroll del bar a3odo belah */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #16a34a; /* Green color to match your theme */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #15803d; /* Darker green on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #16a34a #f1f1f1;
+}
+
+/* For tables with horizontal scroll */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+/* For dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #22c55e;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #16a34a;
+  }
 }

@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { 
   HiOutlineCube, 
   HiOutlineBeaker,
-  HiOutlineArrowSmRight,
+  // HiOutlineArrowSmRight,
   HiOutlineSearch,
   HiOutlineFilter,
   HiOutlineDownload,
   HiOutlinePrinter,
   HiOutlinePlusCircle,
   HiOutlineChartBar,
-  HiOutlineExclamation,
+  // HiOutlineExclamation,
   HiOutlineRefresh,
   HiOutlineAdjustments
 } from 'react-icons/hi';
@@ -45,7 +45,7 @@ const Inventory = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('name');
-  const [filterStatus, setFilterStatus] = useState('all');
+  // const [filterStatus, setFilterStatus] = useState('all');
   const [timeRange, setTimeRange] = useState('7days');
 
   const quickLinks = {
@@ -124,17 +124,17 @@ const Inventory = () => {
   }, [showToast]);
 
   const handleExport = () => {
-    showToast('info', 'Preparing export...');
+    showToast('warning', 'Preparing export...');
     // Export logic here
   };
 
   const handlePrint = () => {
-    showToast('info', 'Preparing print view...');
+    showToast('warning', 'Preparing print view...');
     // Print logic here
   };
 
   const handleRefresh = async () => {
-    showToast('info', 'Refreshing inventory data...');
+    showToast('warning', 'Refreshing inventory data...');
     // Refresh logic here
   };
 
@@ -142,16 +142,9 @@ const Inventory = () => {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <Header />
-      <main className={`transition-all duration-300 pt-16 p-3 md:p-6 md:mt-6 ${
+      <main className={`transition-all duration-300 mt-5 md:mt-12 ease-in-out pt-16 p-3 sm:p-6  ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'
       }`}>
-        {/* Update text content with translations */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-            {/* Header content */}
-          </div>
-        </motion.div>
-
         {/* Enhanced Header Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
@@ -160,7 +153,7 @@ const Inventory = () => {
         >
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t('inventory.title')}</h1>
-            <p className="text-gray-600 mt-1">{t('inventory.subtitle')}</p>
+            <p className="text-gray-600 text-xs font-semibold mt-2">{t('inventory.subtitle')}</p>
           </div>
           
           <div className="flex gap-2">
@@ -168,39 +161,39 @@ const Inventory = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleRefresh}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-gray-50"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white rounded-lg hover:bg-gray-50 border border-gray-200"
             >
-              <HiOutlineRefresh className="w-5 h-5 text-gray-600" />
-              <span className="text-sm text-gray-600">{t('common.refresh')}</span>
+              <HiOutlineRefresh className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-600">{t('common.refresh')}</span>
             </motion.button>
 
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleExport}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-gray-50"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white rounded-lg hover:bg-gray-50 border border-gray-200"
             >
-              <HiOutlineDownload className="w-5 h-5 text-gray-600" />
-              <span className="text-sm text-gray-600">{t('common.export')}</span>
+              <HiOutlineDownload className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-600">{t('common.export')}</span>
             </motion.button>
             
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={handlePrint}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg hover:bg-gray-50"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm bg-white rounded-lg hover:bg-gray-50 border border-gray-200"
             >
-              <HiOutlinePrinter className="w-5 h-5 text-gray-600" />
-              <span className="text-sm text-gray-600">{t('common.print')}</span>
+              <HiOutlinePrinter className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-600">{t('common.print')}</span>
             </motion.button>
           </div>
         </motion.div>
 
-        {/* Enhanced Search and Filter Bar */}
+        {/* Enhanced Search and Filter Bar - Adjusted sizing */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6"
         >
           <div className="relative">
             <input
@@ -253,34 +246,32 @@ const Inventory = () => {
           </div>
         </motion.div>
 
-        {/* Category Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Category Cards - Adjusted typography and spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Construction Materials Card */}
-          <motion.div whileHover={{ scale: 1.02 }} className="bg-white rounded-xl shadow-sm p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <HiOutlineCube className="w-6 h-6 text-blue-600" />
-                </div>
-                <h2 className="text-lg font-semibold text-gray-900">{t('inventory.filters.construction')}</h2>
+          <motion.div whileHover={{ scale: 1.01 }} className="bg-white rounded-xl shadow-sm p-5">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <HiOutlineCube className="w-5 h-5 text-blue-600" />
               </div>
+              <h2 className="text-base font-semibold text-gray-900">{t('inventory.filters.construction')}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.totalProducts')}</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.construction.totalProducts}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.totalProducts')}</p>
+                <p className="text-lg font-semibold text-gray-900">{stats.construction.totalProducts}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.lowStock')}</p>
-                <p className="text-2xl font-bold text-red-600">{stats.construction.lowStock}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.lowStock')}</p>
+                <p className="text-lg font-semibold text-red-600">{stats.construction.lowStock}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.totalValue')}</p>
-                <p className="text-2xl font-bold text-gray-900">${stats.construction.value.toLocaleString()}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.totalValue')}</p>
+                <p className="text-lg font-semibold text-gray-900">${stats.construction.value.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.recentMovements')}</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.construction.movements}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.recentMovements')}</p>
+                <p className="text-lg font-semibold text-gray-900">{stats.construction.movements}</p>
               </div>
             </div>
             {/* Quick Links Section */}
@@ -290,7 +281,7 @@ const Inventory = () => {
                   <Link
                     key={index}
                     to={link.path}
-                    className={`text-sm px-3 py-1.5 rounded-full ${
+                    className={`text-xs px-3 py-1.5 rounded-full ${
                       direction === 'rtl' ? 'ml-2' : 'mr-2'
                     } ${
                       index === 0 
@@ -306,31 +297,29 @@ const Inventory = () => {
           </motion.div>
 
           {/* Fertilizers Card */}
-          <motion.div whileHover={{ scale: 1.02 }} className="bg-white rounded-xl shadow-sm p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <HiOutlineBeaker className="w-6 h-6 text-green-600" />
-                </div>
-                <h2 className="text-lg font-semibold text-gray-900">{t('inventory.filters.fertilizers')}</h2>
+          <motion.div whileHover={{ scale: 1.01 }} className="bg-white rounded-xl shadow-sm p-5">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-green-100 rounded-lg">
+                <HiOutlineBeaker className="w-5 h-5 text-green-600" />
               </div>
+              <h2 className="text-base font-semibold text-gray-900">{t('inventory.filters.fertilizers')}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.totalProducts')}</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.fertilizers.totalProducts}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.totalProducts')}</p>
+                <p className="text-lg font-semibold text-gray-900">{stats.fertilizers.totalProducts}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.expiringSoon')}</p>
-                <p className="text-2xl font-bold text-yellow-600">{stats.fertilizers.expiringSoon}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.expiringSoon')}</p>
+                <p className="text-lg font-semibold text-yellow-600">{stats.fertilizers.expiringSoon}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.totalValue')}</p>
-                <p className="text-2xl font-bold text-gray-900">${stats.fertilizers.value.toLocaleString()}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.totalValue')}</p>
+                <p className="text-lg font-semibold text-gray-900">${stats.fertilizers.value.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-500">{t('inventory.statistics.recentMovements')}</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.fertilizers.movements}</p>
+                <p className="text-xs text-gray-500">{t('inventory.statistics.recentMovements')}</p>
+                <p className="text-lg font-semibold text-gray-900">{stats.fertilizers.movements}</p>
               </div>
             </div>
             {/* Quick Links Section */}
@@ -340,7 +329,7 @@ const Inventory = () => {
                   <Link
                     key={index}
                     to={link.path}
-                    className={`text-sm px-3 py-1.5 rounded-full ${
+                    className={`text-xs px-3 py-1.5 rounded-full ${
                       direction === 'rtl' ? 'ml-2' : 'mr-2'
                     } ${
                       index === 0 
@@ -360,10 +349,10 @@ const Inventory = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-xl shadow-sm p-6 mb-6"
+          className="bg-white rounded-xl shadow-sm p-5 mb-6"
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">{t('inventory.transactions.title')}</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-base font-semibold text-gray-900">{t('inventory.transactions.title')}</h2>
             <Link to="/inventory/transactions" className="text-sm text-green-600 hover:text-green-700">
               {t('inventory.transactions.viewAll')}
             </Link>

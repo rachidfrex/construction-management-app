@@ -75,8 +75,10 @@ export const fr = {
         verifying: "Vérification...",
         noCodeReceived: "Vous n'avez pas reçu le code ?",
         resendCode: "Renvoyer",
-        newCodeSent: "Nouveau code envoyé !"
-
+        newCodeSent: "Nouveau code envoyé !",
+        logoutSuccess: "Déconnexion réussie",
+        logoutError: "Erreur lors de la déconnexion",
+        loggingOut: "Déconnexion en cours..."
       },
   
     dashboard: {

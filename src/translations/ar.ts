@@ -75,9 +75,10 @@ export const ar = {
         verifying: "جاري التحقق...",
         noCodeReceived: "لم تستلم الرمز؟",
         resendCode: "إعادة الإرسال",
-        newCodeSent: "تم إرسال رمز جديد!"
-        
-        
+        newCodeSent: "تم إرسال رمز جديد!",
+        logoutSuccess: "تم تسجيل الخروج بنجاح",
+        logoutError: "خطأ في تسجيل الخروج",
+        loggingOut: "جاري تسجيل الخروج..."
       },
 
     dashboard: {
