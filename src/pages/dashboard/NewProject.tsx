@@ -58,7 +58,12 @@ interface FormData {
   budget: string;
   team: TeamMember[];
   materials: Material[];
-  files: { id: string; name: string }[];
+  // files: { id: string; name: string }[];
+  files: {
+    id: string;
+    name: string;
+    type: string;
+  }[];
   milestones: Milestone[];
   materialLinks: MaterialLink[];
   materialSource: 'internal' | 'purchase';
@@ -135,6 +140,16 @@ if (errors.length > 0) {
 }
 return true;
 };
+const validateProjectData = (data: typeof formData) => {
+  if (!data.projectName.trim()) throw new Error(t('projects.validation.nameRequired'));
+  if (!data.projectType) throw new Error(t('projects.validation.typeRequired')); 
+  if (!data.clientName.trim()) throw new Error(t('projects.validation.clientRequired'));
+  if (!data.startDate || !data.endDate) throw new Error(t('projects.validation.datesRequired'));
+  if (new Date(data.startDate) >= new Date(data.endDate)) {
+    throw new Error(t('projects.validation.invalidDates'));
+  }
+  if (!data.budget) throw new Error(t('projects.validation.budgetRequired'));
+};
   const handleStepClick = (step: number) => {
     if (step < currentStep) {
       setCurrentStep(step);
@@ -189,6 +204,45 @@ return true;
     }));
   };
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+      
+  //   if (!validateStep(currentStep)) return;
+  
+  //   setIsLoading(true);
+  //   try {
+  //     const projectData = {
+  //       name: formData.projectName,
+  //       description: formData.description,
+  //       clientName: formData.clientName,
+  //       startDate: formData.startDate,
+  //       endDate: formData.endDate,
+  //       status: 'In Progress' as const,
+  //       type: formData.projectType,
+  //       progress: 0,
+  //       budget: parseFloat(formData.budget),
+  //       materialsUsed: 0,
+  //       team: formData.team,
+  //       materials: formData.materials,
+  //       files: formData.files || [],
+  //       timeline: formData.milestones.map(milestone => ({
+  //         id: milestone.id,
+  //         title: milestone.title,
+  //         date: milestone.date,
+  //         status: 'pending'
+  //       })),
+  //       materialLinks: formData.materialLinks
+  //     };
+  
+  //     await storage.createProject(projectData);
+  //     showToast('success', t('projects.messages.success.created'));
+  //     setTimeout(() => navigate('/projects'), 500);
+  //   } catch (error) {
+  //     showToast('error', t('projects.messages.error.create'));
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
       
@@ -196,33 +250,46 @@ return true;
   
     setIsLoading(true);
     try {
+      // Format dates properly
       const projectData = {
+        id: Date.now(), // Add an ID if not auto-generated
         name: formData.projectName,
-        description: formData.description,
+        description: formData.description || '',
         clientName: formData.clientName,
         startDate: formData.startDate,
         endDate: formData.endDate,
         status: 'In Progress' as const,
         type: formData.projectType,
         progress: 0,
-        budget: parseFloat(formData.budget),
+        budget: formData.budget ? parseFloat(formData.budget) : 0,
         materialsUsed: 0,
-        team: formData.team,
-        materials: formData.materials,
-        files: formData.files || [],
+        team: formData.team || [],
+        materials: formData.materials.map(material => ({
+          ...material,
+          used: 0 // Add used property if required
+        })),
+        files: formData.files.map(file => ({
+          id: file.id,
+          name: file.name
+        })),
         timeline: formData.milestones.map(milestone => ({
           id: milestone.id,
           title: milestone.title,
           date: milestone.date,
           status: 'pending'
-        })),
-        materialLinks: formData.materialLinks
+        }))
       };
   
-      await storage.createProject(projectData);
+      // Add error handling for storage
+      const result = await storage.createProject(projectData);
+      if (!result) {
+        throw new Error('Failed to create project');
+      }
+  
       showToast('success', t('projects.messages.success.created'));
-      setTimeout(() => navigate('/projects'), 500);
+      navigate('/projects');
     } catch (error) {
+      console.error('Project creation error:', error);
       showToast('error', t('projects.messages.error.create'));
     } finally {
       setIsLoading(false);
@@ -250,8 +317,8 @@ return true;
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Sidebar />
-      <Header />
+      {/* <Sidebar />
+      <Header /> */}
       <main className={`transition-all duration-300 pt-16 mt-5 p-6 ${
         direction === 'rtl' 
           ? 'mr-0 lg:mr-64' 

@@ -74,8 +74,8 @@ const ProjectTimeline = () => {
     <div className="min-h-screen bg-gray-50">
         
                  
-      <Sidebar />
-      <Header />
+      {/* <Sidebar />
+      <Header /> */}
       <main className="lg:ml-64 mt-5 pt-16 p-6">
         <div className=" mx-auto">
           <Breadcrumb 

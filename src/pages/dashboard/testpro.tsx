@@ -486,8 +486,8 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Sidebar />
-      <Header />
+      {/* <Sidebar />
+      <Header /> */}
 
       <main className="lg:ml-64 mt-5 pt-16 p-6">
         {/* Header Section */}

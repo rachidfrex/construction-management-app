@@ -38,19 +38,33 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
   const { t } = useTranslation();
   const { direction } = useTranslationContext();
 
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files) {
+  //     const newFiles = Array.from(e.target.files).map(file => ({
+  //       id: Date.now().toString(), // Generate unique ID
+  //       name: file.name // Store only the file name
+  //     }));
+
+  //     onChange({
+  //       ...formData,
+  //       files: [...(formData.files || []), ...newFiles]
+  //     });
+  //   }
+  // };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const newFiles = Array.from(e.target.files).map(file => ({
-        id: Date.now().toString(), // Generate unique ID
-        name: file.name // Store only the file name
+        id: `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, // Create unique ID
+        name: file.name,
+        type: file.type
       }));
-
       onChange({
         ...formData,
         files: [...(formData.files || []), ...newFiles]
       });
     }
   };
+  
 
   const handleTeamSelection = (member: typeof teamMembers[0]) => {
     const isSelected = formData.team.some(t => t.id === member.id.toString());
@@ -70,11 +84,17 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
   };
 
 
-  const removeFile = (index: number) => {
-    const updatedFiles = formData.files.filter((_, i) => i !== index);
-    onChange({ ...formData, files: updatedFiles });
-  };
+  // const removeFile = (index: number) => {
+  //   const updatedFiles = formData.files.filter((_, i) => i !== index);
+  //   onChange({ ...formData, files: updatedFiles });
+  // };
 
+  const removeFile = (fileId: string) => {
+    onChange({
+      ...formData,
+      files: formData.files.filter(file => file.id !== fileId)
+    });
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -253,7 +273,7 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
         </div>
 
         {/* File List */}
-        {formData.files && formData.files.length > 0 && (
+        {/* {formData.files && formData.files.length > 0 && (
           <div className="space-y-2">
             {formData.files.map((file, index) => (
               <div
@@ -267,6 +287,28 @@ const AdditionalDetails = ({ formData, onChange }: AdditionalDetailsProps) => {
                 <button
                   type="button"
                   onClick={() => removeFile(index)}
+                  className="text-gray-400 hover:text-red-500"
+                >
+                  <HiOutlineX className="w-5 h-5" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )} */}
+        {formData.files && formData.files.length > 0 && (
+          <div className="space-y-2">
+            {formData.files.map((file) => (
+              <div
+                key={file.id}
+                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+              >
+                <div className="flex items-center space-x-2">
+                  <HiOutlineDocumentText className="w-5 h-5 text-gray-400" />
+                  <span className="text-sm text-gray-700">{file.name}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeFile(file.id)}
                   className="text-gray-400 hover:text-red-500"
                 >
                   <HiOutlineX className="w-5 h-5" />

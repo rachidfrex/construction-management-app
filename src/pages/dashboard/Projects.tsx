@@ -232,8 +232,8 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Sidebar />
-      <Header />
+      {/* <Sidebar />
+      <Header /> */}
 
       <main className={`transition-all duration-300 pt-16 p-3  sm:p-6 md:mt-7 ${
         direction === 'rtl' ? 'mr-0 lg:mr-64' : 'ml-0 lg:ml-64'

@@ -140,7 +140,7 @@ const EditProject = () => {
         projectStatus: 'on-track'
     });
 
-    const [transactions, setTransactions] = useState<Transaction[]>([
+    const transactions: Transaction[] = [
         {
             id: '1',
             date: '2024-01-20',
@@ -157,7 +157,7 @@ const EditProject = () => {
             description: 'Client milestone payment',
             status: 'completed'
         }
-    ]);
+    ];
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -216,8 +216,8 @@ const EditProject = () => {
   if (isFetching) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Sidebar />
-        <Header />
+        {/* <Sidebar />
+        <Header /> */}
         <main className="lg:ml-64 mt-5 pt-16  p-6">
           <div className="flex items-center justify-center h-[60vh]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500" />
