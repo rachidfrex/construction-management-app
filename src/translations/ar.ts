@@ -78,7 +78,19 @@ export const ar = {
         newCodeSent: "تم إرسال رمز جديد!",
         logoutSuccess: "تم تسجيل الخروج بنجاح",
         logoutError: "خطأ في تسجيل الخروج",
-        loggingOut: "جاري تسجيل الخروج..."
+        loggingOut: "جاري تسجيل الخروج...",
+        passwordStrength: {
+          weak: 'ضعيف',
+          medium: 'متوسط',
+          strong: 'قوي'
+        },
+        passwordChecks: {
+          length: '8 أحرف على الأقل',
+          number: 'يحتوي على رقم',
+          lower: 'يحتوي على حرف صغير',
+          upper: 'يحتوي على حرف كبير',
+          special: 'يحتوي على رمز خاص'
+        }
       },
 
     dashboard: {

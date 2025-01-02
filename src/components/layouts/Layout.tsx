@@ -14,8 +14,6 @@ const PUBLIC_ROUTES =[
   '/new-password',
   '/logout',
   '/404',
-  
-
 
 ];
 
@@ -23,9 +21,15 @@ const PUBLIC_ROUTES =[
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
-  const isPublicRoute = PUBLIC_ROUTES.includes(location.pathname);
 
-  if (isPublicRoute) {
+  const isPublicRoute = PUBLIC_ROUTES.includes(location.pathname);
+  const isNotFoundRoute = !PUBLIC_ROUTES.includes(location.pathname) && 
+                         !location.pathname.startsWith('/dashboard') &&
+                         !location.pathname.startsWith('/projects') &&
+                         !location.pathname.startsWith('/inventory');
+
+  // Return bare layout for public routes and 404
+  if (isPublicRoute || isNotFoundRoute) {
     return <>{children}</>;
   }
   return (

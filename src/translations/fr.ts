@@ -78,7 +78,19 @@ export const fr = {
         newCodeSent: "Nouveau code envoyé !",
         logoutSuccess: "Déconnexion réussie",
         logoutError: "Erreur lors de la déconnexion",
-        loggingOut: "Déconnexion en cours..."
+        loggingOut: "Déconnexion en cours...",
+        passwordStrength: {
+          weak: 'Faible',
+          medium: 'Moyen',
+          strong: 'Fort'
+        },
+        passwordChecks: {
+          length: 'Au moins 8 caractères',
+          number: 'Contient un chiffre',
+          lower: 'Contient une minuscule',
+          upper: 'Contient une majuscule',
+          special: 'Contient un caractère spécial'
+        }
       },
   
     dashboard: {

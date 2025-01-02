@@ -82,6 +82,18 @@ export const en = {
         logoutSuccess: "Logged out successfully",
         logoutError: "Error logging out",
         loggingOut: "Logging out...",
+        passwordStrength: {
+          weak: 'Weak',
+          medium: 'Medium',
+          strong: 'Strong'
+        },
+        passwordChecks: {
+          length: 'At least 8 characters',
+          number: 'Contains a number',
+          lower: 'Contains lowercase letter',
+          upper: 'Contains uppercase letter',
+          special: 'Contains special character'
+        }
       },
 
   
