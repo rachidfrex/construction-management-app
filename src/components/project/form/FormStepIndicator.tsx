@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 import { useTranslationContext } from '../../../context/TranslationContext';
 
 interface StepIndicatorProps {
   currentStep: number;
   steps: { id: number; title: string }[];
+  onStepClick?: (step: number) => void;
 }
 
 const FormStepIndicator = ({ currentStep, steps }: StepIndicatorProps) => {
   const { direction } = useTranslationContext();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   return (
     <div className={`flex justify-between mb-8 `}>

@@ -27,6 +27,7 @@ interface Material {
   quantity: number;
   unit: string;
   used: number;
+  source: 'internal' | 'purchase';
 }
 
 interface Milestone {
@@ -57,10 +58,10 @@ interface FormData {
   budget: string;
   team: TeamMember[];
   materials: Material[];
-  files?: { name: string; type: string }[];
+  files: { id: string; name: string }[];
   milestones: Milestone[];
   materialLinks: MaterialLink[];
-  materialSource?: 'internal' | 'purchase';
+  materialSource: 'internal' | 'purchase';
 }
 
 const steps = [
@@ -89,7 +90,8 @@ const NewProject = () => {
     materials: [],
     milestones: [],
     files: [],
-    materialLinks: []
+    materialLinks: [],
+    materialSource: 'internal'
   });
 
 const validateStep = (step: number): boolean => {

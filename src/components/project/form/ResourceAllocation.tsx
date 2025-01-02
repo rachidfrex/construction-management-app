@@ -12,6 +12,7 @@ interface Material {
   unit: string;
   minimumStock: number;
   reorderPoint: number;
+  
 }
 
 interface ResourceAllocationProps {
@@ -24,6 +25,8 @@ interface ResourceAllocationProps {
     materialSource: string;
   };
   onChange: (data: any) => void;
+  onMaterialPhaseLink: (materialId: number, phaseId: number, quantity: number) => void;
+
 }
 
 const availableMaterials: Material[] = [
@@ -106,20 +109,6 @@ const ResourceAllocation: React.FC<ResourceAllocationProps> = ({ formData, onCha
 
     onChange({ ...formData, materials: updatedMaterials });
   };
-  // const updatedMaterials = formData.materials.map(m => 
-  //   m.id === materialId 
-  //     ? { 
-  //         id: materialId,
-  //         name: material.name,
-  //         quantity: quantity,
-  //         unit: material.unit,
-  //         used: 0
-  //       } 
-  //     : m
-  // );
-
-//   onChange({ ...formData, materials: updatedMaterials });
-// };
 
   return (
     <motion.div
