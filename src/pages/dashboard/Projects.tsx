@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTranslationContext } from '../../context/TranslationContext';
 import { HiOutlineSearch } from 'react-icons/hi';
-import Sidebar from '../../components/dashboard/Sidebar';
-import Header from '../../components/dashboard/Header';
+
 import { ProjectHeader } from '../../components/project/ProjectHeader';
 import { ProjectStatistics } from '../../components/project/ProjectStatistics';
 import { ProjectFilters } from '../../components/project/ProjectFilters';

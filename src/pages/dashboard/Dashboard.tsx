@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { HiCube, HiCurrencyDollar, HiDocumentText, HiUserGroup ,HiOutlineArrowSmRight } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import Sidebar from '../../components/dashboard/Sidebar';
-import Header from '../../components/dashboard/Header';
 import StatCard from '../../components/dashboard/StatCard';
 import ProjectsOverview from '../../components/dashboard/ProjectsOverview';
 import InventoryOverview from '../../components/dashboard/InventoryOverview';

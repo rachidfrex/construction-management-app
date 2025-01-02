@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import { useToast } from '../../context/ToastContext';
 import { useTranslationContext } from '../../context/TranslationContext'; 
 import { useTranslation } from 'react-i18next';
-import Sidebar from '../../components/dashboard/Sidebar';
-import Header from '../../components/dashboard/Header';
 import FormStepIndicator from '../../components/project/form/FormStepIndicator';
 import GeneralInformation from '../../components/project/form/GeneralInformation';
 import ResourceAllocation from '../../components/project/form/ResourceAllocation';
@@ -140,16 +138,16 @@ if (errors.length > 0) {
 }
 return true;
 };
-const validateProjectData = (data: typeof formData) => {
-  if (!data.projectName.trim()) throw new Error(t('projects.validation.nameRequired'));
-  if (!data.projectType) throw new Error(t('projects.validation.typeRequired')); 
-  if (!data.clientName.trim()) throw new Error(t('projects.validation.clientRequired'));
-  if (!data.startDate || !data.endDate) throw new Error(t('projects.validation.datesRequired'));
-  if (new Date(data.startDate) >= new Date(data.endDate)) {
-    throw new Error(t('projects.validation.invalidDates'));
-  }
-  if (!data.budget) throw new Error(t('projects.validation.budgetRequired'));
-};
+// const validateProjectData = (data: typeof formData) => {
+//   if (!data.projectName.trim()) throw new Error(t('projects.validation.nameRequired'));
+//   if (!data.projectType) throw new Error(t('projects.validation.typeRequired')); 
+//   if (!data.clientName.trim()) throw new Error(t('projects.validation.clientRequired'));
+//   if (!data.startDate || !data.endDate) throw new Error(t('projects.validation.datesRequired'));
+//   if (new Date(data.startDate) >= new Date(data.endDate)) {
+//     throw new Error(t('projects.validation.invalidDates'));
+//   }
+//   if (!data.budget) throw new Error(t('projects.validation.budgetRequired'));
+// };
   const handleStepClick = (step: number) => {
     if (step < currentStep) {
       setCurrentStep(step);

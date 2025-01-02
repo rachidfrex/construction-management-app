@@ -22,8 +22,7 @@ import {
 
 } from 'react-icons/hi';
 import { useToast } from '../../context/ToastContext';
-import Sidebar from '../../components/dashboard/Sidebar';
-import Header from '../../components/dashboard/Header';
+
 // Project status types
 type ProjectStatus = 'In Progress' | 'Completed' | 'Delayed' | 'Canceled';
 type ProjectType = 'Construction' | 'Renovation' | 'Maintenance';

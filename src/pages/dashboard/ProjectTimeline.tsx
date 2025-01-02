@@ -9,8 +9,7 @@ import {
   HiOutlineClock,
   HiOutlineFlag
 } from 'react-icons/hi';
-import Sidebar from '../../components/dashboard/Sidebar';
-import Header from '../../components/dashboard/Header';
+
 
 interface TimelineEvent {
   id: number;

@@ -24,8 +24,7 @@ import {
   HiOutlinePencil, 
   HiOutlinePlusCircle
 } from 'react-icons/hi';
-import Sidebar from '../../components/dashboard/Sidebar';
-import Header from '../../components/dashboard/Header';
+
 import { storage } from '../../mockData/db';
 
 
