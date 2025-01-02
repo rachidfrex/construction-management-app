@@ -82,6 +82,7 @@ export const ar = {
         passwordStrength: {
           weak: 'ضعيف',
           medium: 'متوسط',
+          good : 'جيد',
           strong: 'قوي'
         },
         passwordChecks: {

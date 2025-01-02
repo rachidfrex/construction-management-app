@@ -85,6 +85,7 @@ export const en = {
         passwordStrength: {
           weak: 'Weak',
           medium: 'Medium',
+          good: 'Good',
           strong: 'Strong'
         },
         passwordChecks: {

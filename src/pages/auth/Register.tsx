@@ -163,62 +163,74 @@ const Register = () => {
 
                 {/* Password Strength Indicator */}
                 {formData.password && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-2 space-y-2"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex gap-1 flex-1">
-                        {[1, 2, 3 , 4].map((index) => (
-                          <motion.div
-                            key={index}
-                            className="h-2 flex-1 rounded-full"
-                            style={{
-                              backgroundColor: index <= (passwordStrength.score / 100) * 3 
-                                ? passwordStrength.strength === 'weak' 
-                                  ? '#ef4444' 
-                                  : passwordStrength.strength === 'medium'
-                                    ? '#eab308'
-                                    : '#22c55e'
-                                : '#e5e7eb'
-                            }}
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
-                          />
-                        ))}
-                      </div>
-                      
-                    </div>
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    animate={{ opacity: 1, y: 0 }}
+    className="mt-2 space-y-2"
+  >
+    <div className="flex items-center justify-between">
+      <div className="flex gap-1 flex-1">
+        {[1, 2, 3, 4].map((index) => (
+          <motion.div
+            key={index}
+            className="h-2 flex-1 rounded-full"
+            style={{
+              backgroundColor: index <= (passwordStrength.score / 100) * 4
+                ? passwordStrength.strength === 'weak'
+                  ? '#ef4444' // red
+                  : passwordStrength.strength === 'medium'
+                    ? '#eab308' // yellow
+                    : passwordStrength.strength === 'good'
+                      ? '#3b82f6' // blue
+                      : '#22c55e' // green
+                : '#e5e7eb'
+            }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+          />
+        ))}
+      </div>
+      <span className={`text-xs font-medium ms-2 ${
+        passwordStrength.strength === 'weak'
+          ? 'text-red-500'
+          : passwordStrength.strength === 'medium'
+            ? 'text-yellow-500'
+            : passwordStrength.strength === 'good'
+              ? 'text-blue-500'
+              : 'text-green-500'
+      }`}>
+        {t(`auth.passwordStrength.${passwordStrength.strength}`)}
+      </span>
+    </div>
 
-                    <motion.div 
-                      className="space-y-1"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      {passwordStrength.checks.map((check, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ delay: 0.4 + index * 0.1 }}
-                          >
-                            {check.passed ? (
-                              <HiCheck className="w-4 h-4 text-green-500" />
-                            ) : (
-                              <HiX className="w-4 h-4 text-gray-300" />
-                            )}
-                          </motion.div>
-                          <span className={`text-xs ${check.passed ? 'text-gray-700' : 'text-gray-400'}`}>
-                            {check.title}
-                          </span>
-                        </div>
-                      ))}
-                    </motion.div>
-                  </motion.div>
-                )}
+    <motion.div 
+      className="space-y-1"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.3 }}
+    >
+      {passwordStrength.checks.map((check, index) => (
+        <div key={index} className="flex items-center gap-2">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.4 + index * 0.1 }}
+          >
+            {check.passed ? (
+              <HiCheck className="w-4 h-4 text-green-500" />
+            ) : (
+              <HiX className="w-4 h-4 text-gray-300" />
+            )}
+          </motion.div>
+          <span className={`text-xs ${check.passed ? 'text-gray-700' : 'text-gray-400'}`}>
+            {check.title}
+          </span>
+        </div>
+      ))}
+    </motion.div>
+  </motion.div>
+)}
 
             <button
               type="submit"
