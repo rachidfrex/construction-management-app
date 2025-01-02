@@ -16,9 +16,11 @@ import Construction from '../pages/inventory/construction/Construction';
 import Fertilizers from  '../pages/inventory/Fertilizers/Fertilizers';
 import Logout from '../pages/auth/Logout';
 import AddConstruction from '../pages/inventory/construction/AddConstruction';
+import Layout from '../components/layouts/Layout';
 
 const AppRoutes: React.FC = () => {
   return (
+    <Layout>
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
@@ -40,6 +42,7 @@ const AppRoutes: React.FC = () => {
 
       <Route path="*" element={<NotFound />} /> {/* Add this line for 404 route */}
     </Routes>
+    </Layout>
   );
 };
 
